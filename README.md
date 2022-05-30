@@ -39,7 +39,7 @@ In the package.json file, in the `scripts` section, you will find the commands t
 - `clean` - removes the "dist" folder if it exists.
 - `fonts` - converts the fonts placed in the "fonts" folder into several browser-friendly formats and creates a file with font-face included.
 - `sprite` - converts SVG icons placed in the "svgico" folder to SVG sprite
-- `zip` - archives the project in production mode (TIP: I will rewrite this task in the future).
+- `zip` - archives the project in production mode (TIP: I will rewrite this task in the future. Better place your layout in repositories).
 
 To run a command in the console, write `npm run command_name`, for example:
 
