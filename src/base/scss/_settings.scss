@@ -1,4 +1,30 @@
-@import './_variables.scss';
+@import "./_variables.scss";
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	scrollbar-color: $dark $blue;
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: $dark;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $blue;
+		border-radius: 10px;
+	}
+}
 
 body {
 	max-width: 100%;
@@ -7,7 +33,9 @@ body {
 	font-family: $ffam;
 
 	&._no-scroll {
-		overflow: hidden;
+		@include media("md") {
+			overflow: hidden;
+		}
 	}
 }
 
@@ -15,4 +43,25 @@ body {
 	margin: 0px auto;
 	padding: 0px $contof;
 	max-width: $contw;
+
+	@media (max-width: $contw) {
+		max-width: 767px;
+	}
+
+	@include media("md") {
+		max-width: none;
+	}
+
+	&_fluid {
+		max-width: none;
+		padding: 0px 55px;
+
+		@include media("md") {
+			padding: 0px 40px;
+		}
+
+		@include media("sm") {
+			padding: 0px $contof;
+		}
+	}
 }
