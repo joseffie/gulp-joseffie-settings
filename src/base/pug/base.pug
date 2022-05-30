@@ -1,0 +1,17 @@
+block variables
+
+doctype html
+html(lang="ru")
+    include ./head
+
+    body(class= pageClass)
+        .wrapper
+            include ../../components/header/header
+
+            main.wrapper__content.main 
+                block content
+
+            include ../../components/footer/footer
+
+        block script
+            script(src='js/index.min.js')

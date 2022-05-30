@@ -1,0 +1,22 @@
+/*
+   $ffam = font-family
+   $conw = content-width
+   $contof = container-offset
+   $contw = container-width
+*/
+
+$ffam: 'Roboto', sans-serif;
+$conw: 1200px;
+$contof: 25px;
+$contw: calc($conw + ($contof * 2));
+
+// My color system
+$blue: #1e6091;
+$cyan: #168aad;
+$red: #9d0208;
+$orange: #f48c06;
+$yellow: #ffba08;
+$green: #52b69a;
+$teal: #99d98c;
+$dark: #02030c;
+$light: rgb(230, 220, 220);

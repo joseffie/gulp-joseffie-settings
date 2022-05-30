@@ -1,0 +1,51 @@
+{
+	"mainmenuData": [
+		{
+			"text": "Главная",
+			"link": "/",
+			"hasLink": false
+		},
+		{
+			"text": "Пункт 2",
+			"link": "#",
+			"hasLink": true,
+			"subitems": [
+				{
+					"text": "Подпункт 1",
+					"link": "#"
+				},
+				{
+					"text": "Подпункт 2",
+					"link": "#"
+				},
+				{
+					"text": "Подпункт 3",
+					"link": "#"
+				},
+				{
+					"text": "Подпункт 4",
+					"link": "#"
+				},
+				{
+					"text": "Подпункт 5",
+					"link": "#"
+				}
+			]
+		},
+		{
+			"text": "Пункт 3",
+			"link": "#",
+			"hasLink": true
+		},
+		{
+			"text": "Пункт 4",
+			"link": "#",
+			"hasLink": true
+		},
+		{
+			"text": "Пункт 5",
+			"link": "#",
+			"hasLink": true
+		}
+	]
+}

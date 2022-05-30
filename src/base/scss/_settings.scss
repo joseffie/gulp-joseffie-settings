@@ -1,0 +1,18 @@
+@import './_variables.scss';
+
+body {
+	max-width: 100%;
+	min-height: 100%;
+	overflow-x: hidden;
+	font-family: $ffam;
+
+	&._no-scroll {
+		overflow: hidden;
+	}
+}
+
+.container {
+	margin: 0px auto;
+	padding: 0px $contof;
+	max-width: $contw;
+}

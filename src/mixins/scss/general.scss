@@ -1,0 +1,60 @@
+// Cover background
+@mixin bg-cover {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+// Converting pxs to rems
+$browser-context: 16; // Default
+
+@function rem($pixels, $context: $browser-context) {
+	@return calc($pixels / $content) * 1rem;
+}
+
+// Fade element
+@mixin fade($type: 'hide') {
+	@if $type== 'hide' {
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		transition: visibility 0.5s, opacity 0.5s;
+	} @else if $type== 'show' {
+		visibility: visible;
+		opacity: 1;
+		pointer-events: all;
+		transition: visibility 0.5s, opacity 0.5s;
+	}
+}
+
+// Margin for all elements except the last
+@mixin mr($value) {
+	&:not(:last-child) {
+		margin-right: $value;
+	}
+}
+
+@mixin ml($value) {
+	&:not(:last-child) {
+		margin-left: $value;
+	}
+}
+
+@mixin mb($value) {
+	&:not(:last-child) {
+		margin-bottom: $value;
+	}
+}
+
+@mixin mt($value) {
+	&:not(:last-child) {
+		margin-top: $value;
+	}
+}
+
+// Pseudoelements default styles
+@mixin pseudo($content: '', $display: block, $pos: absolute) {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
