@@ -4,15 +4,13 @@
 	flex-direction: column;
 	width: 100%;
 	min-height: 100vh;
-	margin: 0 auto;
-	transition: margin 0.3s ease;
 
 	// IE11 fix
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
 		display: block;
 	}
 
-	&__content {
+	.main {
 		flex: 1 1 auto;
 	}
 }
