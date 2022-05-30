@@ -5,9 +5,10 @@
 		"node": true
 	},
 	"extends": ["airbnb-base"],
-	"parser": "babel-eslint",
+	"parser": "@babel/eslint-parser",
 	"parserOptions": {
-		"ecmaVersion": 2018,
+		"ecmaVersion": 8,
+		"requireConfigFile": false,
 		"allowImportExportEverywhere": true,
 		"sourceType": "module"
 	},
