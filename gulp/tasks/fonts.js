@@ -1,6 +1,6 @@
-import fs from 'fs';
-import fonter from 'gulp-fonter';
-import ttf2woff2 from 'gulp-ttf2woff2';
+import fs from "fs";
+import fonter from "gulp-fonter";
+import ttf2woff2 from "gulp-ttf2woff2";
 
 export const otfToTtf = () => {
 	return app.gulp
@@ -8,14 +8,14 @@ export const otfToTtf = () => {
 		.pipe(
 			app.plugins.plumber(
 				app.plugins.notify.onError({
-					title: 'FONTS',
-					message: 'You have some errors: <%= error.message %>',
+					title: "FONTS",
+					message: "Fix da mistake, leather man: <%= error.message %>",
 				})
 			)
 		)
 		.pipe(
 			fonter({
-				formats: ['ttf'],
+				formats: ["ttf"],
 			})
 		)
 		.pipe(app.gulp.dest(`${app.path.srcFolder}/fonts/`));
@@ -27,14 +27,14 @@ export const ttfToWoff = () => {
 		.pipe(
 			app.plugins.plumber(
 				app.plugins.notify.onError({
-					title: 'FONTS',
-					message: 'You have some errors: <%= error.message %>',
+					title: "FONTS",
+					message: "You have some errors: <%= error.message %>",
 				})
 			)
 		)
 		.pipe(
 			fonter({
-				formats: ['woff'],
+				formats: ["woff"],
 			})
 		)
 		.pipe(app.gulp.dest(`${app.path.build.fonts}`))
@@ -49,36 +49,36 @@ export const fStyle = () => {
 	fs.readdir(app.path.build.fonts, function (err, fontsFiles) {
 		if (fontsFiles) {
 			if (!fs.existsSync(fontsFile)) {
-				fs.writeFile(fontsFile, '', cb);
+				fs.writeFile(fontsFile, "", cb);
 				let newFileOnly;
 				for (let i = 0; i < fontsFiles.length; i++) {
-					let fontFileName = fontsFiles[i].split('.')[0];
+					let fontFileName = fontsFiles[i].split(".")[0];
 					if (newFileOnly !== fontFileName) {
-						let fontName = fontFileName.split('-')[0]
-							? fontFileName.split('-')[0]
+						let fontName = fontFileName.split("-")[0]
+							? fontFileName.split("-")[0]
 							: fontFileName;
-						let fontWeight = fontFileName.split('-')[1]
-							? fontFileName.split('-')[1]
+						let fontWeight = fontFileName.split("-")[1]
+							? fontFileName.split("-")[1]
 							: fontFileName;
 
-						if (fontWeight.toLowerCase() === 'thin') {
+						if (fontWeight.toLowerCase() === "thin") {
 							fontWeight = 100;
-						} else if (fontWeight.toLowerCase() === 'extralight') {
+						} else if (fontWeight.toLowerCase() === "extralight") {
 							fontWeight = 200;
-						} else if (fontWeight.toLowerCase() === 'light') {
+						} else if (fontWeight.toLowerCase() === "light") {
 							fontWeight = 300;
-						} else if (fontWeight.toLowerCase() === 'medium') {
+						} else if (fontWeight.toLowerCase() === "medium") {
 							fontWeight = 500;
-						} else if (fontWeight.toLowerCase() === 'semibold') {
+						} else if (fontWeight.toLowerCase() === "semibold") {
 							fontWeight = 600;
-						} else if (fontWeight.toLowerCase() === 'bold') {
+						} else if (fontWeight.toLowerCase() === "bold") {
 							fontWeight = 700;
 						} else if (
-							fontWeight.toLowerCase() === 'extrabold' ||
-							fontWeight.toLowerCase() === 'heavy'
+							fontWeight.toLowerCase() === "extrabold" ||
+							fontWeight.toLowerCase() === "heavy"
 						) {
 							fontWeight = 800;
-						} else if (fontWeight.toLowerCase() === 'black') {
+						} else if (fontWeight.toLowerCase() === "black") {
 							fontWeight = 900;
 						} else {
 							fontWeight = 400;
@@ -92,7 +92,7 @@ export const fStyle = () => {
 						newFileOnly = fontFileName;
 					} else {
 						console.log(
-							'The base/scss/fonts.scss already exists. To update a file, it must be deleted.'
+							"The base/scss/fonts.scss already exists. To update a file, it must be deleted."
 						);
 					}
 				}

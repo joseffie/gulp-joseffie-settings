@@ -1,4 +1,4 @@
-import svgSprite from 'gulp-svg-sprite';
+import svgSprite from "gulp-svg-sprite";
 
 export const makeSprite = () => {
 	return app.gulp
@@ -6,8 +6,8 @@ export const makeSprite = () => {
 		.pipe(
 			app.plugins.plumber(
 				app.plugins.notify.onError({
-					title: 'SVG',
-					message: 'Dungeon master, you have some error: <%= error.message %>',
+					title: "SVG",
+					message: "Fix da mistake, leather man: <%= error.message %>",
 				})
 			)
 		)
@@ -15,7 +15,7 @@ export const makeSprite = () => {
 			svgSprite({
 				mode: {
 					stack: {
-						sprite: '../icons/sprite.svg',
+						// sprite: "../../src/img/sprite.svg",
 						example: false,
 					},
 				},

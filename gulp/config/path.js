@@ -1,4 +1,4 @@
-import * as nodePath from 'path';
+import * as nodePath from "path";
 const rootFolder = nodePath.basename(nodePath.resolve());
 
 const buildFolder = `./dist`;
@@ -13,7 +13,7 @@ export const path = {
 		fonts: `${buildFolder}/fonts/`,
 	},
 	src: {
-		html: `${srcFolder}/*.pug`,
+		pug: `${srcFolder}/*.pug`,
 		scss: `${srcFolder}/base/scss/main.scss`,
 		js: `${srcFolder}/base/js/index.js`,
 		images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
@@ -23,7 +23,7 @@ export const path = {
 	watch: {
 		js: `${srcFolder}/**/*.js`,
 		scss: `${srcFolder}/**/*.scss`,
-		html: `${srcFolder}/**/*.pug`,
+		pug: `${srcFolder}/**/*.pug`,
 		images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
 	},
 	clean: buildFolder,

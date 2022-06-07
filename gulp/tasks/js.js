@@ -4,8 +4,8 @@ export const js = () => {
 		.pipe(
 			app.plugins.plumber(
 				app.plugins.notify.onError({
-					title: 'JS',
-					message: 'Dungeon master, you have some error: <%= error.message %>',
+					title: "JS",
+					message: "Fix da mistake, leather man: <%= error.message %>",
 				})
 			)
 		)
