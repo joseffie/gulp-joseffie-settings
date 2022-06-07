@@ -5,7 +5,7 @@ import pug from "gulp-pug";
 import fs from "fs";
 import data from "gulp-data";
 
-export const html = () => {
+export const pug = () => {
 	return (
 		app.gulp
 			.src(app.path.src.html)
