@@ -1,8 +1,3 @@
-// "mainmenuData" is the navigation list in the header.
-// "text" is a link content
-// In the "link" item, specify the path to the link without .html
-// Set "hasLink" to true if your item has a link to an external resource or an anchor
-
 {
   "mainmenuData": [
     {
