@@ -1,6 +1,6 @@
 import webpHtmlNosvg from "gulp-webp-html-nosvg";
 import versionNumber from "gulp-version-number";
-import pug from "gulp-pug";
+import pugPlugin from "gulp-pug";
 
 import fs from "fs";
 import data from "gulp-data";
@@ -26,7 +26,7 @@ export const pug = () => {
 				})
 			)
 			.pipe(
-				pug({
+				pugPlugin({
 					pretty: false,
 					verbose: true,
 				})
