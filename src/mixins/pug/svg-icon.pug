@@ -1,5 +1,7 @@
 mixin icon(iconName, className = '')
-  if (className == '')
+  unless (className == '')
     svg(class= className)
       use(xlink:href=`./img/sprite.svg#${iconName}`)
-  
+  else
+    svg
+      use(xlink:href=`./img/sprite.svg#${iconName}`)
