@@ -8,7 +8,7 @@ import data from "gulp-data";
 export const pug = () => {
 	return (
 		app.gulp
-			.src(app.path.src.html)
+			.src(app.path.src.pug)
 			.pipe(
 				app.plugins.plumber(
 					app.plugins.notify.onError({
