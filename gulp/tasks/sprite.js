@@ -15,11 +15,11 @@ export const makeSprite = () => {
 			svgSprite({
 				mode: {
 					stack: {
-						sprite: "../../src/img/sprite.svg",
+						sprite: "../sprite.svg",
 						example: false,
 					},
 				},
 			})
 		)
-		.pipe(app.gulp.dest(`${app.path.build.images}`));
+		.pipe(app.gulp.dest(`${app.path.srcFolder}/img`));
 };
