@@ -1,14 +1,15 @@
+include '../../mixins/pug/svg-icon'
 block variables
 
 doctype html
 html(lang="en")
     include ./head
 
-    body(class= pageClass)
+    body
         .wrapper
             include ../../components/header/header
 
-            main.wrapper__content.main 
+            main.main 
                 block content
 
             include ../../components/footer/footer
