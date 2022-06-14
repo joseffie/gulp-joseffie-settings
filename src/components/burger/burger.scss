@@ -1,61 +1,61 @@
 .burger {
-	display: none;
+  display: none;
 
-	@include media('md') {
-		z-index: 30;
-		display: block;
-		position: relative;
-		width: 31px;
-		height: 22px;
-		cursor: pointer;
+  @include media("md") {
+    z-index: $zi-tooltip;
+    display: block;
+    position: relative;
+    width: 31px;
+    height: 22px;
+    cursor: pointer;
 
-		& > span,
-		&::before,
-		&::after {
-			left: 0;
-			position: absolute;
-			height: 10%;
-			width: 100%;
-			background-color: $dark;
-			transition: all 0.4s ease;
-		}
+    & > span,
+    &::before,
+    &::after {
+      left: 0;
+      position: absolute;
+      height: 10%;
+      width: 100%;
+      background-color: $text-color;
+      transition: all 0.4s ease;
+    }
 
-		&::before,
-		&::after {
-			content: '';
-		}
+    &::before,
+    &::after {
+      content: "";
+    }
 
-		&::before {
-			top: 0;
-		}
+    &::before {
+      top: 0;
+    }
 
-		&::after {
-			bottom: 0;
-		}
+    &::after {
+      bottom: 0;
+    }
 
-		& > span {
-			top: 50%;
-			transform: translateY(-50%) scale(1);
-		}
+    & > span {
+      top: 50%;
+      transform: translateY(-50%) scale(1);
+    }
 
-		&._active > span,
-		&._active::before,
-		&._active::after {
-			background-color: $light;
-		}
+    &._active > span,
+    &._active::before,
+    &._active::after {
+      background-color: $gray-800;
+    }
 
-		&._active span {
-			transform: translateY(-50%) scale(0);
-		}
+    &._active span {
+      transform: translateY(-50%) scale(0);
+    }
 
-		&._active::before {
-			top: 50%;
-			transform: rotate(45deg) translateY(-50%);
-		}
+    &._active::before {
+      top: 50%;
+      transform: rotate(45deg) translateY(-50%);
+    }
 
-		&._active::after {
-			bottom: 50%;
-			transform: rotate(-45deg) translateY(50%);
-		}
-	}
+    &._active::after {
+      bottom: 50%;
+      transform: rotate(-45deg) translateY(50%);
+    }
+  }
 }

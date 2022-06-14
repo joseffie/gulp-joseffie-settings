@@ -1,22 +1,22 @@
 mixin menuItem(item)
-   - var activeClass = menuHref === item.link ? " is-active" : "";
-   - item.subitems ? activeClass += "header__nav-item_parent" : null;
-      li.header__nav-item(class= activeClass)
-         if (item.hasLink == false)
-            a(href= "#")= item.text
-         else
-            a(href= item.link + ".html")= item.text
+  - var activeClass = menuHref === item.link ? " is-active" : "";
+  - item.subitems ? activeClass += "header__nav-item--parent" : null;
+    li.header__nav-item(class= activeClass)
+      if (item.hasLink == false)
+        a(href= "#")= item.text
+      else
+        a(href= item.link + ".html")= item.text
 
-         if block
-               block
+      if block
+        block
 
 
 nav.header__nav
-   ul.header__nav-list 
-      each item in mainmenuData
-         +menuItem(item)
+  ul.header__nav-list 
+    each item in mainmenuData
+      +menuItem(item)
 
-            if (item.subitems)
-               ul.header__nav-dropdown
-                  each subitem in item.subitems
-                     +menuItem(subitem)
+        if (item.subitems)
+          ul.header__nav-dropdown
+            each subitem in item.subitems
+              +menuItem(subitem)

@@ -1,155 +1,153 @@
-@import '../../base/scss/_variables.scss';
-
 .header__nav {
-	@include media('md') {
-		position: fixed;
-		top: 0;
-		left: -100%;
-		width: 100%;
-		height: 100%;
-		background-color: $dark;
-		overflow: auto;
-		z-index: 20;
-		transition: left 0.4s ease;
+  @include media("md") {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: $black;
+    overflow: auto;
+    z-index: $zi-modal;
+    transition: left 0.4s ease;
 
-		&._active {
-			left: 0;
-		}
-	}
+    &._active {
+      left: 0;
+    }
+  }
 
-	&-list {
-		display: flex;
-		align-items: center;
-		gap: 25px;
-		padding-left: 0;
-		list-style: none;
-		font-size: 16px;
-		font-weight: 500;
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: rem(25);
+    padding-left: 0;
+    list-style: none;
+    font-size: $font-size;
+    font-weight: 500;
 
-		@include media('md') {
-			padding-top: 30px;
-			font-size: 20px;
-			flex-direction: column;
-		}
-	}
+    @include media("md") {
+      padding-top: rem(30);
+      font-size: $font-size-h3;
+      flex-direction: column;
+    }
+  }
 
-	&-item {
-		padding: 15px 0px;
+  &-item {
+    padding: 15px 0px;
 
-		@include media('md') {
-			padding: 10px 0px;
-			text-align: center;
-		}
+    @include media("md") {
+      padding: 10px 0px;
+      text-align: center;
+    }
 
-		a {
-			color: $dark;
-			text-decoration: none;
-			transition: color 0.4s ease;
+    a {
+      color: $text-color;
+      text-decoration: none;
+      transition: color 0.4s ease;
 
-			@include media('md') {
-				color: $light;
-			}
+      @include media("md") {
+        color: $gray-800;
+      }
 
-			&:hover {
-				color: $blue;
-			}
-		}
+      &:hover {
+        color: $color-main;
+      }
+    }
 
-		&.is-active {
-			color: $blue;
-		}
+    &.is-active {
+      color: $color-main;
+    }
 
-		&_parent {
-			position: relative;
+    &--parent {
+      position: relative;
+      cursor: pointer;
 
-			&:hover {
-				.header__nav-dropdown {
-					margin-top: 0;
-					opacity: 1;
-					pointer-events: all;
-				}
-			}
+      @include hover {
+        > a {
+          color: $color-main;
 
-			&:hover {
-				a {
-					color: $blue;
+          &::after {
+            border-top-color: $color-main;
+            border-right-color: $color-main;
+            transform: rotate(315deg);
+            margin-top: 7px;
+          }
+        }
 
-					&::after {
-						border-top-color: $blue;
-						border-right-color: $blue;
-						transform: rotate(315deg);
-						margin-top: 7px;
-					}
-				}
-			}
+        .header__nav-dropdown {
+          margin-top: 0;
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
 
-			a {
-				display: flex;
-				gap: 10px;
+      a {
+        display: flex;
+        gap: 10px;
 
-				&::after {
-					display: block;
-					margin-top: 3px;
-					content: '';
-					border-top: 2px solid $dark;
-					border-right: 2px solid $dark;
-					transform: rotate(135deg);
-					height: 7px;
-					width: 7px;
-					transition: border-top-color 0.4s ease, border-right-color 0.4s ease,
-						transform 0.4s ease, margin-top 0.4s ease;
+        &::after {
+          display: block;
+          margin-top: 3px;
+          content: "";
+          border-top: 2px solid $text-color;
+          border-right: 2px solid $text-color;
+          transform: rotate(135deg);
+          height: 7px;
+          width: 7px;
+          transition: border-top-color 0.5s ease, border-right-color 0.5s ease,
+            transform 0.5s ease, margin-top 0.5s ease;
 
-					@include media('md') {
-						border-top-color: $light;
-						border-right-color: $light;
-					}
-				}
-			}
-		}
-	}
+          @include media("md") {
+            border-top-color: $gray-800;
+            border-right-color: $gray-800;
+          }
+        }
+      }
+    }
+  }
 
-	&-dropdown {
-		position: absolute;
-		z-index: 10;
-		top: 45px;
-		right: 0;
-		margin-top: 15px;
-		min-width: 150px;
-		background-color: $light;
-		box-shadow: 0 0 5px 0 rgba(#000, 0.2);
-		padding: 10px 15px;
-		font-size: 14px;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 0.2s ease, margin-top 0.2s ease;
+  &-dropdown {
+    position: absolute;
+    z-index: $zi-dropdown;
+    cursor: auto;
+    top: 45px;
+    right: 0;
+    margin-top: rem(15);
+    min-width: rem(150);
+    background-color: $gray-300;
+    box-shadow: 0 0 5px 0 $black;
+    padding: rem(10) rem(15);
+    font-size: $font-size-sm;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, margin-top 0.2s ease;
 
-		@include media('md') {
-			min-width: 200px;
-			padding: 7px 10px;
-			left: 50%;
-			transform: translateX(-50%);
-		}
+    @include media("md") {
+      min-width: rem(200);
+      padding: rem(7) rem(10);
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-		.header__nav-item {
-			display: block;
-			padding: 10px 0px;
+    .header__nav-item {
+      display: block;
+      padding: rem(10) 0px;
 
-			@include media('md') {
-				font-size: 17px;
-				padding: 8px 0px;
-			}
+      @include media("md") {
+        padding: 8px 0px;
+      }
 
-			a {
-				color: $blue;
+      a {
+        display: inline-block;
+        color: $gray-800;
 
-				&::after {
-					display: none;
-				}
+        @include hover {
+          color: $color-main;
+        }
 
-				&:hover {
-					color: $cyan;
-				}
-			}
-		}
-	}
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
 }

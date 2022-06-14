@@ -1,22 +1,57 @@
-/*
-   $ffam = font-family
-   $conw = content-width
-   $contof = container-offset
-   $contw = container-width
-*/
+// Important
+$content-width: rem(1200); // <- Specify depending on the layout
+$container-offset: rem(20);
+$container-width: calc($content-width + ($container-offset * 2));
 
-$ffam: 'Roboto', sans-serif;
-$conw: 1200px;
-$contof: 25px;
-$contw: calc($conw + ($contof * 2));
+// Basic colors
+$black: hsl(0, 0%, 0%);
+$gray-100: hsl(0, 0%, 10%);
+$gray-200: hsl(0, 0%, 20%);
+$gray-300: hsl(0, 0%, 30%);
+$gray-400: hsl(0, 0%, 40%);
+$gray-500: hsl(0, 0%, 50%);
+$gray-600: hsl(0, 0%, 60%);
+$gray-700: hsl(0, 0%, 70%);
+$gray-800: hsl(0, 0%, 80%);
+$gray-900: hsl(0, 0%, 90%);
+$white: hsl(0, 0%, 100%);
 
-// My color system
-$blue: #1e6091;
-$cyan: #168aad;
-$red: #9d0208;
-$orange: #f48c06;
-$yellow: #ffba08;
-$green: #52b69a;
-$teal: #99d98c;
-$dark: #02030c;
-$light: rgb(230, 220, 220);
+$color-main: #026dca;
+$color-succes: #5cb75c;
+$color-danger: #d8544f;
+$color-warning: #efac4d;
+
+// Semantic colors
+$text-color: $gray-100;
+$text-color-muted: $gray-500;
+$body-bg: $gray-900;
+
+$link-color: $color-main;
+$link-color-hover: darken($color-main, 20%);
+
+$border-color: $gray-700;
+
+// Basic typo
+$font-size: rem(16);
+$font-size-sm: 0.8em;
+
+$font-size-h1: rem(40);
+$font-size-h2: rem(32);
+$font-size-h3: rem(24);
+$font-size-h4: rem(18);
+$font-size-h5: rem(16);
+$font-size-h6: rem(16);
+
+$font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Ubuntu",
+  "Droid Sans", "Helvetica Neue", "Arial", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol";
+
+// Z-index
+$zi-dropdown: 1000;
+$zi-sticky: 1020;
+$zi-fixed: 1030;
+$zi-modal-backdrop: 1040;
+$zi-offcanvas: 1050;
+$zi-modal: 1060;
+$zi-popup: 1070;
+$zi-tooltip: 1080;
