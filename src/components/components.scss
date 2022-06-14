@@ -1,6 +1,12 @@
-@import 'wrapper/wrapper.scss';
-@import 'header/header.scss';
-@import 'nav/nav.scss';
-@import 'burger/burger.scss';
-@import 'footer/footer.scss';
-@import 'overlay/overlay.scss';
+// Page blocks
+@import "wrapper/wrapper.scss";
+@import "header/header.scss";
+@import "footer/footer.scss";
+
+// Header elements
+@import "nav/nav.scss";
+@import "burger/burger.scss";
+
+// Common
+@import "overlay/overlay.scss";
+@import "breadcrumbs/breadcrumbs.scss";
