@@ -1,8 +1,5 @@
 // Mixins
-@import "../../mixins/scss/_media.scss";
-@import "../../mixins/scss/adaptive.scss";
-@import "../../mixins/scss/general.scss";
-@import "../../mixins/scss/text.scss";
+@import "../../mixins/mixins.scss";
 
 // Base
 @import "./_settings.scss";
