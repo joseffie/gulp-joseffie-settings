@@ -1,5 +1,6 @@
 dist/
 node_modules/
+project-archive/
 
 __MACOSX
 .Saved/
