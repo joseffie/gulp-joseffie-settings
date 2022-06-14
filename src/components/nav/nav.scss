@@ -48,7 +48,7 @@
         color: $gray-800;
       }
 
-      &:hover {
+      @include hover {
         color: $color-main;
       }
     }
