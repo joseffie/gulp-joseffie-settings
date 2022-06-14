@@ -1,18 +1,18 @@
-include ../../mixins/pug/svg-icon
+include ../../mixins/mixins
 block variables
 
 doctype html
 html(lang="en")
-    include ./head
+  include ./head
 
-    body
-        .wrapper
-            include ../../components/header/header
+  body
+    .wrapper
+      include ../../components/header/header
 
-            main.main 
-                block content
+      main.main 
+        block content
 
-            include ../../components/footer/footer
+      include ../../components/footer/footer
 
-        block script
-            script(src='js/index.min.js')
+    block script
+      script(src='js/index.min.js')
