@@ -3,20 +3,19 @@ This is the folder with the source font files. To get started, move all your fon
 
 ```scss
 // Mixins
-@import '../../mixins/scss/_media.scss';
-@import '../../mixins/scss/adaptive.scss';
-@import '../../mixins/scss/general.scss';
-@import '../../mixins/scss/text.scss';
+@import "../../mixins/scss/_media.scss";
+@import "../../mixins/scss/adaptive.scss";
+@import "../../mixins/scss/general.scss";
+@import "../../mixins/scss/text.scss";
 
 // Base
-@import './_settings';
-@import './_variables';
-// Comment out if you don't have local fonts or didn't compile them with "npm run fonts" command
-// @import './fonts'; # this line needs to be uncommented
+@import "./_settings.scss";
+@import "./_variables.scss";
+// @import './_fonts.scss'; # This line should be uncommented
 
 // Components
-@import '../../components/components.scss';
+@import "../../components/components.scss";
 
 // Import vendor styles
-@import '../../vendor/normalize.scss';
+@import "../../vendor/normalize.scss";
 ```
