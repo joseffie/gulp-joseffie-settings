@@ -1,1 +1,0 @@
-Import your fonts into this folder. They will be automatically generated in the required formats and the _fonts.scss file will be automatically created
