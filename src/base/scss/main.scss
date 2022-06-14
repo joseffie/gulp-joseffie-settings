@@ -1,17 +1,16 @@
 // Mixins
-@import '../../mixins/scss/_media.scss';
-@import '../../mixins/scss/adaptive.scss';
-@import '../../mixins/scss/general.scss';
-@import '../../mixins/scss/text.scss';
+@import "../../mixins/scss/_media.scss";
+@import "../../mixins/scss/adaptive.scss";
+@import "../../mixins/scss/general.scss";
+@import "../../mixins/scss/text.scss";
 
 // Base
-@import './_settings';
-@import './_variables';
-// Comment out if you don't have local fonts or didn't compile them with "npm run fonts" command
-// @import './fonts';
+@import "./_settings.scss";
+@import "./_variables.scss";
+// @import './_fonts.scss';
 
 // Components
-@import '../../components/components.scss';
+@import "../../components/components.scss";
 
 // Import vendor styles
-@import '../../vendor/normalize.scss';
+@import "../../vendor/normalize.scss";
