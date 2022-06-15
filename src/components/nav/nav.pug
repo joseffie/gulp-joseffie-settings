@@ -10,13 +10,28 @@ mixin menuItem(item)
       if block
         block
 
+mixin navMenu(hasBurger = true)
 
-nav.header__nav
-  ul.header__nav-list 
-    each item in mainmenuData
-      +menuItem(item)
+  //- Takes on:
+  //- hasBurger { true / false } - if set to true, then a burger menu appears at a certain width
 
-        if (item.subitems)
-          ul.header__nav-dropdown
-            each subitem in item.subitems
-              +menuItem(subitem)
+  if (typeof(hasBurger) !== 'undefined' && hasBurger)
+    nav.header__nav(data-burger-nav)
+      ul.header__nav-list 
+        each item in mainmenuData
+          +menuItem(item)
+
+            if (item.subitems)
+              ul.header__nav-dropdown
+                each subitem in item.subitems
+                  +menuItem(subitem)
+  else
+    nav.header__nav
+      ul.header__nav-list 
+        each item in mainmenuData
+          +menuItem(item)
+
+            if (item.subitems)
+              ul.header__nav-dropdown
+                each subitem in item.subitems
+                  +menuItem(subitem) 
