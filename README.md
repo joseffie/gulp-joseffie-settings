@@ -1,15 +1,24 @@
 # Gulp-Settings: Gulp + Webpack build for Web Development
 
 ## Capabilities
+#### Common
 - Component approach to work: the structure of component files is implemented according to BEM.
 - Automatic creation of component directories with files using the [bem-tools-create](https://github.com/bem-tools/bem-tools-create) tool.
-- Using the Pug HTML-preprocessor.
-- Using the SCSS CSS-preprocessor.
-- Using Webpack to build JavaScript modules.
 - Automatic assembly of SVG icons into sprites using Gulp.
-- Checking JS code for errors with ESLint linter.
 - Authomatic convert images to modern Webp format.
 - Starter template for a quick start of layout.
+
+#### Preprocessors
+- Using the Pug HTML-preprocessor.
+- Using the SCSS CSS-preprocessor.
+
+#### JavaScript
+- Using Webpack to build JavaScript modules.
+- Checking JS code for errors with ESLint linter.
+
+#### SCSS
+- Checking SCSS Code for Stylelint Errors.
+- Automatic correction of errors in CSS code with the Stylelint linter.
 
 ## Instalation
 You will need to download and install [node.js](https://nodejs.org/en/) for the build to work.
@@ -36,6 +45,8 @@ When all the dependencies have been installed, to run the project, it is enough 
 In the package.json file, in the `scripts` section, you will find the commands to run the project:
 - `dev` — starts the project in development mode.
 - `build` — runs the project in production mode, copying files to the "dist" folder.
+- `scss:check` — starts checking for errors in SCSS with Stylelint linter.
+- `scss:lint` — fixes all errors in SCSS code.
 - `clean` — removes the "dist" folder if it exists.
 - `fonts` — converts the fonts placed in the "fonts" folder into several browser-friendly formats and creates a file with font-face included.
 - `sprite` — converts SVG icons placed in the "svgico" folder to SVG sprite
@@ -83,6 +94,8 @@ Project
 | .eslintignore
 | .eslintrc.json
 | .gitignore
+| .stylelintignore
+| .stylelintrc.json
 | gulpfile.js
 | package.json
 | webpack.config.js
@@ -93,6 +106,8 @@ Project
 - .eslintignore — exclusion list for ESlint.
 - .eslintrc.json — ESlint rules settings.
 - .gitignore — exclusion list for Git.
+- .stylelintignore - exclusion list for Stylelint.
+- .stylelintrc.json — Stylelint rules settings.
 - gulpfile.js — settings file of Gulp builder.
 - package.json — file with project settings indicating a list of dependencies for installation.
 - webpack.config.js — settings file of Webpack bundler.
@@ -181,3 +196,18 @@ First you need to move all your SVG icons inside `src/svgico` and run the `npm r
 Then in the Pug file, you can insert an icon using the `+icon('iconName', 'className')` mixin. «IconName» is the name of the SVG icon file. Optionally, you can fill in the optional «className» attribute, which can be used to set the HTML class for the icon.
 
 You just need to set the height and width of the icon in SCSS (if you didn't specify «className», you can refer to the icon via the parent element: `.parent svg`), and now it is already displayed on the site.
+
+### Linting SCSS code
+Stylelint is integrated into the assembly, through which errors in the SCSS code are corrected.
+
+In addition to fixing bugs, Stylelint also builds properties and selectors according to the `.stylelintrc` config. This makes the code more organized, which makes it better and more readable.
+
+I made two ways to use Stylelint:
+
+1. «Manual» way: use scripts built into package.json:
+```
+   npm run scss:check — starts checking for errors in SCSS with Stylelint linter.
+   npm run scss:lint — fixes all errors in SCSS code.
+```
+
+2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git commit -a -m "message"` in the console. Stylelint will automatically check styles with husky + lint-stage and then commits them. 
