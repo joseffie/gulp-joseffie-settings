@@ -1,20 +1,3 @@
-@import "./_variables.scss";
-
-body {
-  max-width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: $body-bg;
-  color: $text-color;
-  font-family: $font-family;
-
-  &._no-scroll {
-    @include media("md") {
-      overflow: hidden;
-    }
-  }
-}
-
 .container {
   margin: 0px auto;
   padding: 0px $container-offset;

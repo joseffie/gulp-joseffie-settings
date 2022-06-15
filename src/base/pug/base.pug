@@ -2,14 +2,14 @@ include ../../mixins/mixins
 block variables
 
 doctype html
-html(lang="en")
+html.page(lang="en")
   include ./head
 
   body
     .wrapper
       include ../../components/header/header
 
-      main.main 
+      main.wrapper__content 
         block content
 
       include ../../components/footer/footer

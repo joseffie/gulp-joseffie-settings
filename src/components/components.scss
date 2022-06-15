@@ -1,12 +1,16 @@
-// Page blocks
+// Main styles
+@import "page/page.scss";
+@import "container/container.scss";
 @import "wrapper/wrapper.scss";
-@import "header/header.scss";
-@import "footer/footer.scss";
+
+// Common styles
+// @import "overlay/overlay.scss";
+// @import "breadcrumbs/breadcrumbs.scss";
 
 // Header elements
+@import "header/header.scss";
 @import "nav/nav.scss";
 @import "burger/burger.scss";
 
-// Common
-@import "overlay/overlay.scss";
-@import "breadcrumbs/breadcrumbs.scss";
+// Footer elements
+@import "footer/footer.scss";
