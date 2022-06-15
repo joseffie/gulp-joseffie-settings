@@ -1,0 +1,603 @@
+{
+  "syntax": "scss",
+  "plugins": ["stylelint-scss", "stylelint-order"],
+  "rules": {
+    "order/order": [
+      "declarations",
+      "custom-properties",
+      {
+        "type": "at-rule",
+        "name": "include"
+      },
+      {
+        "type": "at-rule",
+        "name": "media"
+      },
+      {
+        "type": "rule",
+        "selector": "^&:\\w+$"
+      },
+      {
+        "type": "rule",
+        "selector": "^\\.[-_a-zA-Z0-9]+"
+      },
+      {
+        "type": "rule",
+        "selector": "^&__[-a-z0-9]+"
+      },
+      {
+        "type": "rule",
+        "selector": "^&--[-a-z0-9]+"
+      }
+    ],
+    "order/properties-order": [
+      [
+        {
+          "properties": [
+            "content",
+            "box-sizing",
+            "display",
+            "flex",
+            "flex-wrap",
+            "flex-basis",
+            "flex-direction",
+            "flex-flow",
+            "flex-grow",
+            "flex-shrink",
+            "align-content",
+            "align-items",
+            "align-self",
+            "justify-content",
+            "order",
+            "grid",
+            "grid-area",
+            "grid-auto-*",
+            "grid-column",
+            "grid-column-*",
+            "grid-gap",
+            "grid-row",
+            "grid-row-*",
+            "grid-template",
+            "grid-template-*",
+            "position",
+            "z-index",
+            "top",
+            "right",
+            "bottom",
+            "left",
+            "width",
+            "min-width",
+            "max-width",
+            "height",
+            "min-height",
+            "max-height",
+            "margin",
+            "margin-*",
+            "border",
+            "border-*",
+            "padding",
+            "padding-*",
+            "overflow",
+            "overflow-*"
+          ]
+        },
+        {
+          "properties": [
+            "transform",
+            "transform-*",
+            "backface-visibility",
+            "perspective",
+            "perspective-origin",
+            "transition",
+            "transition-*",
+            "animation",
+            "animation-*"
+          ]
+        }
+      ],
+      {
+        "severity": "warning"
+      }
+    ],
+    "color-hex-case": [
+      "lower",
+      {
+        "severity": "warning",
+        "message": "HEX colors should be in lower case"
+      }
+    ],
+    "color-no-invalid-hex": [
+      true,
+      {
+        "message": "HEX colors must be correctly specified"
+      }
+    ],
+    "font-family-name-quotes": [
+      "always-where-recommended",
+      {
+        "message": "The font name must be enclosed in quotation marks"
+      }
+    ],
+    "font-family-no-duplicate-names": [
+      true,
+      {
+        "message": "Do not repeat font names"
+      }
+    ],
+    "string-quotes": [
+      "single",
+      {
+        "message": "You must use single quotes"
+      }
+    ],
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      {
+        "message": "The font-family declaration must end with the name of the common group (sans-serif, serif, etc.)"
+      }
+    ],
+    "font-weight-notation": [
+      "numeric",
+      {
+        "message": "Font weight should be indicated in numbers",
+        "ignore": ["relative"]
+      }
+    ],
+    "function-comma-space-after": [
+      "always",
+      {
+        "message": "A space is required after the comma"
+      }
+    ],
+    "function-comma-space-before": [
+      "never",
+      {
+        "message": "There should not be a space before the comma"
+      }
+    ],
+    "function-comma-newline-before": [
+      "never-multi-line",
+      {
+        "message": "Переноса перед запятой быть не должно"
+      }
+    ],
+    "function-comma-newline-after": [
+      "never-multi-line",
+      {
+        "message": "There should not be a line break after a comma"
+      }
+    ],
+    "number-leading-zero": [
+      "always",
+      {
+        "message": "Zero must precede the dot"
+      }
+    ],
+    "number-max-precision": [
+      6,
+      {
+        "message": "Maximum 6 characters after decimal point"
+      }
+    ],
+    "number-no-trailing-zeros": [
+      true,
+      {
+        "message": "Optional zero in a fraction"
+      }
+    ],
+    "time-min-milliseconds": [
+      100,
+      {
+        "message": "There is no point in using time less than 100ms"
+      }
+    ],
+    "unit-case": [
+      "lower",
+      {
+        "message": "Units of measurement should be in lowercase"
+      }
+    ],
+    "value-keyword-case": [
+      "lower",
+      {
+        "message": "Property values must be in lowercase",
+        "ignoreProperties": ["/font-/"]
+      }
+    ],
+    "unit-no-unknown": [
+      true,
+      {
+        "message": "This unit does not exist"
+      }
+    ],
+    "value-list-comma-space-after": [
+      "always-single-line",
+      {
+        "message": "Spaces are required in values after the comma"
+      }
+    ],
+    "value-list-comma-space-before": [
+      "never",
+      {
+        "message": "Spaces are not allowed in values иefore a comma"
+      }
+    ],
+    "property-case": [
+      "lower",
+      {
+        "message": "Property value must be in lowercase"
+      }
+    ],
+    "declaration-bang-space-after": [
+      "never",
+      {
+        "message": "Remove the space after the exclamation point"
+      }
+    ],
+    "declaration-colon-space-after": [
+      "always-single-line",
+      {
+        "message": "A space is required after the colon"
+      }
+    ],
+    "declaration-colon-space-before": [
+      "never",
+      {
+        "message": "Space not allowed before colon"
+      }
+    ],
+    "unit-disallowed-list": [
+      ["mm", "cm", "in", "pc"],
+      {
+        "message": "Unit data prohibited"
+      }
+    ],
+    "declaration-block-no-duplicate-properties": [
+      true,
+      {
+        "message": "Don't repeat the rules"
+      }
+    ],
+    "declaration-block-semicolon-newline-after": [
+      "always",
+      {
+        "message": "A line break is required after the semicolon"
+      }
+    ],
+    "declaration-block-trailing-semicolon": [
+      "always",
+      {
+        "message": "The property must end with a semicolon"
+      }
+    ],
+    "block-closing-brace-empty-line-before": [
+      "never",
+      {
+        "message": "There must not be an empty line before «}»"
+      }
+    ],
+    "block-closing-brace-newline-after": [
+      "always",
+      {
+        "message": "There must be a line break after «}»"
+      }
+    ],
+    "block-closing-brace-newline-before": [
+      "always",
+      {
+        "message": "A line break is required before «}»"
+      }
+    ],
+    "block-opening-brace-newline-after": [
+      "always",
+      {
+        "message": "A line break is required after «}»"
+      }
+    ],
+    "block-opening-brace-space-before": [
+      "always",
+      {
+        "message": "A space is required before «{»"
+      }
+    ],
+    "selector-attribute-brackets-space-inside": [
+      "never",
+      {
+        "message": "No spaces allowed in attribute selector"
+      }
+    ],
+    "selector-attribute-operator-space-after": [
+      "never",
+      {
+        "message": "No spaces allowed in attribute selector"
+      }
+    ],
+    "selector-attribute-operator-space-before": [
+      "never",
+      {
+        "message": "No spaces allowed in attribute selector"
+      }
+    ],
+    "selector-attribute-quotes": [
+      "always",
+      {
+        "message": "Quotes must be used in attribute selector"
+      }
+    ],
+    "selector-combinator-space-after": [
+      "always",
+      {
+        "message": "A space is required in the selector after the combinator"
+      }
+    ],
+    "selector-combinator-space-before": [
+      "always",
+      {
+        "message": "A space is required in the selector before the combinator"
+      }
+    ],
+    "selector-attribute-operator-disallowed-list": [
+      ["id"],
+      {
+        "message": "Styling by ID is prohibited"
+      }
+    ],
+    "selector-pseudo-class-case": [
+      "lower",
+      {
+        "message": "Pseudo-classes must be in lowercase"
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "message": "This pseudo-class does not exist"
+      }
+    ],
+    "selector-pseudo-class-parentheses-space-inside": [
+      "never",
+      {
+        "message": "Pseudo-classes should not leave spaces before and after parentheses"
+      }
+    ],
+    "selector-pseudo-element-case": [
+      "lower",
+      {
+        "message": "Pseudo-elements must be in lowercase"
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "message": "This pseudo-class does not exist"
+      }
+    ],
+    "selector-type-case": [
+      "lower",
+      {
+        "message": "Selectors must be in lowercase"
+      }
+    ],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "message": "This selector does not exist"
+      }
+    ],
+    "selector-max-empty-lines": [
+      0,
+      {
+        "message": "Blank lines between selectors are not allowed"
+      }
+    ],
+    "selector-list-comma-newline-after": [
+      "always",
+      {
+        "message": "In selectors, you need to put a line break after a comma"
+      }
+    ],
+    "selector-list-comma-newline-before": [
+      "never-multi-line",
+      {
+        "message": "In selectors, there should not be a line break before the comma"
+      }
+    ],
+    "selector-list-comma-space-after": [
+      "always-single-line",
+      {
+        "message": "Selectors must have a space after the comma"
+      }
+    ],
+    "selector-list-comma-space-before": [
+      "never",
+      {
+        "message": "Selectors must not have a space before the comma"
+      }
+    ],
+    "rule-empty-line-before": [
+      "always",
+      {
+        "message": "An empty string is required before the nested selector",
+        "ignore": ["after-comment"]
+      }
+    ],
+    "media-feature-colon-space-after": [
+      "always",
+      {
+        "message": "In @media after «:» spaces are required"
+      }
+    ],
+    "media-feature-colon-space-before": [
+      "never",
+      {
+        "message": "Spaces are not allowed before «:» in @media"
+      }
+    ],
+    "media-feature-name-case": [
+      "lower",
+      {
+        "message": "@media should be in lowercase"
+      }
+    ],
+    "media-feature-parentheses-space-inside": [
+      "never",
+      {
+        "message": "Spaces after «(» and before «)» cannot be used."
+      }
+    ],
+    "media-feature-range-operator-space-after": [
+      "always",
+      {
+        "message": "There must be a space before the range operator"
+      }
+    ],
+    "media-feature-range-operator-space-before": [
+      "always",
+      {
+        "message": "There must be a space after the range operator"
+      }
+    ],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "message": "@-rules must be preceded by an empty line",
+        "ignore": ["after-comment"]
+      }
+    ],
+    "at-rule-name-case": [
+      "lower",
+      {
+        "message": "@-rules should be in lowercase"
+      }
+    ],
+    "at-rule-name-space-after": [
+      "always",
+      {
+        "message": "The @-rule must be followed by a space"
+      }
+    ],
+    "at-rule-semicolon-newline-after": [
+      "always",
+      {
+        "message": "@-rules must have a line break after colons"
+      }
+    ],
+    "at-rule-semicolon-space-before": [
+      "never",
+      {
+        "message": "There must be no spaces before the semicolon in @-rules"
+      }
+    ],
+    "comment-empty-line-before": [
+      "always",
+      {
+        "message": "The comment must be preceded by an empty line",
+        "except": ["first-nested"],
+        "ignore": ["stylelint-commands"]
+      }
+    ],
+    "comment-no-empty": [
+      true,
+      {
+        "message": "Empty comment should be removed"
+      }
+    ],
+    "comment-whitespace-inside": [
+      "always",
+      {
+        "message": "There must always be whitespace inside the markers"
+      }
+    ],
+    "indentation": [
+      2,
+      {
+        "message": "Use 2 spaces to indent"
+      }
+    ],
+    "max-empty-lines": [
+      2,
+      {
+        "message": "Maximum empty lines: 2"
+      }
+    ],
+    "no-duplicate-selectors": [
+      true,
+      {
+        "message": "You can't duplicate selectors"
+      }
+    ],
+    "no-eol-whitespace": [
+      true,
+      {
+        "message": "Empty characters at the end of a line."
+      }
+    ],
+    "no-extra-semicolons": [
+      true,
+      {
+        "message": "Two semicolons in a row are not allowed"
+      }
+    ],
+    "no-missing-end-of-source-newline": [
+      true,
+      {
+        "message": "The file must end with an empty line"
+      }
+    ],
+    "media-feature-name-no-unknown": [
+      true,
+      {
+        "message": "Such a media-condition does not exist"
+      }
+    ],
+    "keyframe-declaration-no-important": [
+      true,
+      {
+        "message": "!important in @keyframes is ignored by some browsers"
+      }
+    ],
+    "no-duplicate-at-import-rules": [
+      true,
+      {
+        "message": "Do not re-import the file"
+      }
+    ],
+    "shorthand-property-no-redundant-values": [
+      true,
+      {
+        "message": "The value can be abbreviated"
+      }
+    ],
+    "value-list-max-empty-lines": [
+      0,
+      {
+        "message": "Empty strings in property values are not allowed"
+      }
+    ],
+    "declaration-block-semicolon-newline-before": [
+      "never-multi-line",
+      {
+        "message": "Line break before semicolon is not allowed"
+      }
+    ],
+    "declaration-block-semicolon-space-before": [
+      "never",
+      {
+        "message": "Space before semicolon is not allowed"
+      }
+    ],
+    "selector-descendant-combinator-no-non-space": [
+      true,
+      {
+        "message": "Combined selectors should be separated by a single space"
+      }
+    ],
+    "linebreaks": [
+      "unix",
+      {
+        "severity": "warning",
+        "message": "Linebreaks must always be LF"
+      }
+    ]
+  }
+}
