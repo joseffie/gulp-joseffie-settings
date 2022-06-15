@@ -1,14 +1,15 @@
 .header__nav {
-  @include media("md") {
+
+  @include media('md') {
     position: fixed;
+    z-index: $zi-modal;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background-color: $black;
     overflow: auto;
-    z-index: $zi-modal;
     transition: left 0.4s ease;
+    background-color: $black;
 
     &._active {
       left: 0;
@@ -24,7 +25,7 @@
     font-size: $font-size;
     font-weight: 500;
 
-    @include media("md") {
+    @include media('md') {
       padding-top: rem(30);
       font-size: $font-size-h3;
       flex-direction: column;
@@ -34,27 +35,9 @@
   &-item {
     padding: 15px 0px;
 
-    @include media("md") {
+    @include media('md') {
       padding: 10px 0px;
       text-align: center;
-    }
-
-    a {
-      color: $text-color;
-      text-decoration: none;
-      transition: color 0.4s ease;
-
-      @include media("md") {
-        color: $gray-800;
-      }
-
-      @include hover {
-        color: $color-main;
-      }
-    }
-
-    &.is-active {
-      color: $color-main;
     }
 
     &--parent {
@@ -62,6 +45,7 @@
       cursor: pointer;
 
       @include hover {
+
         > a {
           color: $color-main;
 
@@ -85,23 +69,41 @@
         gap: 10px;
 
         &::after {
+          content: '';
           display: block;
-          margin-top: 3px;
-          content: "";
-          border-top: 2px solid $text-color;
-          border-right: 2px solid $text-color;
-          transform: rotate(135deg);
-          height: 7px;
           width: 7px;
+          height: 7px;
+          transform: rotate(135deg);
           transition: border-top-color 0.5s ease, border-right-color 0.5s ease,
             transform 0.5s ease, margin-top 0.5s ease;
+          margin-top: 3px;
+          border-top: 2px solid $text-color;
+          border-right: 2px solid $text-color;
 
-          @include media("md") {
+          @include media('md') {
             border-top-color: $gray-800;
             border-right-color: $gray-800;
           }
         }
       }
+    }
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+      transition: color 0.4s ease;
+
+      @include media('md') {
+        color: $gray-800;
+      }
+
+      @include hover {
+        color: $color-main;
+      }
+    }
+
+    &.is-active {
+      color: $color-main;
     }
   }
 
@@ -121,10 +123,10 @@
     pointer-events: none;
     transition: opacity 0.2s ease, margin-top 0.2s ease;
 
-    @include media("md") {
+    @include media('md') {
+      left: 50%;
       min-width: rem(200);
       padding: rem(7) rem(10);
-      left: 50%;
       transform: translateX(-50%);
     }
 
@@ -132,7 +134,7 @@
       display: block;
       padding: rem(10) 0px;
 
-      @include media("md") {
+      @include media('md') {
         padding: 8px 0px;
       }
 

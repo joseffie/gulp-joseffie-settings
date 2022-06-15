@@ -1,12 +1,14 @@
 {
-  "name": "jozeffie-gulp-pack",
-  "version": "1.1.0",
+  "name": "joseffie-gulp-pack",
+  "version": "2.0.0",
   "type": "module",
-  "description": "My starter template and gulp settings for web development",
+  "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp",
     "build": "gulp build --build",
+    "scss:check": "npx stylelint \"**/*.scss\"",
+    "scss:lint": "npx stylelint \"**/*.scss\" --fix",
     "clean": "gulp reset",
     "fonts": "gulp createFonts",
     "sprite": "gulp makeSprite",
@@ -53,10 +55,26 @@
     "gulp-webpcss": "^1.1.1",
     "gulp-zip": "latest",
     "sass": "latest",
+    "stylelint": "^14.9.1",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.2.0",
     "webp-converter": "^2.2.3",
     "webpack": "^5.70.0",
     "webpack-stream": "^7.0.0",
     "webpcss": "^1.3.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.scss": [
+        "stylelint --fix",
+        "git add"
+      ]
+    }
   },
   "dependencies": {
     "@bem/sdk.config": "^0.1.0"

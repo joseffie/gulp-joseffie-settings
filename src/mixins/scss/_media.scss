@@ -1,31 +1,52 @@
 @mixin media($breakpoint, $type: 1) {
-	@if ($breakpoint == 'xxl') {
-		$breakpoint: 1440.98px;
-	} @else if ($breakpoint == 'xl') {
-		$breakpoint: 1248.98px;
-	} @else if ($breakpoint == 'lg') {
-		$breakpoint: 1024.98px;
-	} @else if ($breakpoint == 'md') {
-		$breakpoint: 767.98px;
-	} @else if ($breakpoint == 'smd') {
-		$breakpoint: 640.98px;
-	} @else if ($breakpoint == 'wsm') {
-		$breakpoint: 560.98px;
-	} @else if ($breakpoint == 'sm') {
-		$breakpoint: 479.98px;
-	} @else if ($breakpoint == 'xsm') {
-		$breakpoint: 400.98px;
-	} @else {
-		$breakpoint: $breakpoint * 1px;
-	}
 
-	@if ($type == 0) {
-		@media (min-width: $breakpoint) {
-			@content;
-		}
-	} @else if ($type == 1) {
-		@media (max-width: $breakpoint) {
-			@content;
-		}
-	}
+  @if ($breakpoint == 'xxl') {
+    $breakpoint: 1440.98px;
+  }
+
+  @else if ($breakpoint == 'xl') {
+    $breakpoint: 1248.98px;
+  }
+
+  @else if ($breakpoint == 'lg') {
+    $breakpoint: 1024.98px;
+  }
+
+  @else if ($breakpoint == 'md') {
+    $breakpoint: 767.98px;
+  }
+
+  @else if ($breakpoint == 'smd') {
+    $breakpoint: 640.98px;
+  }
+
+  @else if ($breakpoint == 'wsm') {
+    $breakpoint: 560.98px;
+  }
+
+  @else if ($breakpoint == 'sm') {
+    $breakpoint: 479.98px;
+  }
+
+  @else if ($breakpoint == 'xsm') {
+    $breakpoint: 400.98px;
+  }
+
+  @else {
+    $breakpoint: $breakpoint * 1px;
+  }
+
+  @if ($type == 0) {
+
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+
+  @else if ($type == 1) {
+
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
 }

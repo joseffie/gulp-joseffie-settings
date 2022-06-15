@@ -14,7 +14,7 @@
     white-space: nowrap;
 
     &::after {
-      content: "/";
+      content: '/';
       display: inline-block;
       margin-left: rem(15);
       color: #5e5c5c;

@@ -1,10 +1,10 @@
 .burger {
   display: none;
 
-  @include media("md") {
-    z-index: $zi-tooltip;
+  @include media('md') {
     display: block;
     position: relative;
+    z-index: $zi-tooltip;
     width: 31px;
     height: 22px;
     cursor: pointer;
@@ -12,17 +12,17 @@
     & > span,
     &::before,
     &::after {
-      left: 0;
       position: absolute;
-      height: 10%;
+      left: 0;
       width: 100%;
-      background-color: $text-color;
+      height: 10%;
       transition: all 0.4s ease;
+      background-color: $text-color;
     }
 
     &::before,
     &::after {
-      content: "";
+      content: '';
     }
 
     &::before {

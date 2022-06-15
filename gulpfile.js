@@ -4,11 +4,11 @@ import { path } from "./gulp/config/path.js";
 import { plugins } from "./gulp/config/plugins.js";
 
 global.app = {
-	isBuild: process.argv.includes("--build"),
-	isDev: !process.argv.includes("--build"),
-	path: path,
-	gulp: gulp,
-	plugins: plugins,
+  isBuild: process.argv.includes("--build"),
+  isDev: !process.argv.includes("--build"),
+  path: path,
+  gulp: gulp,
+  plugins: plugins,
 };
 
 // Importing tasks to gulpfile
@@ -23,17 +23,18 @@ import { otfToTtf, ttfToWoff, fStyle } from "./gulp/tasks/fonts.js";
 import { zip } from "./gulp/tasks/zip.js";
 
 function watcher() {
-	gulp.watch(path.watch.pug, pug);
-	gulp.watch(path.watch.scss, scss);
-	gulp.watch(path.watch.js, js);
-	gulp.watch(path.watch.images, images);
+  gulp.watch(path.watch.pug, pug);
+  gulp.watch(path.watch.scss, scss);
+  gulp.watch(path.watch.js, js);
+  gulp.watch(path.watch.images, images);
 }
 
-const createFonts = gulp.series(otfToTtf, ttfToWoff, fStyle);
 const mainTasks = gulp.parallel(pug, scss, js, images);
 
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(reset, mainTasks);
+
+const createFonts = gulp.series(otfToTtf, ttfToWoff, fStyle);
 const deployZIP = gulp.series(reset, mainTasks, zip);
 
 // Exporting scripts to package.json

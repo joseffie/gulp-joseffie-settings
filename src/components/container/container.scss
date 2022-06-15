@@ -1,25 +1,25 @@
 .container {
+  max-width: $container-width;
   margin: 0px auto;
   padding: 0px $container-offset;
-  max-width: $container-width;
+
+  @include media('md') {
+    max-width: none;
+  }
 
   @media (max-width: $container-width) {
     max-width: 767px;
-  }
-
-  @include media("md") {
-    max-width: none;
   }
 
   &-fluid {
     max-width: none;
     padding: 0px rem(55);
 
-    @include media("md") {
+    @include media('md') {
       padding: 0px rem(40);
     }
 
-    @include media("sm") {
+    @include media('sm') {
       padding: 0px $container-offset;
     }
   }
