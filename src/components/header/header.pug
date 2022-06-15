@@ -1,6 +1,10 @@
+include ../burger/burger
+
+include ../nav/nav
+
 header.header 
    .header__container.container 
-      include ../burger/burger.pug
+      +burger()
 
-      include ../nav/nav.pug
+      +navMenu()
       
