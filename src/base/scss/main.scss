@@ -1,13 +1,7 @@
-// Mixins
 @import "../../mixins/mixins.scss";
 
-// Base
-@import "./_settings.scss";
 @import "./_variables.scss";
 // @import './_fonts.scss';
+@import "./print.scss";
 
-// Components
 @import "../../components/components.scss";
-
-// Import vendor styles
-@import "../../vendor/normalize.scss";
