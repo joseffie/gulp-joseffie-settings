@@ -1,10 +1,10 @@
-const burger = document.querySelector('.header__burger');
-const nav = document.querySelector('.header__nav');
+const burger = document.querySelector("[data-burger");
+const nav = document.querySelector("[data-burger-nav]");
 
 if (burger) {
-	burger.addEventListener('click', function () {
-		document.body.classList.toggle('_no-scroll');
-		nav.classList.toggle('_active');
-		burger.classList.toggle('_active');
-	});
+  burger.addEventListener("click", function () {
+    document.body.classList.toggle("_no-scroll");
+    nav.classList.toggle("_active");
+    burger.classList.toggle("_active");
+  });
 }
