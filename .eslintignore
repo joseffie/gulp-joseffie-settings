@@ -1,4 +1,4 @@
-dist/**/*.js
+dist/
 src/vendor/*.js
 gulp/config/path.js
 gulp/config/plugins.js

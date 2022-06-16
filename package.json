@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.0.0",
+  "version": "2.1.1",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -9,6 +9,8 @@
     "build": "gulp build --build",
     "scss:check": "npx stylelint \"**/*.scss\"",
     "scss:lint": "npx stylelint \"**/*.scss\" --fix",
+    "js:check": "eslint --ext=mjs,js --debug src/",
+    "js:lint": "eslint --ext=mjs,js --debug src/ --fix",
     "clean": "gulp reset",
     "fonts": "gulp createFonts",
     "sprite": "gulp makeSprite",
@@ -17,20 +19,13 @@
   "author": "joseffie",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "7.4.3",
-    "@babel/plugin-proposal-class-properties": "7.4.0",
-    "@babel/plugin-proposal-private-methods": "7.4.3",
-    "@babel/plugin-syntax-dynamic-import": "7.2.0",
-    "@babel/plugin-transform-runtime": "7.4.3",
-    "@babel/preset-env": "7.4.3",
-    "babel-loader": "8.0.5",
+    "babel-loader": "^8.2.5",
     "bem-tools-core": "latest",
     "browser-sync": "latest",
-    "cwebp": "^2.0.5",
     "del": "latest",
-    "eslint": "latest",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest",
+    "eslint": "^8.17.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-clean-css": "latest",
@@ -54,6 +49,7 @@
     "gulp-webp-html-nosvg": "latest",
     "gulp-webpcss": "^1.1.1",
     "gulp-zip": "latest",
+    "prettier": "^2.7.1",
     "sass": "latest",
     "stylelint": "^14.9.1",
     "stylelint-order": "^5.0.0",
@@ -72,6 +68,10 @@
     "linters": {
       "*.scss": [
         "stylelint --fix",
+        "git add"
+      ],
+      "*.(js,jsx,mjs)": [
+        "npm run js:lint",
         "git add"
       ]
     }

@@ -1,0 +1,6 @@
+test/fixtures
+**/app/public
+node_modules
+src/img/sprite.svg
+*.min.js
+*.min.css
