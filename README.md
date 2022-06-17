@@ -15,6 +15,7 @@
 #### JavaScript
 - Using Webpack to build JavaScript modules.
 - Checking JS code for errors with ESLint linter.
+- Automatic correction of errors in JS code with the ESlint.
 
 #### SCSS
 - Checking SCSS Code for Stylelint Errors.
@@ -26,7 +27,9 @@ You will need to download and install [node.js](https://nodejs.org/en/) for the 
 Also install the [Git](https://git-scm.com/downloads) version control system. Git is not necessary for building work, but for better installation and further development, it is better to install it anyway.
 
 To install (clone the repository) to the current folder from the console, enter the command:
-`git clone https://github.com/jozeffie/Gulp-Settings.git`
+```
+git clone https://github.com/joseffie/Gulp-Settings.git
+```
 
 > Write all commands strictly from the root of the project.
 
@@ -47,6 +50,8 @@ In the package.json file, in the `scripts` section, you will find the commands t
 - `build` — runs the project in production mode, copying files to the "dist" folder.
 - `scss:check` — starts checking for errors in SCSS with Stylelint linter.
 - `scss:lint` — fixes all errors in SCSS code.
+- `js:check` — starts checking for errors in JS with ESlint.
+- `js:lint` — fixes all errors in JS code.
 - `clean` — removes the "dist" folder if it exists.
 - `fonts` — converts the fonts placed in the "fonts" folder into several browser-friendly formats and creates a file with font-face included.
 - `sprite` — converts SVG icons placed in the "svgico" folder to SVG sprite
@@ -88,9 +93,10 @@ Project
 |    |— vendor
 |    |    |— normalize.scss
 |    index.pug
-| .babelrc
 | .bemrc.js
 | .editorconfig
+| .prettierignore
+| .prettierrc.json
 | .eslintignore
 | .eslintrc.json
 | .gitignore
@@ -100,13 +106,14 @@ Project
 | package.json
 | webpack.config.js
 ```
-- .babelrc — settings file of Babel transpiler.
 - .bemrc.js — bem-tools-create settings file.
 - .editorconfig — configuration file of the project.
 - .eslintignore — exclusion list for ESlint.
 - .eslintrc.json — ESlint rules settings.
 - .gitignore — exclusion list for Git.
-- .stylelintignore - exclusion list for Stylelint.
+- .prettierignore — exclusion list for Prettier.
+- .prettierrc.json — Prettier rules settings.
+- .stylelintignore — exclusion list for Stylelint.
 - .stylelintrc.json — Stylelint rules settings.
 - gulpfile.js — settings file of Gulp builder.
 - package.json — file with project settings indicating a list of dependencies for installation.
@@ -197,7 +204,8 @@ Then in the Pug file, you can insert an icon using the `+icon('iconName', 'class
 
 You just need to set the height and width of the icon in SCSS (if you didn't specify «className», you can refer to the icon via the parent element: `.parent svg`), and now it is already displayed on the site.
 
-### Linting SCSS code
+### Code linting
+#### SCSS
 Stylelint is integrated into the assembly, through which errors in the SCSS code are corrected.
 
 In addition to fixing bugs, Stylelint also builds properties and selectors according to the `.stylelintrc` config. This makes the code more organized, which makes it better and more readable.
@@ -210,4 +218,19 @@ I made two ways to use Stylelint:
    npm run scss:lint — fixes all errors in SCSS code.
 ```
 
-2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git commit -a -m "message"` in the console. Stylelint will automatically check styles with husky + lint-stage and then commits them. 
+2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git add .` in the console. Stylelint will automatically check styles with husky + lint-stage. Then you can commit your project.
+
+#### JavaScript
+ESlint is integrated into the assembly, through which errors in the JS code are corrected. ESlint also makes the code more structured and more relevant to modern JavaScript. This improves readability and makes your code look cooler.
+
+I made two ways to use ESlint:
+
+1. «Manual» way: use scripts built into package.json:
+```
+   npm run js:check — starts checking for errors in JS with ESlint.
+   npm run js:lint — fixes all errors in JS code.
+```
+
+2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git add .` in the console. ESlint will automatically check styles with husky + lint-stage. Then you can commit your project.
+
+## An interesting fact: when I add pug-linter to the assembly, it will actually be ready.
