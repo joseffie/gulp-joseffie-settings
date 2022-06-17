@@ -3,9 +3,9 @@ mixin menuItem(item)
   - item.subitems ? activeClass += "header__nav-item--parent" : null;
     li.header__nav-item(class= activeClass)
       if (item.hasLink == false)
-        a(href= "#")= item.text
+        a(href='#')!= item.text
       else
-        a(href= item.link + ".html")= item.text
+        a(href= item.link)!= item.text
 
       if block
         block
@@ -17,7 +17,7 @@ mixin navMenu(hasBurger = true)
 
   if (typeof(hasBurger) !== 'undefined' && hasBurger)
     nav.header__nav(data-burger-nav)
-      ul.header__nav-list 
+      ul.header__nav-list
         each item in mainmenuData
           +menuItem(item)
 
@@ -27,11 +27,11 @@ mixin navMenu(hasBurger = true)
                   +menuItem(subitem)
   else
     nav.header__nav
-      ul.header__nav-list 
+      ul.header__nav-list
         each item in mainmenuData
           +menuItem(item)
 
             if (item.subitems)
               ul.header__nav-dropdown
                 each subitem in item.subitems
-                  +menuItem(subitem) 
+                  +menuItem(subitem)
