@@ -1,5 +1,5 @@
-import webp from "gulp-webp";
-import imagemin from "gulp-imagemin";
+import webp from 'gulp-webp';
+import imagemin from 'gulp-imagemin';
 
 export const images = () => {
 	return app.gulp
@@ -7,8 +7,8 @@ export const images = () => {
 		.pipe(
 			app.plugins.plumber(
 				app.plugins.notify.onError({
-					title: "IMAGES",
-					message: "Fix da mistake, leather man: <%= error.message %>",
+					title: 'IMAGES',
+					message: 'Fix da mistake, leather man: <%= error.message %>',
 				})
 			)
 		)

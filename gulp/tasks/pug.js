@@ -1,9 +1,9 @@
-import webpHtmlNosvg from "gulp-webp-html-nosvg";
-import versionNumber from "gulp-version-number";
-import pugPlugin from "gulp-pug";
+import webpHtmlNosvg from 'gulp-webp-html-nosvg';
+import versionNumber from 'gulp-version-number';
+import pugPlugin from 'gulp-pug';
 
-import fs from "fs";
-import data from "gulp-data";
+import fs from 'fs';
+import data from 'gulp-data';
 
 export const pug = () => {
 	return (
@@ -12,8 +12,8 @@ export const pug = () => {
 			.pipe(
 				app.plugins.plumber(
 					app.plugins.notify.onError({
-						title: "PUG",
-						message: "Fix da mistake, leather man: <%= error.message %>",
+						title: 'PUG',
+						message: 'Fix da mistake, leather man: <%= error.message %>',
 					})
 				)
 			)
@@ -21,7 +21,7 @@ export const pug = () => {
 			.pipe(
 				data(() => {
 					return JSON.parse(
-						fs.readFileSync("./src/base/data/data.json", "utf8")
+						fs.readFileSync('./src/base/data/data.json', 'utf8')
 					);
 				})
 			)
@@ -31,20 +31,20 @@ export const pug = () => {
 					verbose: true,
 				})
 			)
-			.pipe(app.plugins.replace(/@img\//g, "img/"))
+			.pipe(app.plugins.replace(/@img\//g, 'img/'))
 			.pipe(app.plugins.if(app.isBuild, webpHtmlNosvg()))
 			.pipe(
 				app.plugins.if(
 					app.isBuild,
 					versionNumber({
-						value: "%DT%",
+						value: '%DT%',
 						append: {
-							key: "_v",
+							key: '_v',
 							cover: 0,
-							to: ["css", "js"],
+							to: ['css', 'js'],
 						},
 						output: {
-							file: "gulp/version.json",
+							file: 'gulp/version.json',
 						},
 					})
 				)
