@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -21,6 +21,8 @@
     "clean": "gulp reset",
     "fonts": "gulp createFonts",
     "sprite": "gulp makeSprite",
+    "gh-pages": "gulp deployGit",
+    "build-gh-pages": "npm run build && npm run gh-pages",
     "zip": "gulp deployZIP --build"
   },
   "author": "Ivan Gavrilich (joseffie)",
@@ -42,6 +44,7 @@
     "gulp-clean-css": "latest",
     "gulp-data": "^1.3.1",
     "gulp-fonter": "latest",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-group-css-media-queries": "latest",
     "gulp-if": "latest",
     "gulp-imagemin": "latest",
@@ -91,5 +94,8 @@
   },
   "dependencies": {
     "@bem/sdk.config": "^0.1.0"
+  },
+  "resolutions": {
+    "gift": "^0.10.2"
   }
 }
