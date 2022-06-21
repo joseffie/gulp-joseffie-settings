@@ -14,6 +14,7 @@ global.app = {
 // Importing tasks to gulpfile
 import { reset } from './gulp/tasks/reset.js';
 import { pug } from './gulp/tasks/pug.js';
+import { pugPages } from './gulp/tasks/copy-pages.js';
 import { scss } from './gulp/tasks/scss.js';
 import { js } from './gulp/tasks/js.js';
 import { server } from './gulp/tasks/server.js';
@@ -30,7 +31,7 @@ function watcher() {
   gulp.watch(path.watch.images, images);
 }
 
-const mainTasks = gulp.parallel(pug, scss, js, images);
+const mainTasks = gulp.parallel(pug, pugPages, scss, js, images);
 
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(reset, mainTasks);
