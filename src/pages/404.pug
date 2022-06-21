@@ -1,0 +1,9 @@
+extends ../base/pug/base.pug
+
+append variables
+   -
+      var title = 'Page not found'
+
+block content
+  p Sorry, the page doesn't seem to be found.
+  a(href='../index.html') We invite you to return to the main page
