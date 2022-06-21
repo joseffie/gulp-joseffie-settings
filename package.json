@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -83,7 +83,7 @@
     "*.pug": "pug-lint src/",
     "linters": {
       "*.scss": [
-        "npm run scss:fix",
+        "npm run scss:lint",
         "git add"
       ],
       "*.(js,jsx,mjs)": [
