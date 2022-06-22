@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -21,8 +21,7 @@
     "clean": "gulp reset",
     "fonts": "gulp createFonts",
     "sprite": "gulp makeSprite",
-    "gh-pages": "gulp deployGit",
-    "build-gh-pages": "npm run build && npm run gh-pages",
+    "gh-pages": "npm run build && gulp deployGit",
     "zip": "gulp deployZIP --build"
   },
   "author": "Ivan Gavrilich (joseffie)",
