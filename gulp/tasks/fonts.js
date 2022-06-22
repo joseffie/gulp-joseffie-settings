@@ -1,4 +1,3 @@
-import fs from 'fs';
 import fonter from 'gulp-fonter';
 import ttf2woff2 from 'gulp-ttf2woff2';
 
@@ -46,10 +45,10 @@ export const ttfToWoff = () => {
 export const fStyle = () => {
   let fontsFile = `${app.path.srcFolder}/base/scss/_fonts.scss`;
 
-  fs.readdir(app.path.build.fonts, (err, fontsFiles) => {
+  app.plugins.fs.readdir(app.path.build.fonts, (err, fontsFiles) => {
     if (fontsFiles) {
-      if (!fs.existsSync(fontsFile)) {
-        fs.writeFile(fontsFile, '', cb); // eslint-disable-line
+      if (!app.plugins.fs.existsSync(fontsFile)) {
+        app.plugins.fs.writeFile(fontsFile, '', cb); // eslint-disable-line
         let newFileOnly;
         for (let i = 0; i < fontsFiles.length; i++) {
           let fontFileName = fontsFiles[i].split('.')[0];
@@ -80,7 +79,7 @@ export const fStyle = () => {
               fontWeight = 400;
             }
             /* eslint-disable */
-            fs.appendFile(
+            app.plugins.fs.appendFile(
               fontsFile,
               `@font-face {\n\tfont-family: ${fontName};\n\tfont-display: swap;\n\tsrc: url("../fonts/${fontFileName}.woff2") format("woff2"), url("../fonts/${fontFileName}.woff") format("woff"), url("../fonts/${fontFileName}.ttf") format("ttf");\n\tfont-weight: ${fontWeight};\n\tfont-style: normal;\n}\r\n`,
               cb,

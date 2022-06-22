@@ -1,4 +1,3 @@
-import del from 'del';
 export const reset = () => {
-	return del(app.path.clean);
+  return app.plugins.del(app.path.clean);
 };

@@ -1,10 +1,3 @@
-import webpHtmlNosvg from 'gulp-webp-html-nosvg';
-import versionNumber from 'gulp-version-number';
-import pugPlugin from 'gulp-pug';
-
-import fs from 'fs';
-import data from 'gulp-data';
-
 export const pugPages = () => {
   return app.gulp
     .src(app.path.src.pages)
@@ -17,22 +10,22 @@ export const pugPages = () => {
       ),
     )
     .pipe(
-      data(() => {
-        return JSON.parse(fs.readFileSync('./src/base/data/data.json', 'utf8'));
+      app.plugins.data(() => {
+        return JSON.parse(app.plugins.fs.readFileSync('./src/base/data/data.json', 'utf8'));
       }),
     )
     .pipe(
-      pugPlugin({
+      app.plugins.pug({
         pretty: false,
         verbose: true,
       }),
     )
     .pipe(app.plugins.replace(/@img\//g, 'img/'))
-    .pipe(app.plugins.if(app.isBuild, webpHtmlNosvg()))
+    .pipe(app.plugins.if(app.isBuild, app.plugins.webpHtmlNosvg()))
     .pipe(
       app.plugins.if(
         app.isBuild,
-        versionNumber({
+        app.plugins.versionNumber({
           value: '%DT%',
           append: {
             key: '_v',
