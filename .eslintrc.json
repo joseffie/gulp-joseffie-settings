@@ -200,7 +200,7 @@
     "id-match": "off",
     "indent": [
       "error",
-      "space",
+      "2",
       {
         "SwitchCase": 1
       }
