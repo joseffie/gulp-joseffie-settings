@@ -1,71 +1,50 @@
 # Gulp-Settings: Gulp + Webpack build for Web Development
 
 ## Capabilities
-#### Common
 - Component approach to work: the structure of component files is implemented according to BEM.
+- [BEM](https://en.bem.info/) class naming.
 - Automatic creation of component directories with files using the [bem-tools-create](https://github.com/bem-tools/bem-tools-create) tool.
-- Automatic assembly of SVG icons into sprites using Gulp.
-- Authomatic convert images to modern Webp format.
+- Using the [Pug](https://pugjs.org/) and [SCSS](https://sass-lang.com/guide) preprocessors.
+- Using a hard code guide.
+- Using Webpack to build JavaScript modules.
+- Checking for errors on commit.
 - Starter template for a quick start of layout.
 
-#### Preprocessors
-- Using the Pug HTML-preprocessor.
-- Using the SCSS CSS-preprocessor.
-
-#### JavaScript
-- Using Webpack to build JavaScript modules.
-- Checking JS code for errors with ESLint linter.
-- Automatic correction of errors in JS code with the ESlint.
-
-#### SCSS
-- Checking SCSS Code for Stylelint Errors.
-- Automatic correction of errors in CSS code with the Stylelint linter.
-
 ## Instalation
-You will need to download and install [node.js](https://nodejs.org/en/) for the build to work.
+- Install [NodeJS](https://nodejs.org/en/).
+- Install globally:
+  - [Gulp](https://gulpjs.com/): `npm i -g gulp`
+  - [Bem-tools](https://www.npmjs.com/package/bem-tools-core): `npm i -g bem-tools-core`
+- Download the build with [Git](https://git-scm.com/downloads): `git clone https://github.com/joseffie/Gulp-Settings.git`
+- Follow to the downloaded build folder: `cd Gulp-Settings`
+- Instal dependencies: `npm i`
 
-Also install the [Git](https://git-scm.com/downloads) version control system. Git is not necessary for building work, but for better installation and further development, it is better to install it anyway.
+To start working on a project, type `npm run dev`. If there are no errors, then by default the http://localhost:3000 domain will launch with the start layout template.
 
-To install (clone the repository) to the current folder from the console, enter the command:
-```
-git clone https://github.com/joseffie/Gulp-Settings.git
-```
+To build the project, type `npm run build`. The build mode involves project optimization: image compression, minification of CSS and JS files, automatic addition of vendor prefixes for browser support.
 
-> Write all commands strictly from the root of the project.
-
-After all the sources have been downloaded from the remote repository, enter the `npm install` command in the console to install the project. All dependencies will be installed automatically.
-
-You need to install gulp global, but that's if you haven't already done so in other projects.
-
-`npm i gulp -g`
-
-This procedure is performed once and the next time a new project is implemented, it is not necessary to repeat this command.
-
-## Launch and main commands
-When all the dependencies have been installed, to run the project, it is enough to write `npm run dev` in the console. If there are no errors, then by default the http://localhost:3000 domain will launch with the start layout template.
-
-### Additional commands
-In the package.json file, in the `scripts` section, you will find the commands to run the project:
-- `dev` — starts the project in development mode.
-- `build` — runs the project in production mode, copying files to the "dist" folder.
-- `scss:check` — starts checking for errors in SCSS with Stylelint linter.
-- `scss:lint` — fixes all errors in SCSS code.
-- `js:check` — starts checking for errors in JS with ESlint.
-- `js:lint` — fixes all errors in JS code.
-- `clean` — removes the "dist" folder if it exists.
-- `fonts` — converts the fonts placed in the "fonts" folder into several browser-friendly formats and creates a file with font-face included.
-- `sprite` — converts SVG icons placed in the "svgico" folder to SVG sprite
-- `zip` — archives the project in production mode.
-
-To run a command in the console, write `npm run command_name`, for example:
-
-`npm run fonts`
+## Commands
+- Main:
+  - `npm run dev` — starts the project in development mode.
+  - `npm run build` — runs the project in production mode, copying files to the `dist` folder.
+  - `npm run gh-pages` — builds the project and automatically creates the GitHub Pages repository.
+- Linters:
+  - `npm run pug:check` — starts checking for errors in Pug with Pug-linter.
+  - `npm run scss:check` — starts checking for errors in SCSS with Stylelint linter.
+  - `npm run scss:lint` — fixes all errors in SCSS code.
+  - `npm run js:check` — starts checking for errors in JS with ESlint.
+  - `npm run js:lint` — fixes all errors in JS code.
+- Other:
+  - `npm run clean` — removes the "dist" folder if it exists.
+  - `npm run fonts` — converts the fonts placed in the `fonts` folder into several browser-friendly formats and creates a file with font-face included.
+  - `npm run sprite` — converts SVG icons placed in the `svgico` folder to SVG sprite
+  - `npm run zip` — archives the project in production mode.
 
 ## Project file structure
 ```
-Project
-|— dist
-|— gulp
+Gulp-Settings
+|— dist/
+|— gulp/
 |— src
 |    |— base
 |    |    |— data
@@ -76,22 +55,21 @@ Project
 |    |    |    |— base.pug
 |    |    |    |— head.pug
 |    |    |— scss
-|    |    |    |— _settings.scss
+|    |    |    |— _fonts.scss
 |    |    |    |— _variables.scss
-|    |    |    |— main.sass
+|    |    |    |— main.scss
+|    |    |    |— print.scss
 |    |— components
-|    |    |— ***
-|    |    |— ***
 |    |    |— ***
 |    |    |— components.scss
 |    |    |— components.mjs
-|    |— fonts
-|    |    |— ***
+|    |— fonts/
 |    |— mixins
-|    |    |— pug
-|    |    |— scss
-|    |— vendor
-|    |    |— normalize.scss
+|    |    |— pug/
+|    |    |— scss/
+|    |    |— mixins.pug
+|    |    |— mixins.scss
+|    |— vendor/
 |    index.pug
 | .bemrc.js
 | .editorconfig
@@ -100,26 +78,38 @@ Project
 | .eslintignore
 | .eslintrc.json
 | .gitignore
+| .pug-lintrc.json
 | .stylelintignore
 | .stylelintrc.json
 | gulpfile.js
 | package.json
 | webpack.config.js
 ```
-- .bemrc.js — bem-tools-create settings file.
-- .editorconfig — configuration file of the project.
-- .eslintignore — exclusion list for ESlint.
-- .eslintrc.json — ESlint rules settings.
-- .gitignore — exclusion list for Git.
-- .prettierignore — exclusion list for Prettier.
-- .prettierrc.json — Prettier rules settings.
-- .stylelintignore — exclusion list for Stylelint.
-- .stylelintrc.json — Stylelint rules settings.
-- gulpfile.js — settings file of Gulp builder.
-- package.json — file with project settings indicating a list of dependencies for installation.
-- webpack.config.js — settings file of Webpack bundler.
+- Root:
+  - `.bemrc.js` — BEM settings.
+  - `.editorconfig` — configuration file of the project.
+  - `.prettierignore` — exclusion list for Prettier.
+  - `.prettierrc.json` — Prettier settings.
+  - `.eslintignore` — exclusion list for ESlint.
+  - `.eslintrc.json` — ESlint settings.
+  - `.gitignore` — exclusion list for Git.
+  - `.pug-lintrc.json` - Pug-linter settings.
+  - `.stylelintignore` — exclusion list for Stylelint.
+  - `.stylelintrc.json` — Stylelint settings.
+  - `gulpfile.js` — settings for Gulp.
+  - `package.json` — a list of dependencies.
+  - `webpack.config.js` — settings for Webpack.
+- The `src` folder is used to develop and store source files:
+  - `src/base` — folder that stores the base Pug layout, core SCSS, JS, and data.json files.
+  - `src/components` — folder that stores BEM components.
+  -  `src/fonts` — folder that stores fonts.
+  -  `src/mixins` — folder that stores Pug and SCSS mixins.
+  -  `src/vendor` — folder that stores library style files.
+  -  `index.pug` — main Pug file.
+-  The `dist` folder contains the final build files.
+-  The `gulp` folder contains Gulp tasks.
 
-## Work with build
+## Recommendations for use
 ### Text data storage (improvised database)
 In order not to litter the code of Pug files with text data, it is worth moving all the texts into a separate file. Texts mean, for example, the text of an article or any lists, or the same menu items in the header, in the footer, in the sidebar, etc. All this leads to readability of the code, and it will be easier to fix errors when everything is in one place.
 
@@ -131,9 +121,9 @@ First, we enter the text of the list items in data.json:
 ```
 {
   "someList": [
-    { "text": "some text 1" },
-    { "text": "some text 2" },
-    { "text": "some text 3" }
+    { "text": "Some interesting text" },
+    { "text": "Other interesting text" },
+    { "text": "Text that wants to <br> wrap to a new line" }
   ]
 }
 ```
@@ -142,15 +132,17 @@ Then we can iterate over the given array in Pug with its built-in `each in` loop
 ```
 ul
   each item in someList
-    li= item.text
+    li!= item.text
 ```
 
 The end result of this code will be this HTML markup:
 ```
 <ul>
-  <li>some text 1</li>
-  <li>some text 2</li>
-  <li>some text 3</li>
+  <li>Some interesting text</li>
+  <li>Other interesting text</li>
+  <li>
+    Text that wants to <br> wrap to a new line
+  </li>
 </ul>
 ```
 
@@ -171,12 +163,6 @@ Pug files are may be included in the file where needed. The sсss files of the c
 ### Automate component creation with bem-tools-create
 In order not to constantly manually create component files and folders, we can speed up this process.
 
-The first step is to install the bem-tools-core plugin globally, otherwise we might get an error that the bem command is not recognized.
-
-` npm i bem-tools-core -g `
-
-This command is written once for all projects. No more need to repeat.
-
 To create a component, you need to write a command in the console:
 
 ` bem create component-name `
@@ -194,6 +180,18 @@ If you need to create only one type of file, for example, only pug, then add the
 ` bem create -T pug `
 
 Detailed bem-tools-create documentation [is here](https://github.com/bem-tools/bem-tools-create)
+
+### Project pages
+- The project pages are located in the `src/pages` folder.
+  - Each page (including the main one) inherits one template `src/base/pug/base.pug`.
+  - Main page: `src/index.pug`.
+
+### Fonts
+- The fonts are located in the `src/fonts` folder.
+  - You can use otf, ttf, woff, woff2 formats.
+  - To compile the fonts, use the command `npm run fonts`.
+  - After using the command, in the `src/base/scss` folder will appear the `_fonts.scss` file.
+  - To use local fonts, don't forget to uncomment the 4th line in `src/base/scss/main.scss`. 
 
 ### Creating SVG sprites
 For better performance of the final layout, SVG icon files are best combined into sprites. This is pretty easy to do here.
@@ -218,7 +216,7 @@ I made two ways to use Stylelint:
    npm run scss:lint — fixes all errors in SCSS code.
 ```
 
-2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git add .` in the console. Stylelint will automatically check styles with husky + lint-stage. Then you can commit your project.
+2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git add` in the console. Stylelint will automatically check styles with husky + lint-stage. Then you can commit your project.
 
 #### JavaScript
 ESlint is integrated into the assembly, through which errors in the JS code are corrected. ESlint also makes the code more structured and more relevant to modern JavaScript. This improves readability and makes your code look cooler.
@@ -231,6 +229,4 @@ I made two ways to use ESlint:
    npm run js:lint — fixes all errors in JS code.
 ```
 
-2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git add .` in the console. ESlint will automatically check styles with husky + lint-stage. Then you can commit your project.
-
-## An interesting fact: when I add pug-linter to the assembly, it will actually be ready.
+2. A more automatic way, immediately with a push to the Github repository. If you have a repository, you can run the command `git add` in the console. ESlint will automatically check styles with husky + lint-stage. Then you can commit your project.
