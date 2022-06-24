@@ -6,9 +6,9 @@ import { plugins } from './gulp/config/plugins.js';
 global.app = {
   isBuild: process.argv.includes('--build'),
   isDev: !process.argv.includes('--build'),
-  path: path,
-  gulp: gulp,
-  plugins: plugins,
+  path,
+  gulp,
+  plugins,
 };
 
 // Importing tasks to gulpfile
@@ -29,6 +29,7 @@ function watcher() {
   gulp.watch(path.watch.scss, scss);
   gulp.watch(path.watch.js, js);
   gulp.watch(path.watch.images, images);
+  gulp.watch(path.watch.data, pug);
 }
 
 const mainTasks = gulp.parallel(pug, pugPages, scss, js, images);
