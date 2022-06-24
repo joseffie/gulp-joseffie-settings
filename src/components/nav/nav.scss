@@ -1,5 +1,4 @@
-.header__nav {
-
+.nav {
   @include media('md') {
     position: fixed;
     z-index: $zi-modal;
@@ -9,30 +8,29 @@
     height: 100%;
     overflow: auto;
     transition: left 0.4s ease;
-    background-color: $black;
+    background-color: $nav-color;
 
-    &._active {
+    &--active {
       left: 0;
     }
   }
 
-  &-list {
+  &__list {
     display: flex;
     align-items: center;
     gap: rem(25);
-    padding-left: 0;
     list-style: none;
-    font-size: $font-size;
+    font-size: $nav-font-size;
     font-weight: 500;
 
     @include media('md') {
-      padding-top: rem(30);
-      font-size: $font-size-h3;
+      padding-top: rem(45);
+      font-size: $nav-opened-font-size;
       flex-direction: column;
     }
   }
 
-  &-item {
+  &__item {
     padding: 15px 0px;
 
     @include media('md') {
@@ -45,19 +43,18 @@
       cursor: pointer;
 
       @include hover {
-
-        > a {
-          color: $color-main;
+        & > a {
+          color: $nav-text-color-active;
 
           &::after {
-            border-top-color: $color-main;
-            border-right-color: $color-main;
+            border-top-color: $nav-text-color-active;
+            border-right-color: $nav-text-color-active;
             transform: rotate(315deg);
             margin-top: 7px;
           }
         }
 
-        .header__nav-dropdown {
+        .nav__dropdown {
           margin-top: 0;
           opacity: 1;
           pointer-events: all;
@@ -74,40 +71,40 @@
           width: 7px;
           height: 7px;
           transform: rotate(135deg);
-          transition: border-top-color 0.5s ease, border-right-color 0.5s ease,
-            transform 0.5s ease, margin-top 0.5s ease;
+          transition: border-top-color 0.5s ease, border-right-color 0.5s ease, transform 0.5s ease,
+            margin-top 0.5s ease;
           margin-top: 3px;
-          border-top: 2px solid $text-color;
-          border-right: 2px solid $text-color;
+          border-top: 2px solid $nav-text-color;
+          border-right: 2px solid $nav-text-color;
 
           @include media('md') {
-            border-top-color: $gray-800;
-            border-right-color: $gray-800;
+            border-top-color: $nav-opened-text-color;
+            border-right-color: $nav-opened-text-color;
           }
         }
       }
     }
 
     a {
-      color: $text-color;
+      color: $nav-text-color;
       text-decoration: none;
       transition: color 0.4s ease;
 
       @include media('md') {
-        color: $gray-800;
+        color: $nav-opened-text-color;
       }
 
       @include hover {
-        color: $color-main;
+        color: $nav-text-color-active;
       }
     }
 
     &.is-active {
-      color: $color-main;
+      color: $nav-text-color-active;
     }
   }
 
-  &-dropdown {
+  &__dropdown {
     position: absolute;
     z-index: $zi-dropdown;
     cursor: auto;
@@ -115,10 +112,10 @@
     right: 0;
     margin-top: rem(15);
     min-width: rem(150);
-    background-color: $gray-300;
+    background-color: $nav-color;
     box-shadow: 0 0 5px 0 $black;
     padding: rem(10) rem(15);
-    font-size: $font-size-sm;
+    font-size: $font-size;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease, margin-top 0.2s ease;
@@ -130,7 +127,7 @@
       transform: translateX(-50%);
     }
 
-    .header__nav-item {
+    .nav__item {
       display: block;
       padding: rem(10) 0px;
 
@@ -140,10 +137,10 @@
 
       a {
         display: inline-block;
-        color: $gray-800;
+        color: $nav-opened-text-color;
 
         @include hover {
-          color: $color-main;
+          color: $nav-text-color-active;
         }
 
         &::after {

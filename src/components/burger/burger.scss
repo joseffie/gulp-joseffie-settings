@@ -17,7 +17,7 @@
       width: 100%;
       height: 10%;
       transition: all 0.4s ease;
-      background-color: $text-color;
+      background-color: $burger-color;
     }
 
     &::before,
@@ -38,22 +38,22 @@
       transform: translateY(-50%) scale(1);
     }
 
-    &._active > span,
-    &._active::before,
-    &._active::after {
-      background-color: $gray-800;
+    &--active > span,
+    &--active::before,
+    &--active::after {
+      background-color: $burger-color-active;
     }
 
-    &._active span {
+    &--active span {
       transform: translateY(-50%) scale(0);
     }
 
-    &._active::before {
+    &--active::before {
       top: 50%;
       transform: rotate(45deg) translateY(-50%);
     }
 
-    &._active::after {
+    &--active::after {
       bottom: 50%;
       transform: rotate(-45deg) translateY(50%);
     }

@@ -26,10 +26,10 @@ export const path = {
     scss: `${srcFolder}/**/*.scss`,
     pug: `${srcFolder}/**/*.pug`,
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
+    data: `${srcFolder}/base/data/*.{json,jsonc}`,
   },
   clean: buildFolder,
   buildFolder: buildFolder,
   srcFolder: srcFolder,
   rootFolder: rootFolder,
-  // ftp: ``,
 };

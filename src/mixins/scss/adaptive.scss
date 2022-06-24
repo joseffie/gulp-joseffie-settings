@@ -3,60 +3,59 @@ $maxWidthContainer: 1250; // <<- Layout container width
 
 // Adaptive font-size. On @include input (layout-size, 320px-size)
 @mixin adaptive-font($pcSize, $mobileSize) {
-	$additionalSize: $pcSize - $mobileSize;
-	$additionalMobileSize: $additionalSize + ($additionalSize * 0.7);
-	@media (max-width: 767px) {
-		font-size: calc(
-			#{$mobileSize + px} + #{$additionalMobileSize} *
-				((100vw - 320px) / #{$maxWidth})
-		);
-	}
-	@media (min-width: 767px) {
-		font-size: calc(
-			#{$mobileSize + px} + #{$additionalSize} * (100vw / #{$maxWidth})
-		);
-	}
+  $additionalSize: $pcSize - $mobileSize;
+  $additionalMobileSize: $additionalSize + ($additionalSize * 0.7);
+
+  @media (max-width: 767px) {
+    font-size: calc(
+      #{$mobileSize + px} + #{$additionalMobileSize} * ((100vw - 320px) / #{$maxWidth})
+    );
+  }
+
+  @media (min-width: 767px) {
+    font-size: calc(#{$mobileSize + px} + #{$additionalSize} * (100vw / #{$maxWidth}));
+  }
 }
 
 // Responsive adaptive of values
-@mixin adaptive-value($property, $startSize, $minSize, $type) {
-	$additionalSize: $startSize - $minSize;
-	@if $type == 1 {
-		#{$property}: $startSize + px;
-		@media (max-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(
-				#{$minSize + px} + #{$additionalSize} *
-					((100vw - 320px) / #{$maxWidthContainer - 320})
-			);
-		}
-	} @else if $type == 2 {
-		#{$property}: $startSize + px;
-		@media (min-width: #{$maxWidthContainer + px}) {
-			#{$property}: calc(
-				#{$minSize + px} + #{$additionalSize} +
-					((100vw - 320px) / #{$maxWidth - 320})
-			);
-		}
-	} @else {
-		#{$property}: calc(
-			#{$minSize +
-				px} +
-				#{$additionalSize} *
-				((100vw - 320px) / #{$maxWidth - 320})
-		);
-	}
+@mixin adaptive-value($property, $startSize, $minSize, $type: 0) {
+  $additionalSize: $startSize - $minSize;
+
+  @if $type == 1 {
+    #{$property}: $startSize + px;
+
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$additionalSize} * ((100vw - 320px) / #{$maxWidthContainer - 320})
+      );
+    }
+  } @else if $type == 2 {
+    #{$property}: $startSize + px;
+
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$additionalSize} + ((100vw - 320px) / #{$maxWidth - 320})
+      );
+    }
+  } @else {
+    #{$property}: calc(
+      #{$minSize + px} + #{$additionalSize} * ((100vw - 320px) / #{$maxWidth - 320})
+    );
+  }
 }
 
 // Responsive video/img ratio
 @mixin responsive-ratio($x, $y, $pseudo: false) {
-	$padding: unquote(($y / $x) * 100 + '%');
-	@if $pseudo {
-		&:before {
-			@include pseudo($pos: relative);
-			width: 100%;
-			padding-top: $padding;
-		}
-	} @else {
-		padding-top: $padding;
-	}
+  $padding: ($y / $x) * 100 + '%';
+
+  @if $pseudo {
+    &::before {
+      width: 100%;
+      padding-top: $padding;
+
+      @include pseudo($pos: relative);
+    }
+  } @else {
+    padding-top: $padding;
+  }
 }

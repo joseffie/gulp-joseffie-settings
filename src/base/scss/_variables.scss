@@ -1,5 +1,4 @@
-// Important
-$content-width: rem(1200); // <- Specify depending on the layout
+$content-width: rem(1200);
 $container-offset: rem(20);
 $container-width: calc($content-width + ($container-offset * 2));
 
@@ -16,35 +15,30 @@ $gray-800: hsl(0, 0%, 80%);
 $gray-900: hsl(0, 0%, 90%);
 $white: hsl(0, 0%, 100%);
 
+// Semantic colors
 $color-main: #026dca;
-$color-succes: #5cb75c;
+$color-success: #5cb75c;
 $color-danger: #d8544f;
 $color-warning: #efac4d;
 
-// Semantic colors
 $text-color: $gray-100;
-$text-color-muted: $gray-500;
 $body-bg: $gray-900;
 
-$link-color: $color-main;
-$link-color-hover: darken($color-main, 20%);
+$nav-color: $black;
+$nav-text-color: $text-color;
+$nav-text-color-active: $color-main;
+$nav-opened-text-color: $gray-800;
+$nav-font-size: $font-size;
+$nav-opened-font-size: rem(28);
 
-$border-color: $gray-700;
+$burger-color: $text-color;
+$burger-color-active: $gray-800;
 
-// Basic typo
 $font-size: rem(16);
 $font-size-sm: 0.8em;
 
-$font-size-h1: rem(40);
-$font-size-h2: rem(32);
-$font-size-h3: rem(24);
-$font-size-h4: rem(18);
-$font-size-h5: rem(16);
-$font-size-h6: rem(16);
-
-$font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Ubuntu",
-  "Droid Sans", "Helvetica Neue", "Arial", sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Ubuntu', 'Droid Sans', 'Helvetica Neue',
+  'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
 // Z-index
 $zi-dropdown: 1000;

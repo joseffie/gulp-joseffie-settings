@@ -14,10 +14,10 @@
   "rules": {
     "no-compare-neg-zero": "error",
     "no-cond-assign": ["error", "always"],
-    "no-console": "warn",
+    "no-console": "off",
     "no-constant-condition": "warn",
     "no-control-regex": "error",
-    "no-debugger": "error",
+    "no-debugger": "warn",
     "no-dupe-args": "error",
     "no-dupe-keys": "error",
     "no-duplicate-case": "error",

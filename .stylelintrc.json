@@ -1,6 +1,8 @@
 {
   "syntax": "scss",
+  "extends": "stylelint-config-standard-scss",
   "plugins": ["stylelint-scss", "stylelint-order"],
+  "defaultSeverity": "warning",
   "rules": {
     "order/order": [
       "declarations",
@@ -99,6 +101,7 @@
         "severity": "warning"
       }
     ],
+    "scss/dollar-variable-pattern": null,
     "color-hex-case": [
       "lower",
       {
@@ -158,7 +161,7 @@
     "function-comma-newline-before": [
       "never-multi-line",
       {
-        "message": "Переноса перед запятой быть не должно"
+        "message": "There should not be a line break before a comma"
       }
     ],
     "function-comma-newline-after": [
@@ -171,12 +174,6 @@
       "always",
       {
         "message": "Zero must precede the dot"
-      }
-    ],
-    "number-max-precision": [
-      6,
-      {
-        "message": "Maximum 6 characters after decimal point"
       }
     ],
     "number-no-trailing-zeros": [
@@ -204,12 +201,6 @@
         "ignoreProperties": ["/font-/"]
       }
     ],
-    "unit-no-unknown": [
-      true,
-      {
-        "message": "This unit does not exist"
-      }
-    ],
     "value-list-comma-space-after": [
       "always-single-line",
       {
@@ -222,6 +213,7 @@
         "message": "Spaces are not allowed in values иefore a comma"
       }
     ],
+    "value-list-comma-newline-after": null,
     "property-case": [
       "lower",
       {
@@ -246,6 +238,7 @@
         "message": "Space not allowed before colon"
       }
     ],
+    "declaration-colon-newline-after": null,
     "unit-disallowed-list": [
       ["mm", "cm", "in", "pc"],
       {
@@ -274,12 +267,6 @@
       "never",
       {
         "message": "There must not be an empty line before «}»"
-      }
-    ],
-    "block-closing-brace-newline-after": [
-      "always",
-      {
-        "message": "There must be a line break after «}»"
       }
     ],
     "block-closing-brace-newline-before": [
@@ -336,12 +323,7 @@
         "message": "A space is required in the selector before the combinator"
       }
     ],
-    "selector-attribute-operator-disallowed-list": [
-      ["id"],
-      {
-        "message": "Styling by ID is prohibited"
-      }
-    ],
+    "selector-class-pattern": null,
     "selector-pseudo-class-case": [
       "lower",
       {
@@ -390,6 +372,7 @@
         "message": "Blank lines between selectors are not allowed"
       }
     ],
+    "selector-no-vendor-prefix": null,
     "selector-list-comma-newline-after": [
       "always",
       {
@@ -412,13 +395,6 @@
       "never",
       {
         "message": "Selectors must not have a space before the comma"
-      }
-    ],
-    "rule-empty-line-before": [
-      "always",
-      {
-        "message": "An empty string is required before the nested selector",
-        "ignore": ["after-comment"]
       }
     ],
     "media-feature-colon-space-after": [
@@ -455,13 +431,6 @@
       "always",
       {
         "message": "There must be a space after the range operator"
-      }
-    ],
-    "at-rule-empty-line-before": [
-      "always",
-      {
-        "message": "@-rules must be preceded by an empty line",
-        "ignore": ["after-comment"]
       }
     ],
     "at-rule-name-case": [
@@ -526,12 +495,7 @@
         "message": "You can't duplicate selectors"
       }
     ],
-    "no-eol-whitespace": [
-      true,
-      {
-        "message": "Empty characters at the end of a line."
-      }
-    ],
+    "no-eol-whitespace": null,
     "no-extra-semicolons": [
       true,
       {
@@ -550,22 +514,10 @@
         "message": "Such a media-condition does not exist"
       }
     ],
-    "keyframe-declaration-no-important": [
-      true,
-      {
-        "message": "!important in @keyframes is ignored by some browsers"
-      }
-    ],
     "no-duplicate-at-import-rules": [
       true,
       {
         "message": "Do not re-import the file"
-      }
-    ],
-    "shorthand-property-no-redundant-values": [
-      true,
-      {
-        "message": "The value can be abbreviated"
       }
     ],
     "value-list-max-empty-lines": [
@@ -592,6 +544,7 @@
         "message": "Combined selectors should be separated by a single space"
       }
     ],
+    "length-zero-no-unit": null,
     "linebreaks": [
       "unix",
       {

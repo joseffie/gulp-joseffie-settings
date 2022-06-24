@@ -13,13 +13,13 @@ $browser-context: 16; // Default
 }
 
 // Fade element
-@mixin fade($type: "hide") {
-  @if $type== "hide" {
+@mixin fade($type: 'hide') {
+  @if $type == 'hide' {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transition: visibility 0.4s, opacity 0.4s;
-  } @else if $type== "show" {
+  } @else if $type == 'show' {
     visibility: visible;
     opacity: 1;
     pointer-events: all;
@@ -53,7 +53,7 @@ $browser-context: 16; // Default
 }
 
 // Pseudoelements default styles
-@mixin pseudo($content: "", $display: block, $pos: absolute) {
+@mixin pseudo($content: '', $display: block, $pos: absolute) {
   content: $content;
   display: $display;
   position: $pos;

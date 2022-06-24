@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -66,6 +66,7 @@
     "pug-lint": "^2.6.0",
     "sass": "latest",
     "stylelint": "^14.9.1",
+    "stylelint-config-standard-scss": "^4.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.2.0",
     "webp-converter": "^2.2.3",

@@ -2,40 +2,33 @@
   "mainmenuData": [
     {
       "text": "Main",
-      "link": "/",
-      "hasLink": false
+      "link": "/"
     },
     {
       "text": "Item 2",
       "link": "#",
-      "hasLink": false,
       "subitems": [
         {
           "text": "Sub-item 1",
-          "link": "#",
-          "hasLink": false
+          "link": "#"
         },
         {
           "text": "Sub-item 2",
-          "link": "#",
-          "hasLink": false
+          "link": "#"
         },
         {
           "text": "Sub-item 3",
-          "link": "#",
-          "hasLink": false
+          "link": "#"
         }
       ]
     },
     {
       "text": "Item 3",
-      "link": "#",
-      "hasLink": false
+      "link": "#"
     },
     {
       "text": "Item 4",
-      "link": "#",
-      "hasLink": false
+      "link": "#"
     }
   ]
 }
