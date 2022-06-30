@@ -1,7 +1,7 @@
-@import "../../mixins/mixins.scss";
+@import '../../mixins/mixins';
 
-@import "./_variables.scss";
-// @import './_fonts.scss';
-@import "./print.scss";
+@import './_variables';
+// @import './_fonts';
+@import './print';
 
-@import "../../components/components.scss";
+@import '../../components/components';

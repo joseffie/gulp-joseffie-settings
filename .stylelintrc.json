@@ -102,6 +102,9 @@
       }
     ],
     "scss/dollar-variable-pattern": null,
+    "scss/no-global-function-names": null,
+    "scss/double-slash-comment-empty-line-before": null,
+    "scss/at-import-no-partial-leading-underscore": null,
     "color-hex-case": [
       "lower",
       {
@@ -220,6 +223,7 @@
         "message": "Property value must be in lowercase"
       }
     ],
+    "property-no-vendor-prefix": null,
     "declaration-bang-space-after": [
       "never",
       {
@@ -433,6 +437,8 @@
         "message": "There must be a space after the range operator"
       }
     ],
+    "no-descending-specificity": null,
+    "at-rule-empty-line-before": null,
     "at-rule-name-case": [
       "lower",
       {

@@ -13,8 +13,7 @@ export const path = {
     fonts: `${srcFolder}/fonts/`,
   },
   src: {
-    pug: `${srcFolder}/*.pug`,
-    pages: `${srcFolder}/pages/*.pug`,
+    pug: `${srcFolder}/**/*.pug`,
     scss: `${srcFolder}/base/scss/main.scss`,
     js: `${srcFolder}/base/js/index.js`,
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
@@ -22,7 +21,7 @@ export const path = {
     svgicons: `${srcFolder}/svgico/*.svg`,
   },
   watch: {
-    js: `${srcFolder}/**/*.js`,
+    js: `${srcFolder}/**/*.{js,mjs}`,
     scss: `${srcFolder}/**/*.scss`,
     pug: `${srcFolder}/**/*.pug`,
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,

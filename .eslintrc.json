@@ -96,7 +96,7 @@
     "no-magic-numbers": "off",
     "no-multi-spaces": "error",
     "no-multi-str": "error",
-    "no-new": "error",
+    "no-new": "off",
     "no-new-func": "error",
     "no-new-wrappers": "error",
     "no-octal": "error",
@@ -144,14 +144,7 @@
     "no-undef": "off",
     "no-undef-init": "error",
     "no-undefined": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "local",
-        "args": "after-used",
-        "ignoreRestSiblings": true
-      }
-    ],
+    "no-unused-vars": "off",
     "no-use-before-define": "error",
     "callback-return": "off",
     "global-require": "warn",

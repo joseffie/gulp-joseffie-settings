@@ -1,16 +1,17 @@
-// Main styles
-@import "page/page.scss";
-@import "container/container.scss";
-@import "wrapper/wrapper.scss";
+@import 'page/page';
 
-// Common styles
-// @import "overlay/overlay.scss";
-// @import "breadcrumbs/breadcrumbs.scss";
+@import 'container/container';
 
-// Header elements
-@import "header/header.scss";
-@import "nav/nav.scss";
-@import "burger/burger.scss";
+@import 'wrapper/wrapper';
 
-// Footer elements
-@import "footer/footer.scss";
+// @import "overlay/overlay";
+
+// @import "breadcrumbs/breadcrumbs";
+
+@import 'header/header';
+
+@import 'nav/nav';
+
+@import 'burger/burger';
+
+@import 'footer/footer';

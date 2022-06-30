@@ -1,7 +1,7 @@
 mixin menuItem(item)
   - var activeClass = menuHref === item.link ? " is-active" : "";
   - item.subitems ? activeClass += "nav__item--parent" : null;
-    li.header__nav-item(class= activeClass)
+    li.nav__item(class= activeClass)
       if (typeof(item.link) !== 'undefined' && item.link)
         a(href = item.link)!= item.text
       else
