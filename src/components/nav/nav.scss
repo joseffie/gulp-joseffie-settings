@@ -1,5 +1,5 @@
 .nav {
-  @include media('md') {
+  @media (max-width: $breakpoint768) {
     position: fixed;
     z-index: $zi-modal;
     top: 0;
@@ -23,7 +23,7 @@
     font-size: $nav-font-size;
     font-weight: 500;
 
-    @include media('md') {
+    @media (max-width: $breakpoint768) {
       padding-top: rem(45);
       font-size: $nav-opened-font-size;
       flex-direction: column;
@@ -33,7 +33,7 @@
   &__item {
     padding: 15px 0px;
 
-    @include media('md') {
+    @media (max-width: $breakpoint768) {
       padding: 10px 0px;
       text-align: center;
     }
@@ -77,7 +77,7 @@
           border-top: 2px solid $nav-text-color;
           border-right: 2px solid $nav-text-color;
 
-          @include media('md') {
+          @media (max-width: $breakpoint768) {
             border-top-color: $nav-opened-text-color;
             border-right-color: $nav-opened-text-color;
           }
@@ -90,12 +90,12 @@
       text-decoration: none;
       transition: color 0.4s ease;
 
-      @include media('md') {
-        color: $nav-opened-text-color;
-      }
-
       @include hover {
         color: $nav-text-color-active;
+      }
+
+      @media (max-width: $breakpoint768) {
+        color: $nav-opened-text-color;
       }
     }
 
@@ -120,7 +120,7 @@
     pointer-events: none;
     transition: opacity 0.2s ease, margin-top 0.2s ease;
 
-    @include media('md') {
+    @media (max-width: $breakpoint768) {
       left: 50%;
       min-width: rem(200);
       padding: rem(7) rem(10);
@@ -130,10 +130,6 @@
     .nav__item {
       display: block;
       padding: rem(10) 0px;
-
-      @include media('md') {
-        padding: 8px 0px;
-      }
 
       a {
         display: inline-block;

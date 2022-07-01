@@ -1,7 +1,7 @@
 .burger {
   display: none;
 
-  @include media('md') {
+  @media (max-width: $breakpoint768) {
     display: block;
     position: relative;
     z-index: $zi-tooltip;

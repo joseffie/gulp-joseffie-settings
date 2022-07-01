@@ -3,23 +3,23 @@
   margin: 0px auto;
   padding: 0px $container-offset;
 
-  @include media('md') {
-    max-width: none;
-  }
-
   @media (max-width: $container-width) {
     max-width: 767px;
+  }
+
+  @media (max-width: $breakpoint768) {
+    max-width: none;
   }
 
   &-fluid {
     max-width: none;
     padding: 0px rem(55);
 
-    @include media('md') {
+    @media (max-width: $breakpoint768) {
       padding: 0px rem(40);
     }
 
-    @include media('sm') {
+    @media (max-width: $breakpoint480) {
       padding: 0px $container-offset;
     }
   }

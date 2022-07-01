@@ -2,6 +2,16 @@ $content-width: rem(1200);
 $container-offset: rem(20);
 $container-width: calc($content-width + ($container-offset * 2));
 
+// Breakpoints
+$breakpoint1440: 1439.98px;
+$breakpoint1248: 1247.98px;
+$breakpoint1024: 1023.98px;
+$breakpoint768: 767.98px;
+$breakpoint640: 639.98px;
+$breakpoint560: 559.98px;
+$breakpoint480: 479.98px;
+$breakpoint400: 399.98px;
+
 // Basic colors
 $black: hsl(0, 0%, 0%);
 $gray-100: hsl(0, 0%, 10%);

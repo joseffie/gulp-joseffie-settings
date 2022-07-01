@@ -36,7 +36,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   &._no-scroll {
-    @include media('md') {
+    @media (max-width: $breakpoint768) {
       overflow: hidden;
     }
   }
@@ -198,16 +198,6 @@ li {
 
 dt {
   font-weight: 700;
-}
-
-// .small,
-small {
-  font-size: $font-size-sm;
-}
-
-sub,
-sup {
-  font-size: $font-size-sm;
 }
 
 // .mark,
