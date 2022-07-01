@@ -2,10 +2,10 @@
   *,
   *::before,
   *::after {
-    background: transparent !important;
     color: #000 !important;
-    box-shadow: none !important;
     text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
 
   a,
@@ -28,8 +28,8 @@
 
   pre,
   blockquote {
-    border: 1px solid #999 !important;
     page-break-inside: avoid;
+    border: 1px solid #999 !important;
   }
 
   thead {

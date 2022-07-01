@@ -1,8 +1,8 @@
 // Truncate text
 @mixin truncate {
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 // input placeholder's styles

@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -11,19 +11,19 @@
   "scripts": {
     "dev": "gulp",
     "build": "gulp build --build",
-    "pug:check": "pug-lint src/",
-    "scss:check": "npx stylelint \"**/*.scss\"",
-    "scss:lint": "npx stylelint \"**/*.scss\" --fix",
-    "js:check": "eslint --ext=mjs,js --debug src/",
-    "js:lint": "eslint --ext=mjs,js --debug src/ --fix",
-    "all:check": "npm run scss:check & npm run js:check & npm run pug:check",
-    "all:lint": "npm run scss:lint & npm run js:lint",
-    "clean": "gulp reset",
+    "zip": "gulp deployZIP --build",
     "fonts": "gulp createFonts",
     "sprite": "gulp makeSprite",
-    "build:gh-pages": "npm run build && gh-pages -d dist",
+    "clean": "gulp reset",
     "gh-pages": "gh-pages -d dist",
-    "zip": "gulp deployZIP --build"
+    "build:gh-pages": "npm run build && gh-pages -d dist",
+    "lint-pug": "pug-lint src/",
+    "lint-scss": "npx stylelint \"**/*.scss\"",
+    "lint-js": "eslint --ext=mjs,js --debug src/",
+    "lint-all": "npm run lint-scss & npm run lint-js && npm run lint-pug",
+    "fix-scss": "npx stylelint \"**/*.scss\" --fix",
+    "fix-js": "eslint --ext=mjs,js --debug src/ --fix",
+    "fix-all": "npm run fix-scss & npm run fix-js"
   },
   "author": "Ivan Gavrilich (joseffie)",
   "browserslist": [
@@ -84,11 +84,11 @@
     "*.pug": "pug-lint src/",
     "linters": {
       "*.scss": [
-        "npm run scss:lint",
+        "npm run fix-scss",
         "git add"
       ],
       "*.(js,jsx,mjs)": [
-        "npm run js:lint",
+        "npm run fix-js",
         "git add"
       ]
     }

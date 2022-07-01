@@ -1,14 +1,14 @@
 .nav {
   @media (max-width: $breakpoint768) {
     position: fixed;
-    z-index: $zi-modal;
     top: 0;
     left: -100%;
+    z-index: $zi-modal;
     width: 100%;
     height: 100%;
     overflow: auto;
-    transition: left 0.4s ease;
     background-color: $nav-color;
+    transition: left 0.4s ease;
 
     &--active {
       left: 0;
@@ -17,16 +17,16 @@
 
   &__list {
     display: flex;
-    align-items: center;
     gap: rem(25);
-    list-style: none;
-    font-size: $nav-font-size;
+    align-items: center;
     font-weight: 500;
+    font-size: $nav-font-size;
+    list-style: none;
 
     @media (max-width: $breakpoint768) {
+      flex-direction: column;
       padding-top: rem(45);
       font-size: $nav-opened-font-size;
-      flex-direction: column;
     }
   }
 
@@ -47,10 +47,10 @@
           color: $nav-text-color-active;
 
           &::after {
+            margin-top: 7px;
             border-top-color: $nav-text-color-active;
             border-right-color: $nav-text-color-active;
             transform: rotate(315deg);
-            margin-top: 7px;
           }
         }
 
@@ -66,16 +66,16 @@
         gap: 10px;
 
         &::after {
-          content: '';
           display: block;
           width: 7px;
           height: 7px;
-          transform: rotate(135deg);
-          transition: border-top-color 0.5s ease, border-right-color 0.5s ease, transform 0.5s ease,
-            margin-top 0.5s ease;
           margin-top: 3px;
           border-top: 2px solid $nav-text-color;
           border-right: 2px solid $nav-text-color;
+          transform: rotate(135deg);
+          transition: border-top-color 0.5s ease, border-right-color 0.5s ease, transform 0.5s ease,
+            margin-top 0.5s ease;
+          content: '';
 
           @media (max-width: $breakpoint768) {
             border-top-color: $nav-opened-text-color;
@@ -106,19 +106,19 @@
 
   &__dropdown {
     position: absolute;
-    z-index: $zi-dropdown;
-    cursor: auto;
     top: 45px;
     right: 0;
-    margin-top: rem(15);
+    z-index: $zi-dropdown;
     min-width: rem(150);
-    background-color: $nav-color;
-    box-shadow: 0 0 5px 0 $black;
+    margin-top: rem(15);
     padding: rem(10) rem(15);
     font-size: $font-size;
+    background-color: $nav-color;
+    box-shadow: 0 0 5px 0 $black;
+    cursor: auto;
     opacity: 0;
-    pointer-events: none;
     transition: opacity 0.2s ease, margin-top 0.2s ease;
+    pointer-events: none;
 
     @media (max-width: $breakpoint768) {
       left: 50%;

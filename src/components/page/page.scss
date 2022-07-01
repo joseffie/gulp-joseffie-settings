@@ -26,11 +26,11 @@
 body {
   min-height: 100%;
   margin: 0;
-  word-break: break-word;
-  font-family: $font-family;
-  font-size: $font-size;
-  text-align: left;
   color: $text-color;
+  font-size: $font-size;
+  font-family: $font-family;
+  text-align: left;
+  word-break: break-word;
   background-color: $body-bg;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,8 +64,8 @@ input,
 label,
 select,
 textarea {
-  touch-action: manipulation;
   margin: 0;
+  touch-action: manipulation;
 }
 
 button,
@@ -128,10 +128,10 @@ a {
   &[href^='tel:'] {
     // On large screens, phone links are made in usual text
     @media (min-width: 1248.98px) {
-      white-space: nowrap;
-      pointer-events: none;
-      text-decoration: inherit;
       color: inherit;
+      white-space: nowrap;
+      text-decoration: inherit;
+      pointer-events: none;
     }
   }
 }
@@ -141,9 +141,9 @@ hr {
   height: 0; // Fix for Firefox
   margin-top: 15px * 2;
   margin-bottom: 15px * 2;
+  overflow: visible; // Fix for Edge and IE
   border: 0;
   border-top: 1px solid;
-  overflow: visible; // Fix for Edge and IE
 }
 
 h1,
@@ -154,10 +154,10 @@ h5,
 h6 {
   margin-top: 1em;
   margin-bottom: 0.5em;
-  font-family: $font-family;
-  font-weight: 700;
-  line-height: 1.2;
   color: currentcolor;
+  font-weight: 700;
+  font-family: $font-family;
+  line-height: 1.2;
 }
 
 p,
@@ -202,8 +202,8 @@ dt {
 
 // .mark,
 mark {
-  background: rgba(#efac4d, 0.3);
   padding: 0.1em 0.3em;
+  background: rgba(#efac4d, 0.3);
 }
 
 b,
@@ -216,9 +216,9 @@ abbr[title] {
 }
 
 blockquote {
-  padding: 0;
-  margin-left: 0;
   margin-right: 0;
+  margin-left: 0;
+  padding: 0;
 }
 
 code {

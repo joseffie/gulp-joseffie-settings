@@ -1,11 +1,11 @@
 .breadcrumbs {
-  list-style: none;
   margin: rem(15) 0px;
   padding: 0;
+  list-style: none;
 
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
   }
 
   &__item {
@@ -14,10 +14,10 @@
     white-space: nowrap;
 
     &::after {
-      content: '/';
       display: inline-block;
       margin-left: rem(15);
       color: #5e5c5c;
+      content: '/';
     }
 
     &:last-child::after {
