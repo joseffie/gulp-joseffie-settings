@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -28,7 +28,8 @@
   "author": "Ivan Gavrilich (joseffie)",
   "browserslist": [
     "> 1%",
-    "last 2 versions"
+    "last 3 versions",
+    "ie 9-11"
   ],
   "license": "Unlicensed",
   "devDependencies": {
