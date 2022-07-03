@@ -1,0 +1,15 @@
+// Responsive video/img ratio
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: ($y / $x) * 100 + '%';
+
+  @if $pseudo {
+    &::before {
+      width: 100%;
+      padding-top: $padding;
+
+      @include pseudo($pos: relative);
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}

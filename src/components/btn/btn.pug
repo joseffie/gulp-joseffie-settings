@@ -1,0 +1,32 @@
+mixin btn(text, mods, isInput)
+
+  //- Takes on:
+  //- text    {string} - button text
+  //- mods    {string} - list of modifiers
+  //- isInput {bool}   - «This is a input» flag
+  //- Call example:
+    +btn('Button-link')(href='/') - There is href - this is a link
+    +btn('Button-input', '', true)   - There is isInput flag - this is a input
+    +btn('Button', 'success') - No href and isInput - this is a button
+  -
+    // List of modifiers
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' btn--' + modsList[i].trim();
+      }
+    }
+  //- passed href, this is a link
+  if (attributes.href)
+    a.btn(class=allMods)&attributes(attributes)!= text
+      block
+
+  //- else if passes isInput as true, this is a input
+  else if (typeof(isInput) !== 'undefined' && isInput)
+    input.btn(class=allMods, value=text, type='button')&attributes(attributes)
+
+  //- else this is a button
+  else
+    button.btn(class=allMods)&attributes(attributes)!= text
+      block

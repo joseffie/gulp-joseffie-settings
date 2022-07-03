@@ -1,0 +1,49 @@
+// Margin for all elements except the last
+@mixin mr($value) {
+  &:not(:last-child) {
+    margin-right: rem($value);
+  }
+}
+
+@mixin ml($value) {
+  &:not(:last-child) {
+    margin-left: rem($value);
+  }
+}
+
+@mixin mb($value) {
+  &:not(:last-child) {
+    margin-bottom: rem($value);
+  }
+}
+
+@mixin mt($value) {
+  &:not(:last-child) {
+    margin-top: rem($value);
+  }
+}
+
+// Padding for all elements except the last
+@mixin pr($value) {
+  &:not(:last-child) {
+    padding-right: rem($value);
+  }
+}
+
+@mixin pl($value) {
+  &:not(:last-child) {
+    padding-left: rem($value);
+  }
+}
+
+@mixin pb($value) {
+  &:not(:last-child) {
+    padding-bottom: rem($value);
+  }
+}
+
+@mixin pt($value) {
+  &:not(:last-child) {
+    padding-top: rem($value);
+  }
+}

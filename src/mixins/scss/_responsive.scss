@@ -1,9 +1,11 @@
-$maxWidth: 1980; // <<- Layout full width
-$maxWidthContainer: 1250; // <<- Layout container width
+$maxWidth: $layout-width;
+$maxWidthContainer: $container-width-no-units;
 
-// Adaptive font-size. On @include input (layout-size, 320px-size)
-@mixin adaptive-font($pcSize, $mobileSize) {
-  $additionalSize: $pcSize - $mobileSize;
+// Adaptive font-size.
+// $startSize - initial size
+// $mobileSize - 320px size
+@mixin adaptive-font($startSize, $mobileSize) {
+  $additionalSize: $startSize - $mobileSize;
   $additionalMobileSize: $additionalSize + ($additionalSize * 0.7);
 
   @media (max-width: 767px) {
@@ -18,6 +20,9 @@ $maxWidthContainer: 1250; // <<- Layout container width
 }
 
 // Responsive adaptive of values
+// $property - any CSS property
+// $startSize - initial size
+// $minSize - 320px size
 @mixin adaptive-value($property, $startSize, $minSize, $type: 0) {
   $additionalSize: $startSize - $minSize;
 
@@ -41,21 +46,5 @@ $maxWidthContainer: 1250; // <<- Layout container width
     #{$property}: calc(
       #{$minSize + px} + #{$additionalSize} * ((100vw - 320px) / #{$maxWidth - 320})
     );
-  }
-}
-
-// Responsive video/img ratio
-@mixin responsive-ratio($x, $y, $pseudo: false) {
-  $padding: ($y / $x) * 100 + '%';
-
-  @if $pseudo {
-    &::before {
-      width: 100%;
-      padding-top: $padding;
-
-      @include pseudo($pos: relative);
-    }
-  } @else {
-    padding-top: $padding;
   }
 }

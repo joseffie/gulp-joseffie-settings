@@ -1,4 +1,4 @@
-.nav {
+.main-nav {
   @media (max-width: $breakpoint768) {
     position: fixed;
     top: 0;
@@ -54,7 +54,7 @@
           }
         }
 
-        .nav__dropdown {
+        .main-nav__dropdown {
           margin-top: 0;
           opacity: 1;
           pointer-events: all;

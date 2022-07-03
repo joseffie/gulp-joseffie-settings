@@ -1,6 +1,9 @@
-$content-width: rem(1200);
-$container-offset: rem(20);
-$container-width: calc($content-width + ($container-offset * 2));
+// Do not specify units of measurement in this varriables
+$layout-width: 1440; // <<- Layout full width
+$content-width: 1200; // <<- Layout container width
+$container-offset: 20; // <<- Container left and right padding
+$container-width-no-units: calc($content-width + ($container-offset * 2));
+$container-width: calc($content-width + ($container-offset * 2)) + px;
 
 // Breakpoints
 $breakpoint1440: 1439.98px;
@@ -34,6 +37,7 @@ $color-warning: #efac4d;
 $text-color: $gray-100;
 $body-bg: $gray-900;
 
+// Main-navigation styles
 $nav-color: $black;
 $nav-text-color: $text-color;
 $nav-text-color-active: $color-main;
@@ -44,11 +48,17 @@ $nav-opened-font-size: rem(28);
 $burger-color: $text-color;
 $burger-color-active: $gray-800;
 
+// Fonts
 $font-size: rem(16);
 $font-size-sm: 0.8em;
-
 $font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Ubuntu', 'Droid Sans', 'Helvetica Neue',
   'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+// Other
+$field-padding-vertical: rem(5);
+$field-padding-horizontal: rem(12);
+$btn-bg-color: $gray-600;
+$btn-border-rad: 5px;
 
 // Z-index
 $zi-dropdown: 1000;
