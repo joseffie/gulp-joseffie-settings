@@ -1,7 +1,13 @@
-mixin icon(iconName, className = '')
-  unless (className == '')
-    svg(class= className)
-      use(xlink:href=`./img/sprite.svg#${iconName}`)
-  else
-    svg
-      use(xlink:href=`./img/sprite.svg#${iconName}`)
+mixin icon(iconName, iconWidth = '', iconHeight = '')
+  //- Callback examples:
+  //- +icon('icon')
+  //- +icon('icon', 30, 24)
+  //- +icon('apple')(class='apple-logo')
+
+  //- Takes on:
+  //- iconName { string } - icon file name
+  //- iconWidth { num }   - icon width
+  //- iconHeight { num }  - icon height
+
+  svg(width=iconWidth, height=iconHeight)&attributes(attributes)
+    use(xlink:href=`./img/sprite.svg#${iconName}`)

@@ -1,11 +1,14 @@
 // Do not specify units of measurement in this varriables
 $layout-width: 1440; // <<- Layout full width
 $content-width: 1200; // <<- Layout container width
-$container-offset: 20; // <<- Container left and right padding
+$container-offset-no-units: 20; // <<- Container left and right padding
 $container-width-no-units: calc($content-width + ($container-offset * 2));
+
+$container-offset: $container-offset-no-units + px;
 $container-width: calc($content-width + ($container-offset * 2)) + px;
 
 // Breakpoints
+// Breakpoints are written as a fraction for mobile-first to work correctly.
 $breakpoint1440: 1439.98px;
 $breakpoint1248: 1247.98px;
 $breakpoint1024: 1023.98px;

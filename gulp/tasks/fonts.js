@@ -62,6 +62,8 @@ export const fStyle = () => {
               fontWeight = 200;
             } else if (fontWeight.toLowerCase() === 'light') {
               fontWeight = 300;
+            } else if (fontWeight.toLowerCase() === 'book') {
+              fontWeight = 350;
             } else if (fontWeight.toLowerCase() === 'medium') {
               fontWeight = 500;
             } else if (fontWeight.toLowerCase() === 'semibold') {

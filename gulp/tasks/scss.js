@@ -21,6 +21,8 @@ export const scss = () => {
           }),
         ),
       )
+      // Required for correct operation of the `path-autocomplete` extension.
+      // If you don't use it, you can delete this line.
       .pipe(app.plugins.replace(/@img\//g, '../img/'))
       .pipe(
         sass({

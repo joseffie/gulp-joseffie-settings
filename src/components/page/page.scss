@@ -127,11 +127,10 @@ a {
 
   &[href^='tel:'] {
     // On large screens, phone links are made in usual text
-    @media (min-width: 1248.98px) {
+    @media (min-width: $breakpoint1248) {
       color: inherit;
       white-space: nowrap;
       text-decoration: inherit;
-      pointer-events: none;
     }
   }
 }

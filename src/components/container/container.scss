@@ -3,24 +3,39 @@
   margin: 0px auto;
   padding: 0px $container-offset;
 
+  // In case the container is larger than 1440px in the layout
+  // @media (max-width: $container-width) {
+  //   max-width: 1247.98px;
+  // }
+
+  // @media (max-width: $breakpoint1248) {
+  //   max-width: 1023.98px;
+  // }
+
+  // @media (max-width: $breakpoint1024) {
+  //   max-width: 766.98px;
+  // }
+
+  // If container is larger than 1440px in layout, remove this media expression
+  // and use the top three
   @media (max-width: $container-width) {
-    max-width: 767px;
+    max-width: 766.98px;
   }
 
   @media (max-width: $breakpoint768) {
     max-width: none;
   }
 
-  &-fluid {
-    max-width: none;
-    padding: 0px rem(55);
+  // &-fluid {
+  //   max-width: none;
+  //   padding: 0px rem(55);
 
-    @media (max-width: $breakpoint768) {
-      padding: 0px rem(40);
-    }
+  //   @media (max-width: $breakpoint768) {
+  //     padding: 0px rem(40);
+  //   }
 
-    @media (max-width: $breakpoint480) {
-      padding: 0px $container-offset;
-    }
-  }
+  //   @media (max-width: $breakpoint480) {
+  //     padding: 0px $container-offset;
+  //   }
+  // }
 }

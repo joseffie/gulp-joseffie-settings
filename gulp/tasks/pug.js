@@ -18,10 +18,13 @@ export const pug = () => {
       )
       .pipe(
         app.plugins.pug({
+          // Set to true if you need an uncompressed file
           pretty: false,
           verbose: true,
         }),
       )
+      // Required for correct operation of the `path-autocomplete` extension.
+      // If you don't use it, you can delete this line.
       .pipe(app.plugins.replace(/@img\//g, 'img/'))
       .pipe(app.plugins.if(app.isBuild, app.plugins.webpHtmlNosvg()))
       .pipe(

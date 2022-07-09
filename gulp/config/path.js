@@ -13,7 +13,7 @@ export const path = {
     fonts: `${srcFolder}/fonts/`,
   },
   src: {
-    pug: `${srcFolder}/**/*.pug`,
+    pug: [`${srcFolder}/*.pug`, `${srcFolder}/pages/*.pug`],
     scss: `${srcFolder}/base/scss/main.scss`,
     js: `${srcFolder}/base/js/index.js`,
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
