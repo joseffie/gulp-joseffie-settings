@@ -18,7 +18,8 @@ export const path = {
     js: `${srcFolder}/base/js/index.js`,
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
     svg: `${srcFolder}/img/**/*.svg`,
-    svgicons: `${srcFolder}/svgico/*.svg`,
+    iconsmono: `${srcFolder}/svgico/mono/*.svg`,
+    iconsmulti: `${srcFolder}/svgico/multi/*.svg`,
   },
   watch: {
     js: `${srcFolder}/**/*.{js,mjs}`,

@@ -1,6 +1,6 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "type": "module",
   "description": "Starter template and gulp settings for web development",
   "main": "gulpfile.js",
@@ -13,7 +13,7 @@
     "build": "gulp build --build",
     "zip": "gulp deployZIP --build",
     "fonts": "gulp createFonts",
-    "sprite": "gulp makeSprite",
+    "sprite": "gulp makeSprites",
     "clean": "gulp reset",
     "gh-pages": "gh-pages -d dist",
     "build:gh-pages": "npm run build && gh-pages -d dist",

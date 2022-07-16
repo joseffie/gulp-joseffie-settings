@@ -1,13 +1,19 @@
-mixin icon(iconName, iconWidth = '', iconHeight = '')
+mixin icon(iconName, iconType, iconWidth = '', iconHeight = '')
   //- Callback examples:
   //- +icon('icon')
-  //- +icon('icon', 30, 24)
-  //- +icon('apple')(class='apple-logo')
+  //- +icon('icon', 'multi')
+  //- +icon('icon', 'mono', 30, 24)
+  //- +icon('apple', 'multi')(class='apple-logo')
 
   //- Takes on:
   //- iconName { string } - icon file name
+  //- iconType { string } - icon color type (mono-color / multi-color)
   //- iconWidth { num }   - icon width
   //- iconHeight { num }  - icon height
 
-  svg(width=iconWidth, height=iconHeight)&attributes(attributes)
-    use(xlink:href=`./img/sprite.svg#${iconName}`)
+  if (iconType == 'multi')
+    svg(width=iconWidth, height=iconHeight)&attributes(attributes)
+      use(xlink:href=`img/sprites/sprite-multi.svg#${iconName}`)
+  else
+    svg(width=iconWidth, height=iconHeight)&attributes(attributes)
+      use(xlink:href=`img/sprites/sprite-mono.svg#${iconName}`)

@@ -18,7 +18,7 @@ import { scss } from './gulp/tasks/scss.js';
 import { js } from './gulp/tasks/js.js';
 import { server } from './gulp/tasks/server.js';
 import { images } from './gulp/tasks/images.js';
-import { makeSprite } from './gulp/tasks/sprite.js';
+import { makeMonoSprite, makeMultiSprite } from './gulp/tasks/sprite.js';
 import { otfToTtf, ttfToWoff, fStyle } from './gulp/tasks/fonts.js';
 import { zip } from './gulp/tasks/zip.js';
 
@@ -36,6 +36,7 @@ const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(reset, mainTasks);
 
 const createFonts = gulp.series(otfToTtf, ttfToWoff, fStyle);
+const makeSprites = gulp.parallel(makeMonoSprite, makeMultiSprite);
 const deployZIP = gulp.series(reset, mainTasks, zip);
 
 // Exporting scripts to package.json
@@ -43,7 +44,7 @@ export { dev };
 export { build };
 export { reset };
 export { createFonts };
-export { makeSprite };
+export { makeSprites };
 export { deployZIP };
 
 gulp.task('default', dev);

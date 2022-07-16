@@ -228,7 +228,11 @@ For better performance of the final layout, SVG icon files are best combined int
 
 First you need to move all your SVG icons inside `src/svgico` and run the `npm run sprite` script which will automatically create the sprite. The resulting sprite will be generated in the `src/img` folder.
 
-Then in the Pug file, you can insert an icon using the `+icon('iconName', 'className')` mixin. "IconName" is the name of the SVG icon file. Optionally, you can fill in the optional "className" attribute, which can be used to set the HTML class for the icon.
+Then in the Pug file, you can insert an icon using the `+icon('iconName', 'iconType', width, height)` mixin. "IconName" is the name of the SVG icon file. "IconType" is the type of the SVG icon, if the icon is single-color, then the type is `mono`, if the icon is multi-color, then `multi`. Width and height are optional arguments to the mixin. If you want to add a class or any other attribute, then simply put it in parentheses after the "body" of the mixin:
+
+```pug
++icon('icon', 'mono')(class='logo__icon', aria-label='Icon')
+```
 
 You just need to set the height and width of the icon in SCSS (if you didn't specify "className", you can refer to the icon via the parent element: `.parent svg`), and now it is already displayed on the site.
 

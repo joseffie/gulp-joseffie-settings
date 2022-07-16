@@ -1,12 +1,12 @@
 import svgSprite from 'gulp-svg-sprite';
 
-export const makeSprite = () => {
+export const makeMonoSprite = () => {
   return app.gulp
-    .src(`${app.path.src.svgicons}`, {})
+    .src(`${app.path.src.iconsmono}`)
     .pipe(
       app.plugins.plumber(
         app.plugins.notify.onError({
-          title: 'SVG',
+          title: 'Mono-color SVG',
           message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
@@ -14,12 +14,94 @@ export const makeSprite = () => {
     .pipe(
       svgSprite({
         mode: {
-          stack: {
-            sprite: '../sprite.svg',
-            example: false,
+          symbol: {
+            sprite: '../sprite-mono.svg',
           },
+        },
+        shape: {
+          transform: [
+            {
+              svgo: {
+                plugins: [
+                  {
+                    removeAttrs: {
+                      attrs: ['class', 'data-name', 'fill', 'stroke.*'],
+                    },
+                  },
+                ],
+              },
+            },
+          ],
         },
       }),
     )
-    .pipe(app.gulp.dest(`${app.path.srcFolder}/img`));
+    .pipe(app.gulp.dest(`${app.path.srcFolder}/img/sprites`));
 };
+
+export const makeMultiSprite = () => {
+  return app.gulp
+    .src(`${app.path.src.iconsmulti}`)
+    .pipe(
+      app.plugins.plumber(
+        app.plugins.notify.onError({
+          title: 'Multi-color SVG',
+          message: 'Fix da mistake, leather man: <%= error.message %>',
+        }),
+      ),
+    )
+    .pipe(
+      svgSprite({
+        mode: {
+          symbol: {
+            sprite: '../sprite-multi.svg',
+          },
+        },
+        shape: {
+          transform: [
+            {
+              svgo: {
+                plugins: [
+                  {
+                    removeAttrs: {
+                      attrs: ['class', 'data-name'],
+                    },
+                  },
+                  {
+                    removeUseLessStrokeAndFill: false,
+                  },
+                  {
+                    inlineStyles: true,
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      }),
+    )
+    .pipe(app.gulp.dest(`${app.path.srcFolder}/img/sprites`));
+};
+
+// export const makeSprites = () => {
+//   return app.gulp
+//     .src(`${app.path.src.svgicons}`, {})
+//     .pipe(
+//       app.plugins.plumber(
+//         app.plugins.notify.onError({
+//           title: 'SVG',
+//           message: 'Fix da mistake, leather man: <%= error.message %>',
+//         }),
+//       ),
+//     )
+//     .pipe(
+//       svgSprite({
+//         mode: {
+//           stack: {
+//             sprite: '../sprite.svg',
+//             example: false,
+//           },
+//         },
+//       }),
+//     )
+//     .pipe(app.gulp.dest(`${app.path.srcFolder}/img`));
+// };
