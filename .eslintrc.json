@@ -3,7 +3,8 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jquery": true
   },
   "extends": ["eslint:recommended"],
   "plugins": ["prettier"],
@@ -11,6 +12,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "parser": "@babel/eslint-parser",
   "rules": {
     "no-compare-neg-zero": "error",
     "no-cond-assign": ["error", "always"],

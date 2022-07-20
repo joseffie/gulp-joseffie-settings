@@ -1,7 +1,7 @@
 import replace from 'gulp-replace';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
-import browsersync from 'browser-sync';
+import rename from 'gulp-rename';
 import newer from 'gulp-newer';
 import del from 'del';
 import ifPlugin from 'gulp-if';
@@ -13,16 +13,16 @@ import fs from 'fs';
 import data from 'gulp-data';
 
 export const plugins = {
-  replace: replace,
-  plumber: plumber,
-  notify: notify,
-  browsersync: browsersync,
-  newer: newer,
-  del: del,
-  webpHtmlNosvg: webpHtmlNosvg,
-  versionNumber: versionNumber,
-  fs: fs,
-  data: data,
+  replace,
+  plumber,
+  notify,
+  rename,
+  newer,
+  del,
+  webpHtmlNosvg,
+  versionNumber,
+  fs,
+  data,
   pug: pugPlugin,
   if: ifPlugin,
 };

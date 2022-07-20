@@ -1,7 +1,7 @@
 export const pug = () => {
   return (
     app.gulp
-      .src(app.path.src.pug)
+      .src(`${app.path.src.pug}/**/*.pug`, { since: app.gulp.lastRun(pug) })
       .pipe(
         app.plugins.plumber(
           app.plugins.notify.onError({
@@ -26,10 +26,10 @@ export const pug = () => {
       // Required for correct operation of the `path-autocomplete` extension.
       // If you don't use it, you can delete this line.
       .pipe(app.plugins.replace(/@img\//g, 'img/'))
-      .pipe(app.plugins.if(app.isBuild, app.plugins.webpHtmlNosvg()))
+      .pipe(app.plugins.if(app.isProd, app.plugins.webpHtmlNosvg()))
       .pipe(
         app.plugins.if(
-          app.isBuild,
+          app.isProd,
           app.plugins.versionNumber({
             value: '%DT%',
             append: {
@@ -43,7 +43,8 @@ export const pug = () => {
           }),
         ),
       )
+      .pipe(app.plugins.if(app.isProd, app.plugins.replace('.css', '.min.css')))
+      .pipe(app.plugins.if(app.isProd, app.plugins.replace('.js', '.min.js')))
       .pipe(app.gulp.dest(app.path.build.html))
-      .pipe(app.plugins.browsersync.stream())
   );
 };

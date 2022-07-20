@@ -1,38 +1,44 @@
 {
   "name": "joseffie-gulp-pack",
-  "version": "2.7.0",
-  "type": "module",
   "description": "Starter template and gulp settings for web development",
-  "main": "gulpfile.js",
+  "author": "Ivan Gavrilich (joseffie)",
+  "license": "GPL-3.0-only",
+  "version": "2.8.0",
+  "type": "module",
+  "main": "gulpfile.babel.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/joseffie/Gulp-Settings.git"
   },
   "scripts": {
     "dev": "gulp",
-    "build": "gulp build --build",
-    "zip": "gulp deployZIP --build",
+    "build": "gulp prod --production",
+    "build:pug": "gulp pug --production",
+    "build:scss": "gulp scss --production",
+    "build:js": "gulp js --production",
+    "build:images": "gulp images --production",
+    "build:gh-pages": "npm run build && gh-pages -d dist",
+    "gh-pages": "gh-pages -d dist",
+    "clean": "gulp reset",
     "fonts": "gulp createFonts",
     "sprite": "gulp makeSprites",
-    "clean": "gulp reset",
-    "gh-pages": "gh-pages -d dist",
-    "build:gh-pages": "npm run build && gh-pages -d dist",
-    "lint-pug": "pug-lint src/",
-    "lint-scss": "npx stylelint \"**/*.scss\"",
-    "lint-js": "eslint --ext=mjs,js --debug src/",
-    "lint-all": "npm run lint-scss & npm run lint-js && npm run lint-pug",
-    "fix-scss": "npx stylelint \"**/*.scss\" --fix",
-    "fix-js": "eslint --ext=mjs,js --debug src/ --fix",
-    "fix-all": "npm run fix-scss & npm run fix-js"
+    "zip": "gulp deployZIP",
+    "lint:scss": "npx stylelint \"src/**/*.scss\"",
+    "lint:scss --fix": "npx stylelint \"src/**/*.scss\" --fix",
+    "lint:js": "eslint --ext=mjs,js --debug src/**/*.js",
+    "lint:js --fix": "eslint --ext=mjs,js --debug src/**/*.js --fix",
+    "lint:pug": "pug-lint src/"
   },
-  "author": "Ivan Gavrilich (joseffie)",
   "browserslist": [
     "> 1%",
     "last 3 versions",
     "ie 9-11"
   ],
-  "license": "Unlicensed",
   "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/register": "^7.18.6",
     "babel-loader": "^8.2.5",
     "bem-tools-core": "latest",
     "browser-sync": "latest",
@@ -41,7 +47,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "gh-pages": "^4.0.0",
-    "gulp": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-clean-css": "latest",
     "gulp-data": "^1.3.1",
@@ -72,9 +77,11 @@
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.2.0",
     "webp-converter": "^2.2.3",
-    "webpack": "^5.70.0",
-    "webpack-stream": "^7.0.0",
     "webpcss": "^1.3.4"
+  },
+  "dependencies": {
+    "@bem/sdk.config": "^0.1.0",
+    "webpack-stream": "^7.0.0"
   },
   "husky": {
     "hooks": {
@@ -85,17 +92,14 @@
     "*.pug": "pug-lint src/",
     "linters": {
       "*.scss": [
-        "npm run fix-scss",
+        "npm run lint:styles --fix",
         "git add"
       ],
       "*.(js,jsx,mjs)": [
-        "npm run fix-js",
+        "npm run lint:js --fix",
         "git add"
       ]
     }
-  },
-  "dependencies": {
-    "@bem/sdk.config": "^0.1.0"
   },
   "resolutions": {
     "gift": "^0.10.2"

@@ -1,6 +1,5 @@
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
-import rename from 'gulp-rename';
 
 import cleanCss from 'gulp-clean-css';
 import webpcss from 'gulp-webpcss';
@@ -32,7 +31,7 @@ export const scss = () => {
       .pipe(groupCssMediaQueries())
       .pipe(
         app.plugins.if(
-          app.isBuild,
+          app.isProd,
           webpcss({
             webpClass: '.webp',
             noWebpClass: '.no-webp',
@@ -41,7 +40,7 @@ export const scss = () => {
       )
       .pipe(
         app.plugins.if(
-          app.isBuild,
+          app.isProd,
           autoprefixer({
             grid: true,
             overrideBrowserslist: ['last 3 versions'],
@@ -51,13 +50,15 @@ export const scss = () => {
       )
       // Uncomment if you need an uncompressed duplicate of the stylesheet
       // .pipe(app.gulp.dest(app.path.build.css))
-      .pipe(app.plugins.if(app.isBuild, cleanCss()))
+      .pipe(app.plugins.if(app.isProd, cleanCss()))
       .pipe(
-        rename({
-          extname: '.min.css',
-        }),
+        app.plugins.if(
+          app.isProd,
+          app.plugins.rename({
+            extname: '.min.css',
+          }),
+        ),
       )
       .pipe(app.gulp.dest(app.path.build.css))
-      .pipe(app.plugins.browsersync.stream())
   );
 };

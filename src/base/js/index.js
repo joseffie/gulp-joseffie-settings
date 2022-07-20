@@ -17,5 +17,4 @@ isWebp((support) => {
   }
 });
 
-// Import components
 import '../../components/components.mjs';

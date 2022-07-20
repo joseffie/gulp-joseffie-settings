@@ -6,17 +6,17 @@ const srcFolder = `./src`;
 
 export const path = {
   build: {
-    js: `${buildFolder}/js/`,
-    css: `${buildFolder}/css/`,
-    html: `${buildFolder}/`,
-    images: `${buildFolder}/img/`,
-    fonts: `${srcFolder}/fonts/`,
+    js: `${buildFolder}/js`,
+    css: `${buildFolder}/css`,
+    html: `${buildFolder}`,
+    images: `${buildFolder}/img`,
+    fonts: `${srcFolder}/fonts`,
   },
   src: {
-    pug: [`${srcFolder}/*.pug`, `${srcFolder}/pages/*.pug`],
+    pug: `${srcFolder}/pug`,
     scss: `${srcFolder}/base/scss/main.scss`,
-    js: `${srcFolder}/base/js/index.js`,
-    images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp}`,
+    js: `${srcFolder}/base/js/*.js`,
+    images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,ico,webp}`,
     svg: `${srcFolder}/img/**/*.svg`,
     iconsmono: `${srcFolder}/svgico/mono/*.svg`,
     iconsmulti: `${srcFolder}/svgico/multi/*.svg`,
@@ -28,8 +28,8 @@ export const path = {
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
     data: `${srcFolder}/base/data/*.{json,jsonc}`,
   },
+  buildFolder,
+  srcFolder,
+  rootFolder,
   clean: buildFolder,
-  buildFolder: buildFolder,
-  srcFolder: srcFolder,
-  rootFolder: rootFolder,
 };

@@ -1,4 +1,7 @@
 import webpack from 'webpack-stream';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 export const js = () => {
   return app.gulp
@@ -13,12 +16,47 @@ export const js = () => {
     )
     .pipe(
       webpack({
-        mode: app.isBuild ? 'production' : 'development',
+        mode: app.isProd ? 'production' : 'development',
         output: {
-          filename: 'index.min.js',
+          filename: '[name].js',
+          chunkFilename: '[name].js',
+          publicPath: '/',
+        },
+        optimization: {
+          splitChunks: {
+            cacheGroups: {
+              vendor: {
+                test: /node_modules/,
+                chunks: 'initial',
+                name: 'vendor',
+                enforce: true,
+              },
+            },
+          },
+        },
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              exclude: /node_modules/,
+              use: {
+                loader: require.resolve('babel-loader'),
+                options: {
+                  presets: [['@babel/preset-env', { modules: false }]],
+                },
+              },
+            },
+          ],
         },
       }),
     )
-    .pipe(app.gulp.dest(app.path.build.js))
-    .pipe(app.plugins.browsersync.stream());
+    .pipe(
+      app.plugins.if(
+        app.isProd,
+        app.plugins.rename({
+          extname: '.min.js',
+        }),
+      ),
+    )
+    .pipe(app.gulp.dest(app.path.build.js));
 };

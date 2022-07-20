@@ -7,7 +7,8 @@
 - Automatic creation of component directories with files using the [bem-tools-create](https://github.com/bem-tools/bem-tools-create) tool.
 - Using the [Pug](https://pugjs.org/) and [SCSS](https://sass-lang.com/guide) preprocessors.
 - Using a hard code guide.
-- Using Webpack to build JavaScript modules.
+- Using the [Babel](https://babeljs.io/) transpiler to support ES6 syntax by browsers.
+- Using [Webpack](https://webpack.js.org/) to build JavaScript modules.
 - Checking for errors on commit.
 - Starter template for a quick start of layout.
 
@@ -18,8 +19,7 @@
   - [Gulp](https://gulpjs.com/): `npm i -g gulp`
   - [Bem-tools](https://www.npmjs.com/package/bem-tools-core): `npm i -g bem-tools-core`
 - Download the build with [Git](https://git-scm.com/downloads): `git clone https://github.com/joseffie/Gulp-Settings.git`
-- Follow to the downloaded build folder: `cd Gulp-Settings`
-- Instal dependencies: `npm i`
+- Install dependencies: `npm i`
 
 To start working on a project, type `npm run dev`. If there are no errors, then by default the http://localhost:3000 domain will launch with the start layout template.
 
@@ -27,28 +27,33 @@ To build the project, type `npm run build`. The build mode involves project opti
 
 ## Commands
 
-- Main:
-  - `npm run dev` — starts the project in development mode.
-  - `npm run build` — runs the project in production mode, copying files to the `dist` folder.
-  - `npm run gh-pages` — automatically creates the GitHub Pages repository without build the project.
-  - `npm run build:gh-pages` — builds the project and automatically creates the GitHub Pages repository.
-- Linters:
-  - `npm run lint-pug` — starts checking for errors in Pug code.
-  - `npm run lint-scss` — starts checking for errors in SCSS code.
-  - `npm run lint-js` — starts checking for errors in JS code.
-  - `npm run lint-all` — starts checking for errors in Pug, SCSS, JS code.
-  - `npm run fix-scss` — fixes all errors in SCSS code.
-  - `npm run fix-js` — fixes all errors in JS code.
-  - `npm run fix-all` — fixes all errors in SCSS, JS code.
-- Other:
-  - `npm run clean` — removes the "dist" folder if it exists.
+- Main
+  - `npm run dev` – runs the project in development mode.
+  - `npm run build` – runs the project in production mode.
+  - `npm run zip` – archives the project in production mode.
+  - `npm run clean` — removes the `dist` folder if it exists.
   - `npm run fonts` — converts the fonts placed in the `fonts` folder into several browser-friendly formats and creates a file with font-face included.
   - `npm run sprite` — converts SVG icons placed in the `svgico` folder to SVG sprite
-  - `npm run zip` — archives the project in production mode.
+- Build
+  - `npm run build:pug` – builds the source Pug files in production mode.
+  - `npm run build:scss` – builds the source SCSS files in production mode.
+  - `npm run build:js` – builds the source JS files in production mode.
+  - `npm run build:images` – builds the source images in production mode.
+- Linters
+  - Lint:
+    - `npm run lint:scss` – starts checking for errors in SCSS code.
+    - `npm run lint:js` – starts checking for errors in JS code.
+    - `npm run lint:pug` – starts checking for errors in Pug code.
+  - Fix:
+    - `npm run lint:scss --fix` – fixes all errors in SCSS code.
+    - `npm run lint:js --fix` – fixes all errors in JS code.
+- GitHub Pages
+  - `npm run build:gh-pages` – builds the project and automatically creates the GitHub Pages repository.
+  - `npm run gh-pages` – automatically creates the GitHub Pages repository without build the project.
 
 ## Project file structure
 
-```
+```ruby
 Gulp-Settings
 |— dist/
 |— gulp/
@@ -80,10 +85,11 @@ Gulp-Settings
 |    |    |— scss/
 |    |    |— mixins.pug
 |    |    |— mixins.scss
-|    |— pages/
+|    |— pug/
+|    |—   |— index.pug
 |    |— svgico/
 |    |— vendor/
-|    index.pug
+| .babelrc
 | .bemrc.js
 | .editorconfig
 | .prettierignore
@@ -94,13 +100,13 @@ Gulp-Settings
 | .pug-lintrc.json
 | .stylelintignore
 | .stylelintrc.json
-| gulpfile.js
+| gulpfile.babel.js
 | package-lock.json
 | package.json
-| webpack.config.js
 ```
 
 - Root:
+  - `.babelrc` – Babel settings.
   - `.bemrc.js` — BEM settings.
   - `.editorconfig` — configuration file of the project.
   - `.prettierignore` — exclusion list for Prettier.
@@ -111,19 +117,17 @@ Gulp-Settings
   - `.pug-lintrc.json` - Pug-linter settings.
   - `.stylelintignore` — exclusion list for Stylelint.
   - `.stylelintrc.json` — Stylelint settings.
-  - `gulpfile.js` — settings for Gulp.
+  - `gulpfile.babel.js` — settings for Gulp.
   - `package.json` — a list of dependencies.
-  - `webpack.config.js` — settings for Webpack.
 - The `src` folder is used to develop and store source files:
   - `src/base` — folder that stores the base Pug layout, core SCSS, JS, and data.json files.
   - `src/components` — folder that stores BEM components.
   - `src/fonts` — folder that stores fonts.
   - `src/img` — folder that stores images.
   - `src/mixins` — folder that stores Pug and SCSS mixins.
-  - `src/pages` — folder that stores non-index pages.
+  - `src/pug` — folder that stores Pug pages.
   - `src/svgico` — folder that stores SVG images that are compiled into a sprite.
   - `src/vendor` — folder that stores library style files.
-  - `index.pug` — main Pug file.
 - The `dist` folder contains the final build files.
 - The `gulp` folder contains Gulp tasks.
 
@@ -139,7 +143,7 @@ If you need to use this feature, you must create an array of objects and fill it
 
 First, we enter the text of the list items in data.json:
 
-```
+```json
 {
   "someList": [
     { "text": "Some interesting text" },
@@ -151,7 +155,7 @@ First, we enter the text of the list items in data.json:
 
 Then we can iterate over the given array in Pug with its built-in `each in` loop:
 
-```
+```pug
 ul
   each item in someList
     li!= item.text
@@ -159,23 +163,24 @@ ul
 
 The end result of this code will be this HTML markup:
 
-```
+```html
 <ul>
   <li>Some interesting text</li>
   <li>Other interesting text</li>
   <li>
-    Text that wants to <br> wrap to a new line
+    Text that wants to <br />
+    wrap to a new line
   </li>
 </ul>
 ```
 
 ### Component approach
 
-Each block that needs to be make up out is created as a component. All components are in the `src/components` directory. The component includes 3 types of files - `.pug`, `.scss`, `.mjs` (if you need to write a JS script). The name of the file names is used with the name of the component. All this is made for easy reuse. For example, components with this approach are easily copied from project to project.
+Each block that needs to be make up out is created as a component. All components are in the `src/components` directory. The component includes 3 types of files - `.pug`, `.scss`, `.mjs`. The name of the file names is used with the name of the component. All this is made for easy reuse. For example, components with this approach are easily copied from project to project.
 
 Here is an example of creating a header component structure with its files.
 
-```
+```ruby
 |— header
 |   |— header.pug
 |   |— header.scss
@@ -210,9 +215,9 @@ Detailed bem-tools-create documentation [is here](https://github.com/bem-tools/b
 
 ### Project pages
 
-- The project pages are located in the `src/pages` folder.
+- The project pages are located in the `src/pug` folder.
   - Each page (including the main one) inherits one template `src/base/pug/base.pug`.
-  - Main page: `src/index.pug`.
+  - Main page: `src/pug/index.pug`.
 
 ### Fonts
 
@@ -220,7 +225,7 @@ Detailed bem-tools-create documentation [is here](https://github.com/bem-tools/b
   - You can use otf, ttf, woff, woff2 formats.
   - To compile the fonts, use the command `npm run fonts`.
   - After using the command, in the `src/base/scss` folder will appear the `_fonts.scss` file.
-  - To use local fonts, don't forget to uncomment the 4th line in `src/base/scss/main.scss`.
+  - To use local fonts, don't forget to uncomment the 5th line in `src/base/scss/main.scss`.
 
 ### Creating SVG sprites
 
@@ -246,17 +251,15 @@ The work of linters is determined by the corresponding configs. For Pug this is 
 
 Linters automatically fix your mistakes if you commit. But you can also check or fix the code manually using commands.
 
-```
-  npm run lint-pug — starts checking for errors in Pug code.
-  npm run lint-scss — starts checking for errors in SCSS code.
-  npm run lint-js — starts checking for errors in JS code.
-  npm run lint-all — starts checking for errors in Pug, SCSS, JS code.
+```console
+  - `npm run lint:scss` – starts checking for errors in SCSS code.
+  - `npm run lint:js` – starts checking for errors in JS code.
+  - `npm run lint:pug` – starts checking for errors in Pug code.
 ```
 
-```
-  npm run fix-scss — fixes all errors in SCSS code.
-  npm run fix-js — fixes all errors in JS code.
-  npm run fix-all — fixes all errors in SCSS, JS code.
+```console
+  - `npm run lint:scss --fix` – fixes all errors in SCSS code.
+  - `npm run lint:js --fix` – fixes all errors in JS code.
 ```
 
 Unfortunately, automatic linting of Pug code is not available because the Pug-linter developer did not implement the `--fix` flag. So in the case of Pug, you will have to use `npm run lint-pug` and fix errors manually with it. At least for now.

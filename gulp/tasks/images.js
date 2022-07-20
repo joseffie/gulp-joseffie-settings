@@ -16,13 +16,13 @@ export const images = () => {
       .pipe(app.plugins.newer(app.path.build.images))
       // In production mode, the images are converted to webp, and then
       // the original images are again taken and copied to dist
-      .pipe(app.plugins.if(app.isBuild, webp()))
-      .pipe(app.plugins.if(app.isBuild, app.gulp.dest(app.path.build.images)))
-      .pipe(app.plugins.if(app.isBuild, app.gulp.src(app.path.src.images)))
-      .pipe(app.plugins.if(app.isBuild, app.plugins.newer(app.path.build.images)))
+      .pipe(app.plugins.if(app.isProd, webp()))
+      .pipe(app.plugins.if(app.isProd, app.gulp.dest(app.path.build.images)))
+      .pipe(app.plugins.if(app.isProd, app.gulp.src(app.path.src.images)))
+      .pipe(app.plugins.if(app.isProd, app.plugins.newer(app.path.build.images)))
       .pipe(
         app.plugins.if(
-          app.isBuild,
+          app.isProd,
           imagemin({
             progressive: true,
             svgoPlugins: [{ removeViewBox: false }],
@@ -34,6 +34,5 @@ export const images = () => {
       .pipe(app.gulp.dest(app.path.build.images))
       .pipe(app.gulp.src(app.path.src.svg))
       .pipe(app.gulp.dest(app.path.build.images))
-      .pipe(app.plugins.browsersync.stream())
   );
 };
