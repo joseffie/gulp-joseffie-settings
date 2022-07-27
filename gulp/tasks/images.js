@@ -1,29 +1,26 @@
-import webp from 'gulp-webp';
-import imagemin from 'gulp-imagemin';
-
 export const images = () => {
   return (
-    app.gulp
-      .src(app.path.src.images)
+    $.gulp
+      .src($.path.src.images)
       .pipe(
-        app.plugins.plumber(
-          app.plugins.notify.onError({
+        $.plugins.plumber(
+          $.plugins.notify.onError({
             title: 'IMAGES',
             message: 'Fix da mistake, leather man: <%= error.message %>',
           }),
         ),
       )
-      .pipe(app.plugins.newer(app.path.build.images))
+      .pipe($.plugins.newer($.path.build.images))
       // In production mode, the images are converted to webp, and then
       // the original images are again taken and copied to dist
-      .pipe(app.plugins.if(app.isProd, webp()))
-      .pipe(app.plugins.if(app.isProd, app.gulp.dest(app.path.build.images)))
-      .pipe(app.plugins.if(app.isProd, app.gulp.src(app.path.src.images)))
-      .pipe(app.plugins.if(app.isProd, app.plugins.newer(app.path.build.images)))
+      .pipe($.plugins.if($.isProd, $.plugins.webp()))
+      .pipe($.plugins.if($.isProd, $.gulp.dest($.path.build.images)))
+      .pipe($.plugins.if($.isProd, $.gulp.src($.path.src.images)))
+      .pipe($.plugins.if($.isProd, $.plugins.newer($.path.build.images)))
       .pipe(
-        app.plugins.if(
-          app.isProd,
-          imagemin({
+        $.plugins.if(
+          $.isProd,
+          $.plugins.imagemin({
             progressive: true,
             svgoPlugins: [{ removeViewBox: false }],
             interlaced: true,
@@ -31,8 +28,8 @@ export const images = () => {
           }),
         ),
       )
-      .pipe(app.gulp.dest(app.path.build.images))
-      .pipe(app.gulp.src(app.path.src.svg))
-      .pipe(app.gulp.dest(app.path.build.images))
+      .pipe($.gulp.dest($.path.build.images))
+      .pipe($.gulp.src($.path.src.svg))
+      .pipe($.gulp.dest($.path.build.images))
   );
 };

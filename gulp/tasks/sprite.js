@@ -1,18 +1,16 @@
-import svgSprite from 'gulp-svg-sprite';
-
 export const makeMonoSprite = () => {
-  return app.gulp
-    .src(`${app.path.src.iconsmono}`)
+  return $.gulp
+    .src(`${$.path.src.iconsmono}`)
     .pipe(
-      app.plugins.plumber(
-        app.plugins.notify.onError({
+      $.plugins.plumber(
+        $.plugins.notify.onError({
           title: 'Mono-color SVG',
           message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
     )
     .pipe(
-      svgSprite({
+      $.plugins.svgSprite({
         mode: {
           symbol: {
             sprite: '../sprite-mono.svg',
@@ -35,22 +33,22 @@ export const makeMonoSprite = () => {
         },
       }),
     )
-    .pipe(app.gulp.dest(`${app.path.srcFolder}/img/sprites`));
+    .pipe($.gulp.dest(`${$.path.srcFolder}/img/sprites`));
 };
 
 export const makeMultiSprite = () => {
-  return app.gulp
-    .src(`${app.path.src.iconsmulti}`)
+  return $.gulp
+    .src(`${$.path.src.iconsmulti}`)
     .pipe(
-      app.plugins.plumber(
-        app.plugins.notify.onError({
+      $.plugins.plumber(
+        $.plugins.notify.onError({
           title: 'Multi-color SVG',
           message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
     )
     .pipe(
-      svgSprite({
+      $.plugins.svgSprite({
         mode: {
           symbol: {
             sprite: '../sprite-multi.svg',
@@ -79,5 +77,5 @@ export const makeMultiSprite = () => {
         },
       }),
     )
-    .pipe(app.gulp.dest(`${app.path.srcFolder}/img/sprites`));
+    .pipe($.gulp.dest(`${$.path.srcFolder}/img/sprites`));
 };

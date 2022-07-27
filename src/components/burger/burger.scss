@@ -5,7 +5,7 @@
     position: relative;
     z-index: $zi-tooltip;
     display: block;
-    width: 31px;
+    min-width: 30px;
     height: 22px;
     cursor: pointer;
 
@@ -38,22 +38,22 @@
       transform: translateY(-50%) scale(1);
     }
 
-    &--active > span,
-    &--active::before,
-    &--active::after {
+    &._active > span,
+    &._active::before,
+    &._active::after {
       background-color: $burger-color-active;
     }
 
-    &--active span {
+    &._active span {
       transform: translateY(-50%) scale(0);
     }
 
-    &--active::before {
+    &._active::before {
       top: 50%;
       transform: rotate(45deg) translateY(-50%);
     }
 
-    &--active::after {
+    &._active::after {
       bottom: 50%;
       transform: rotate(-45deg) translateY(50%);
     }

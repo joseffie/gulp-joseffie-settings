@@ -1,18 +1,17 @@
-import zipPlugin from 'gulp-zip';
-
 export const zip = () => {
-  app.plugins.del(`./${app.path.rootFolder}.zip`);
+  // Deleting an archive folder if it exists
+  $.plugins.del('.archive');
 
-  return app.gulp
-    .src(`${app.path.buildFolder}/**/*.*`, {})
+  return $.gulp
+    .src(`${$.path.buildFolder}/**/*.*`, {})
     .pipe(
-      app.plugins.plumber(
-        app.plugins.notify.onError({
+      $.plugins.plumber(
+        $.plugins.notify.onError({
           title: 'ZIP',
           message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
     )
-    .pipe(zipPlugin(`${app.path.rootFolder}.zip`))
-    .pipe(app.gulp.dest('./project-archive/'));
+    .pipe($.plugins.zip(`${$.path.rootFolder}.zip`))
+    .pipe($.gulp.dest('.archive'));
 };

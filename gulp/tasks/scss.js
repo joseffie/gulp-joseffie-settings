@@ -1,20 +1,10 @@
-import dartSass from 'sass';
-import gulpSass from 'gulp-sass';
-
-import cleanCss from 'gulp-clean-css';
-import webpcss from 'gulp-webpcss';
-import autoprefixer from 'gulp-autoprefixer';
-import groupCssMediaQueries from 'gulp-group-css-media-queries';
-
-const sass = gulpSass(dartSass);
-
 export const scss = () => {
   return (
-    app.gulp
-      .src(app.path.src.scss, { sourcemaps: app.isDev })
+    $.gulp
+      .src($.path.src.scss, { sourcemaps: $.isDev })
       .pipe(
-        app.plugins.plumber(
-          app.plugins.notify.onError({
+        $.plugins.plumber(
+          $.plugins.notify.onError({
             title: 'SCSS',
             message: 'Fix da mistake, leather man: <%= error.message %>',
           }),
@@ -22,43 +12,41 @@ export const scss = () => {
       )
       // Required for correct operation of the `path-autocomplete` extension.
       // If you don't use it, you can delete this line.
-      .pipe(app.plugins.replace(/@img\//g, '../img/'))
+      .pipe($.plugins.replace(/@img\//g, '../img/'))
       .pipe(
-        sass({
+        $.plugins.sass({
           outputStyle: 'expanded',
         }),
       )
-      .pipe(groupCssMediaQueries())
+      .pipe($.plugins.groupMedia())
       .pipe(
-        app.plugins.if(
-          app.isProd,
-          webpcss({
+        $.plugins.if(
+          $.isProd,
+          $.plugins.webpCss({
             webpClass: '.webp',
             noWebpClass: '.no-webp',
           }),
         ),
       )
       .pipe(
-        app.plugins.if(
-          app.isProd,
-          autoprefixer({
+        $.plugins.if(
+          $.isProd,
+          $.plugins.autoprefixer({
             grid: true,
             overrideBrowserslist: ['last 3 versions'],
             cascade: true,
           }),
         ),
       )
-      // Uncomment if you need an uncompressed duplicate of the stylesheet
-      // .pipe(app.gulp.dest(app.path.build.css))
-      .pipe(app.plugins.if(app.isProd, cleanCss()))
+      .pipe($.plugins.if($.isProd, $.plugins.cleanCss()))
       .pipe(
-        app.plugins.if(
-          app.isProd,
-          app.plugins.rename({
+        $.plugins.if(
+          $.isProd,
+          $.plugins.rename({
             extname: '.min.css',
           }),
         ),
       )
-      .pipe(app.gulp.dest(app.path.build.css))
+      .pipe($.gulp.dest($.path.build.css))
   );
 };

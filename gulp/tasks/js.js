@@ -1,25 +1,24 @@
-import webpack from 'webpack-stream';
+// Creating a custom require for use in ES
 import { createRequire } from 'module';
-
 const require = createRequire(import.meta.url);
 
 export const js = () => {
-  return app.gulp
-    .src(app.path.src.js, { sourcemaps: app.isDev })
+  return $.gulp
+    .src($.path.src.js, { sourcemaps: $.isDev })
     .pipe(
-      app.plugins.plumber(
-        app.plugins.notify.onError({
+      $.plugins.plumber(
+        $.plugins.notify.onError({
           title: 'JS',
           message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
     )
     .pipe(
-      webpack({
-        mode: app.isProd ? 'production' : 'development',
+      $.plugins.webpack({
+        mode: $.isProd ? 'production' : 'development',
         output: {
-          filename: '[name].js',
-          chunkFilename: '[name].js',
+          filename: 'index.js',
+          chunkFilename: 'index.js',
           publicPath: '/',
         },
         optimization: {
@@ -51,12 +50,12 @@ export const js = () => {
       }),
     )
     .pipe(
-      app.plugins.if(
-        app.isProd,
-        app.plugins.rename({
+      $.plugins.if(
+        $.isProd,
+        $.plugins.rename({
           extname: '.min.js',
         }),
       ),
     )
-    .pipe(app.gulp.dest(app.path.build.js));
+    .pipe($.gulp.dest($.path.build.js));
 };

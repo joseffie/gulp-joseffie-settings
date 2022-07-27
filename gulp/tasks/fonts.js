@@ -1,91 +1,136 @@
-import fonter from 'gulp-fonter';
-import ttf2woff2 from 'gulp-ttf2woff2';
+//                        !! IMPORTANT !!
+// IF THE FILE NAME DOES NOT MATCH THE FORMAT "FONT NAME-FONT SHAPE"
+// (EXAMPLE: "Roboto-Regular" or "IbarraRealNova-MediumItalic"), THEN THE SCRIPT WILL NOT WORK.
+// IF THE NAME OF YOUR FONT FILE DOES NOT MATCH THE TEMPLATE, RENAME IT MANUALLY!
 
+// Convert otf fonts to ttf format
 export const otfToTtf = () => {
-  return app.gulp
-    .src(`${app.path.srcFolder}/fonts/*.otf`, {})
+  return $.gulp
+    .src(`${$.path.srcFolder}/fonts/*.otf`, {})
     .pipe(
-      app.plugins.plumber(
-        app.plugins.notify.onError({
-          title: 'FONTS',
+      $.plugins.plumber(
+        $.plugins.notify.onError({
+          title: 'FONTS [otf to ttf]',
           message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
     )
     .pipe(
-      fonter({
+      $.plugins.fonter({
         formats: ['ttf'],
       }),
     )
-    .pipe(app.gulp.dest(`${app.path.srcFolder}/fonts/`));
+    .pipe($.gulp.dest(`${$.path.srcFolder}/fonts`));
 };
 
+// Convert ttf fonts to woff & woff2 formats
 export const ttfToWoff = () => {
-  return app.gulp
-    .src(`${app.path.srcFolder}/fonts/*.ttf`, {})
+  return $.gulp
+    .src(`${$.path.srcFolder}/fonts/*.ttf`, {})
     .pipe(
-      app.plugins.plumber(
-        app.plugins.notify.onError({
-          title: 'FONTS',
-          message: 'You have some errors: <%= error.message %>',
+      $.plugins.plumber(
+        $.plugins.notify.onError({
+          title: 'FONTS [ttf to woff]',
+          message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
       ),
     )
     .pipe(
-      fonter({
+      $.plugins.fonter({
         formats: ['woff'],
       }),
     )
-    .pipe(app.gulp.dest(`${app.path.build.fonts}`))
-    .pipe(app.gulp.src(`${app.path.srcFolder}/fonts/*.ttf`))
-    .pipe(ttf2woff2())
-    .pipe(app.gulp.dest(`${app.path.build.fonts}`));
+    .pipe($.gulp.dest(`${$.path.srcFolder}/fonts`))
+    .pipe($.gulp.src(`${$.path.srcFolder}/fonts/*.ttf`))
+    .pipe($.plugins.ttf2woff2())
+    .pipe($.gulp.dest(`${$.path.srcFolder}/fonts`));
 };
 
+// Creating a file with @font-face declarations
 export const fStyle = () => {
-  let fontsFile = `${app.path.srcFolder}/base/scss/_fonts.scss`;
+  let fontsFile = `${$.path.srcFolder}/base/scss/_fonts.scss`;
 
-  app.plugins.fs.readdir(app.path.build.fonts, (err, fontsFiles) => {
+  $.plugins.fs.readdir($.path.build.fonts, (err, fontsFiles) => {
     if (fontsFiles) {
-      if (!app.plugins.fs.existsSync(fontsFile)) {
-        app.plugins.fs.writeFile(fontsFile, '', cb); // eslint-disable-line
+      if (!$.plugins.fs.existsSync(fontsFile)) {
+        $.plugins.fs.writeFile(fontsFile, '', cb); // eslint-disable-line
         let newFileOnly;
         for (let i = 0; i < fontsFiles.length; i++) {
           let fontFileName = fontsFiles[i].split('.')[0];
           if (newFileOnly !== fontFileName) {
             let fontName = fontFileName.split('-')[0] ? fontFileName.split('-')[0] : fontFileName;
-            let fontWeight = fontFileName.split('-')[1] ? fontFileName.split('-')[1] : fontFileName;
+            let fontType = fontFileName.split('-')[1] ? fontFileName.split('-')[1] : fontFileName;
+            let lowerFontType = fontType.toLowerCase();
 
-            if (fontWeight.toLowerCase() === 'thin') {
+            // Declaring variables for the font-weight and font-style properties
+            let fontWeight;
+            let fontStyle = 'normal';
+
+            // Checking font-weight
+            if (lowerFontType === 'thin') {
               fontWeight = 100;
-            } else if (fontWeight.toLowerCase() === 'extralight') {
+            } else if (lowerFontType === 'extralight') {
               fontWeight = 200;
-            } else if (fontWeight.toLowerCase() === 'light') {
+            } else if (lowerFontType === 'light') {
               fontWeight = 300;
-            } else if (fontWeight.toLowerCase() === 'book') {
+            } else if (lowerFontType === 'book') {
               fontWeight = 350;
-            } else if (fontWeight.toLowerCase() === 'retina') {
+            } else if (lowerFontType === 'retina') {
               fontWeight = 450;
-            } else if (fontWeight.toLowerCase() === 'medium') {
+            } else if (lowerFontType === 'medium') {
               fontWeight = 500;
-            } else if (fontWeight.toLowerCase() === 'semibold') {
+            } else if (lowerFontType === 'semibold') {
               fontWeight = 600;
-            } else if (fontWeight.toLowerCase() === 'bold') {
+            } else if (lowerFontType === 'bold') {
               fontWeight = 700;
-            } else if (
-              fontWeight.toLowerCase() === 'extrabold' ||
-              fontWeight.toLowerCase() === 'heavy'
-            ) {
+            } else if (lowerFontType === 'extrabold' || lowerFontType === 'heavy') {
               fontWeight = 800;
-            } else if (fontWeight.toLowerCase() === 'black') {
+            } else if (lowerFontType === 'black') {
               fontWeight = 900;
             } else {
               fontWeight = 400;
             }
+
+            // Checking font-style
+            if (lowerFontType === 'thinitalic') {
+              fontWeight = 100;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'extralightitalic') {
+              fontWeight = 200;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'lightitalic') {
+              fontWeight = 300;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'bookitalic') {
+              fontWeight = 350;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'retinaitalic') {
+              fontWeight = 450;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'mediumitalic') {
+              fontWeight = 500;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'semibolditalic') {
+              fontWeight = 600;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'bolditalic') {
+              fontWeight = 700;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'extrabolditalic' || lowerFontType === 'heavyitalic') {
+              fontWeight = 800;
+              fontStyle = 'italic';
+            } else if (lowerFontType === 'blackitalic') {
+              fontWeight = 900;
+              fontStyle = 'italic';
+            } else {
+              fontWeight = 400;
+              fontStyle = 'normal';
+            }
+
             /* eslint-disable */
-            app.plugins.fs.appendFile(
+            $.plugins.fs.appendFile(
               fontsFile,
-              `@font-face {\n\tfont-family: ${fontName};\n\tfont-display: swap;\n\tsrc: url("../fonts/${fontFileName}.woff2") format("woff2"), url("../fonts/${fontFileName}.woff") format("woff"), url("../fonts/${fontFileName}.ttf") format("ttf");\n\tfont-weight: ${fontWeight};\n\tfont-style: normal;\n}\r\n`,
+              `@font-face {\n\tfont-family: ${fontName};\n\tfont-display: swap;\n\tsrc: url("../fonts/${fontFileName}.woff2") format("woff2"), url("../fonts/${fontFileName}.woff") format("woff"), url("../fonts/${fontFileName}.ttf") format("ttf");\n\tfont-weight: ${fontWeight};\n\tfont-style: ${fontStyle};\n}\r\n`,
               cb,
             );
             newFileOnly = fontFileName;
@@ -100,6 +145,19 @@ export const fStyle = () => {
     }
   });
 
-  return app.gulp.src(`${app.path.srcFolder}`);
   function cb() {}
+};
+
+export const fonts = () => {
+  return $.gulp
+    .src($.path.src.fonts)
+    .pipe(
+      $.plugins.plumber(
+        $.plugins.notify.onError({
+          title: 'FONTS',
+          message: 'Fix da mistake, leather man: <%= error.message %>',
+        }),
+      ),
+    )
+    .pipe($.gulp.dest($.path.build.fonts));
 };

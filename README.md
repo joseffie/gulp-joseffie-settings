@@ -39,6 +39,7 @@ To build the project, type `npm run build`. The build mode involves project opti
   - `npm run build:scss` – builds the source SCSS files in production mode.
   - `npm run build:js` – builds the source JS files in production mode.
   - `npm run build:images` – builds the source images in production mode.
+  - `npm run build:fonts` – builds the fonts.
 - Linters
   - Lint:
     - `npm run lint:scss` – starts checking for errors in SCSS code.
@@ -219,10 +220,55 @@ Detailed bem-tools-create documentation [is here](https://github.com/bem-tools/b
   - Each page (including the main one) inherits one template `src/base/pug/base.pug`.
   - Main page: `src/pug/index.pug`.
 
+#### Active class for link
+
+If you need to highlight the active page on the site, then in the current page file, after the expression `append variables`, specify `var menuHref = 'linkHref'`. It is important that the value of this variable matches the value of the `link` property of the link object you need in the `mainmenuData` array specified in `src/base/data/data.json`. For example:
+
+You have navigation in the header of the main page `index.pug`. You want to highlight one of the links by giving it the class active and styling the active link in SCSS. Let it be a link with the text "Main".
+
+In the navigation list array `mainmenuData`, among other links, look for a link with the text "Main", specify the link you need in the `link` property:
+
+```json
+{
+  "mainmenuData": [
+    {
+      "text": "Main",
+      "link": "index.html"
+    },
+    {
+      "text": "About us",
+      "link": "#"
+    },
+    {
+      "text": "services",
+      "link": "#"
+    }
+  ]
+}
+```
+
+Then in the `index.pug` file, in the value of the `var menuHref` variable, specify the link that you specified in the `link` property in the JSON file above:
+
+```pug
+append variables
+  var menuHref = 'index.html'
+```
+
+Now everything is working. The link is highlighted as active.
+
+How does it work? In fact, everything is very simple. The list item mixin specified in the `main-nav.pug` component file declares an `activeClass` variable that compares the values ​​of the `menuHref` variable and the `link` property. If the values ​​match, the link is assigned the class `is-active`.
+
+```pug
+mixin menuItem(item)
+  - var activeClass = menuHref === item.link ? " is-active" : "";
+  li.main-nav__item(class= activeClass)
+```
+
 ### Fonts
 
 - The fonts are located in the `src/fonts` folder.
   - You can use otf, ttf, woff, woff2 formats.
+  - Important: for the task to work, the font files must follow the following format: "Font Name - Font Shape". For example: "Roboto-Regular" or "IbarraRealNova-MediumItalic".
   - To compile the fonts, use the command `npm run fonts`.
   - After using the command, in the `src/base/scss` folder will appear the `_fonts.scss` file.
   - To use local fonts, don't forget to uncomment the 5th line in `src/base/scss/main.scss`.
@@ -231,15 +277,15 @@ Detailed bem-tools-create documentation [is here](https://github.com/bem-tools/b
 
 For better performance of the final layout, SVG icon files are best combined into sprites. This is pretty easy to do here.
 
-First you need to move all your SVG icons inside `src/svgico` and run the `npm run sprite` script which will automatically create the sprite. The resulting sprite will be generated in the `src/img` folder.
+First you need to move all your SVG icons inside `src/svgico`. In this directory you will find two folders: `mono` and `multi`. My build uses the division of sprites into single-color and multi-color in order to remove their unnecessary attributes from each type of SVG icon and, for example, it is easier to interact with the Shadow DOM. If your SVG has only one color, put it in the `mono` folder, otherwise in `multi`.
+
+Then run the `npm run sprite` script, which will automatically create sprites for each SVG type separately. The resulting sprites will be generated in the `src/img/sprites` folder.
 
 Then in the Pug file, you can insert an icon using the `+icon('iconName', 'iconType', width, height)` mixin. "IconName" is the name of the SVG icon file. "IconType" is the type of the SVG icon, if the icon is single-color, then the type is `mono`, if the icon is multi-color, then `multi`. Width and height are optional arguments to the mixin. If you want to add a class or any other attribute, then simply put it in parentheses after the "body" of the mixin:
 
 ```pug
 +icon('icon', 'mono')(class='logo__icon', aria-label='Icon')
 ```
-
-You just need to set the height and width of the icon in SCSS (if you didn't specify "className", you can refer to the icon via the parent element: `.parent svg`), and now it is already displayed on the site.
 
 ### Code linting
 
@@ -270,6 +316,6 @@ If you need to place your project in a Git repository and use GitHub Pages to sh
 
 To host your project on GitHub pages, you need to create a Git repository and add your project to it. Folders like `dist` and `node_modules` will not get into the repository thanks to `.gitignore`.
 
-After placing the project sources, you should use the `npm run build:gh-pages` command to build the project in production mode and put the finished layout on GitHub pages. If you have already built the project using `npm run build`, you can use `npm run gh-pages`. Then in the repository settings, under "Branches", change the default branch to `gh-pages`.
+After placing the project sources, you should use the `npm run build:gh-pages` command to build the project in production mode and put the finished layout on GitHub pages. If you have already built the project using `npm run build`, you can use `npm run gh-pages`.
 
 You can now navigate to your GitHub page at `username.github.io/repository-name`.

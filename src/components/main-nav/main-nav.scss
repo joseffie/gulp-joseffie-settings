@@ -1,17 +1,17 @@
 .main-nav {
   @media (max-width: $breakpoint768) {
     position: fixed;
-    top: 0;
-    left: -100%;
+    top: -100%;
+    left: 0;
     z-index: $zi-modal;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: $nav-color;
-    transition: left 0.4s ease;
+    transition: top 0.4s ease;
 
-    &--active {
-      left: 0;
+    &._active {
+      top: 0;
     }
   }
 
@@ -19,13 +19,16 @@
     display: flex;
     gap: rem(25);
     align-items: center;
+    padding: 0;
     font-weight: 500;
     font-size: $nav-font-size;
     list-style: none;
 
     @media (max-width: $breakpoint768) {
       flex-direction: column;
+      align-items: center;
       justify-content: center;
+      min-height: 100%;
       padding-top: rem(20);
       font-size: $nav-opened-font-size;
     }
@@ -33,6 +36,7 @@
 
   &__item {
     padding: rem(10) 0px;
+    color: $nav-text-color;
 
     @media (max-width: $breakpoint768) {
       padding: rem(15) 0px;
@@ -87,7 +91,7 @@
     // }
 
     a {
-      color: $nav-text-color;
+      color: inherit;
       text-decoration: none;
       transition: color 0.4s ease;
 

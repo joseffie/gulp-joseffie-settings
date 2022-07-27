@@ -1,12 +1,11 @@
 dist/
 node_modules/
-project-archive/
+.archive/
 
 __MACOSX
 .Saved/
 _arc/
 
-.vscode/
 .publish/
 .DS_Store
 

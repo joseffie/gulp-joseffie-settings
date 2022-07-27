@@ -1,50 +1,81 @@
+let emittyPug;
+
+global.watch = false;
+global.forceRebuild = false;
+
 export const pug = () => {
-  return (
-    app.gulp
-      .src(`${app.path.src.pug}/**/*.pug`, { since: app.gulp.lastRun(pug) })
-      .pipe(
-        app.plugins.plumber(
-          app.plugins.notify.onError({
-            title: 'PUG',
-            message: 'Fix da mistake, leather man: <%= error.message %>',
-          }),
-        ),
-      )
-      // Parsing JSON
-      .pipe(
-        app.plugins.data(() => {
-          return JSON.parse(app.plugins.fs.readFileSync('./src/base/data/data.json', 'utf8'));
+  if (!emittyPug) {
+    emittyPug = $.plugins.emitty.setup('src', 'pug', {
+      makeVinylFile: true,
+    });
+  }
+
+  return new Promise((resolve, reject) => {
+    emittyPug
+      .scan(global.emittyPugChangedFile)
+      .then(() => {
+        resolvePromise(resolve, reject);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        resolvePromise(resolve, reject);
+      });
+  });
+};
+
+const resolvePromise = (resolve, reject) => {
+  $.gulp
+    .src(`${$.path.src.pug}/**/*.pug`)
+    .pipe(
+      $.plugins.plumber(
+        $.plugins.notify.onError({
+          title: 'PUG',
+          message: 'Fix da mistake, leather man: <%= error.message %>',
         }),
-      )
-      .pipe(
-        app.plugins.pug({
-          // Set to true if you need an uncompressed file
-          pretty: false,
-          verbose: true,
+      ),
+    )
+    .pipe(
+      $.plugins.if(
+        global.watch && !global.forceRebuild,
+        emittyPug.filter(global.emittyPugChangedFile),
+      ),
+    )
+    // Parsing JSON
+    .pipe(
+      $.plugins.data(() => {
+        return JSON.parse($.plugins.fs.readFileSync('./src/base/data/data.json', 'utf8'));
+      }),
+    )
+    .pipe(
+      $.plugins.pug({
+        // eslint-disable-next-line no-unneeded-ternary
+        pretty: $.isProd ? false : true,
+        verbose: true,
+      }),
+    )
+    // Required for correct operation of the `path-autocomplete` extension.
+    // If you don't use it, you can delete this line.
+    .pipe($.plugins.replace(/@img\//g, 'img/'))
+    .pipe($.plugins.if($.isProd, $.plugins.webpHtmlNosvg()))
+    .pipe(
+      $.plugins.if(
+        $.isProd,
+        $.plugins.versionNumber({
+          value: '%DT%',
+          $end: {
+            key: '_v',
+            cover: 0,
+            to: ['css', 'js'],
+          },
+          output: {
+            file: 'gulp/version.json',
+          },
         }),
-      )
-      // Required for correct operation of the `path-autocomplete` extension.
-      // If you don't use it, you can delete this line.
-      .pipe(app.plugins.replace(/@img\//g, 'img/'))
-      .pipe(app.plugins.if(app.isProd, app.plugins.webpHtmlNosvg()))
-      .pipe(
-        app.plugins.if(
-          app.isProd,
-          app.plugins.versionNumber({
-            value: '%DT%',
-            append: {
-              key: '_v',
-              cover: 0,
-              to: ['css', 'js'],
-            },
-            output: {
-              file: 'gulp/version.json',
-            },
-          }),
-        ),
-      )
-      .pipe(app.plugins.if(app.isProd, app.plugins.replace('.css', '.min.css')))
-      .pipe(app.plugins.if(app.isProd, app.plugins.replace('.js', '.min.js')))
-      .pipe(app.gulp.dest(app.path.build.html))
-  );
+      ),
+    )
+    .pipe($.plugins.if($.isProd, $.plugins.replace('.css', '.min.css')))
+    .pipe($.plugins.if($.isProd, $.plugins.replace('.js', '.min.js')))
+    .pipe($.gulp.dest($.path.build.html))
+    .on('end', resolve)
+    .on('error', reject);
 };
