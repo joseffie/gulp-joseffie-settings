@@ -1,4 +1,4 @@
-# Gulp-Settings: Gulp + Webpack build for Web Development
+# Gulp-Joseffie-Settings: Gulp + Webpack build for Web Development
 
 ## Capabilities
 
@@ -54,8 +54,8 @@ To build the project, type `npm run build`. The build mode involves project opti
 
 ## Project file structure
 
-```ruby
-Gulp-Settings
+```
+gulp-joseffie-settings
 |— dist/
 |— gulp/
 |    |— config/
