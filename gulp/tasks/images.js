@@ -31,5 +31,6 @@ export const images = () => {
       .pipe($.gulp.dest($.path.build.images))
       .pipe($.gulp.src($.path.src.svg))
       .pipe($.gulp.dest($.path.build.images))
+      .pipe($.plugins.browsersync.stream())
   );
 };

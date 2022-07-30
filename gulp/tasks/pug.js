@@ -76,6 +76,7 @@ const resolvePromise = (resolve, reject) => {
     .pipe($.plugins.if($.isProd, $.plugins.replace('.css', '.min.css')))
     .pipe($.plugins.if($.isProd, $.plugins.replace('.js', '.min.js')))
     .pipe($.gulp.dest($.path.build.html))
+    .pipe($.plugins.browsersync.stream())
     .on('end', resolve)
     .on('error', reject);
 };

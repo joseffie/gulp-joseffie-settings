@@ -57,5 +57,6 @@ export const js = () => {
         }),
       ),
     )
-    .pipe($.gulp.dest($.path.build.js));
+    .pipe($.gulp.dest($.path.build.js))
+    .pipe($.plugins.browsersync.stream());
 };

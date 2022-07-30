@@ -6,6 +6,7 @@
 // this file and use `plugins.pluginName`
 
 import autoprefixer from 'gulp-autoprefixer';
+import browsersync from 'browser-sync';
 import cleanCss from 'gulp-clean-css';
 import dartSass from 'sass';
 import data from 'gulp-data';
@@ -37,6 +38,7 @@ const sass = gulpSass(dartSass);
 
 export const plugins = {
   autoprefixer,
+  browsersync,
   cleanCss,
   data,
   del,

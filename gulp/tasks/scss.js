@@ -48,5 +48,6 @@ export const scss = () => {
         ),
       )
       .pipe($.gulp.dest($.path.build.css))
+      .pipe($.plugins.browsersync.stream())
   );
 };

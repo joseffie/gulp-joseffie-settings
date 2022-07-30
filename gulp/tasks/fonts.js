@@ -47,10 +47,10 @@ export const ttfToWoff = () => {
 };
 
 // Creating a file with @font-face declarations
-export const fStyle = () => {
+export const fStyle = async function () {
   let fontsFile = `${$.path.srcFolder}/base/scss/_fonts.scss`;
 
-  $.plugins.fs.readdir($.path.build.fonts, (err, fontsFiles) => {
+  $.plugins.fs.readdir(`${$.path.srcFolder}/fonts`, (err, fontsFiles) => {
     if (fontsFiles) {
       if (!$.plugins.fs.existsSync(fontsFile)) {
         $.plugins.fs.writeFile(fontsFile, '', cb); // eslint-disable-line
@@ -66,65 +66,62 @@ export const fStyle = () => {
             let fontWeight;
             let fontStyle = 'normal';
 
-            // Checking font-weight
+            // Checking font-weight and font-style
             if (lowerFontType === 'thin') {
               fontWeight = 100;
-            } else if (lowerFontType === 'extralight') {
-              fontWeight = 200;
-            } else if (lowerFontType === 'light') {
-              fontWeight = 300;
-            } else if (lowerFontType === 'book') {
-              fontWeight = 350;
-            } else if (lowerFontType === 'retina') {
-              fontWeight = 450;
-            } else if (lowerFontType === 'medium') {
-              fontWeight = 500;
-            } else if (lowerFontType === 'semibold') {
-              fontWeight = 600;
-            } else if (lowerFontType === 'bold') {
-              fontWeight = 700;
-            } else if (lowerFontType === 'extrabold' || lowerFontType === 'heavy') {
-              fontWeight = 800;
-            } else if (lowerFontType === 'black') {
-              fontWeight = 900;
-            } else {
-              fontWeight = 400;
-            }
-
-            // Checking font-style
-            if (lowerFontType === 'thinitalic') {
+            } else if (lowerFontType === 'thinitalic') {
               fontWeight = 100;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'extralight') {
+              fontWeight = 200;
             } else if (lowerFontType === 'extralightitalic') {
               fontWeight = 200;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'light') {
+              fontWeight = 300;
             } else if (lowerFontType === 'lightitalic') {
               fontWeight = 300;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'book') {
+              fontWeight = 350;
             } else if (lowerFontType === 'bookitalic') {
               fontWeight = 350;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'retina') {
+              fontWeight = 450;
             } else if (lowerFontType === 'retinaitalic') {
               fontWeight = 450;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'medium') {
+              fontWeight = 500;
             } else if (lowerFontType === 'mediumitalic') {
               fontWeight = 500;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'semibold') {
+              fontWeight = 600;
             } else if (lowerFontType === 'semibolditalic') {
               fontWeight = 600;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'bold') {
+              fontWeight = 700;
             } else if (lowerFontType === 'bolditalic') {
               fontWeight = 700;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'extrabold' || lowerFontType === 'heavy') {
+              fontWeight = 800;
             } else if (lowerFontType === 'extrabolditalic' || lowerFontType === 'heavyitalic') {
               fontWeight = 800;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'black') {
+              fontWeight = 900;
             } else if (lowerFontType === 'blackitalic') {
               fontWeight = 900;
               fontStyle = 'italic';
+            } else if (lowerFontType === 'regularitalic') {
+              fontWeight = 400;
+              fontStyle = 'italic';
             } else {
               fontWeight = 400;
-              fontStyle = 'normal';
             }
 
             /* eslint-disable */
