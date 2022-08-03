@@ -10,7 +10,7 @@ import browsersync from 'browser-sync';
 import cleanCss from 'gulp-clean-css';
 import dartSass from 'sass';
 import data from 'gulp-data';
-import del from 'del';
+import { deleteSync } from 'del';
 import emitty from 'emitty';
 import fonter from 'gulp-fonter';
 import fs from 'fs';
@@ -41,7 +41,6 @@ export const plugins = {
   browsersync,
   cleanCss,
   data,
-  del,
   emitty,
   fonter,
   fs,
@@ -58,6 +57,7 @@ export const plugins = {
   webp,
   webpCss,
   webpHtmlNosvg,
+  del: deleteSync,
   groupMedia: groupCssMediaQueries,
   if: gulpIf,
   pug: gulpPug,

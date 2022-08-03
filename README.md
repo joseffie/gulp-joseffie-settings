@@ -264,6 +264,20 @@ mixin menuItem(item)
   li.main-nav__item(class= activeClass)
 ```
 
+### Styles
+
+The main stylesheet `main.scss` is located in `src/base/scss`. It imports files of mixins, variables, fonts, components. If you need multiple files to go into the `dist` folder, you can create them in `src/base/scss`. Note that files that start with an underscore `_` are not included in the `dist` folder, because they have an exception in `gulp/config/path.js`:
+
+```javascript
+export const path = {
+  src: {
+    scss: [`${srcFolder}/base/scss/*.{sass,scss}`, `!${srcFolder}/base/scss/_*.{sass,scss}`],
+  },
+};
+```
+
+Code for component styles must be written in component SCSS files in `src/components` (details on how to create a component can be found in the "Component approach" chapter). Import component style files into `src/components/components.scss`.
+
 ### Fonts
 
 - The fonts are located in the `src/fonts` folder.

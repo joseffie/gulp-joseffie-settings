@@ -3,7 +3,7 @@ let emittyPug;
 global.watch = false;
 global.forceRebuild = false;
 
-export const pug = () => {
+export const pug = (done) => {
   if (!emittyPug) {
     emittyPug = $.plugins.emitty.setup('src', 'pug', {
       makeVinylFile: true,
@@ -15,10 +15,12 @@ export const pug = () => {
       .scan(global.emittyPugChangedFile)
       .then(() => {
         resolvePromise(resolve, reject);
+        done();
       })
       .catch((err) => {
         console.log(err.message);
         resolvePromise(resolve, reject);
+        done();
       });
   });
 };
