@@ -1,2 +1,5 @@
-src/base/scss/main.scss
+dist/
+src/base/scss/_variables/
 src/base/scss/_variables.scss
+src/base/scss/core/variables/
+src/base/scss/core/variables.scss

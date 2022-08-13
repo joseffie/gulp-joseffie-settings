@@ -1,0 +1,9 @@
+mixin main-nav-submenu(data)
+  .main-nav-submenu&attributes(attributes)
+    ul.main-nav-submenu__list
+      each item in data
+        li.main-nav-submenu__item
+          if (data.parent && item.hash)
+            a.main-nav-submenu__link(href=`${data.parent}#${item.hash}`)= item.title
+          else
+            a.main-nav-submenu__link(href=item.url)= item.title

@@ -1,81 +1,30 @@
-export const makeMonoSprite = () => {
-  return $.gulp
-    .src(`${$.path.src.iconsmono}`)
+import svgSprite from 'gulp-svg-sprite';
+import { monoColorSpriteConfig, multiColorSpriteConfig } from '../config/options.js';
+
+export const makeMonoSprite = async () =>
+  $.gulp
+    .src(`${$.paths.src.iconsmono}`)
     .pipe(
       $.plugins.plumber(
         $.plugins.notify.onError({
           title: 'Mono-color SVG',
-          message: 'Fix da mistake, leather man: <%= error.message %>',
+          message: 'You got an error: <%= error.message %>',
         }),
       ),
     )
-    .pipe(
-      $.plugins.svgSprite({
-        mode: {
-          symbol: {
-            sprite: '../sprite-mono.svg',
-          },
-        },
-        shape: {
-          transform: [
-            {
-              svgo: {
-                plugins: [
-                  {
-                    removeAttrs: {
-                      attrs: ['class', 'data-name', 'fill', 'stroke.*'],
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      }),
-    )
-    .pipe($.gulp.dest(`${$.path.srcFolder}/img/sprites`));
-};
+    .pipe(svgSprite(monoColorSpriteConfig))
+    .pipe($.gulp.dest(`${$.paths.srcFolder}/img/sprites`));
 
-export const makeMultiSprite = () => {
-  return $.gulp
-    .src(`${$.path.src.iconsmulti}`)
+export const makeMultiSprite = async () =>
+  $.gulp
+    .src(`${$.paths.src.iconsmulti}`)
     .pipe(
       $.plugins.plumber(
         $.plugins.notify.onError({
           title: 'Multi-color SVG',
-          message: 'Fix da mistake, leather man: <%= error.message %>',
+          message: 'You got an error: <%= error.message %>',
         }),
       ),
     )
-    .pipe(
-      $.plugins.svgSprite({
-        mode: {
-          symbol: {
-            sprite: '../sprite-multi.svg',
-          },
-        },
-        shape: {
-          transform: [
-            {
-              svgo: {
-                plugins: [
-                  {
-                    removeAttrs: {
-                      attrs: ['class', 'data-name'],
-                    },
-                  },
-                  {
-                    removeUseLessStrokeAndFill: false,
-                  },
-                  {
-                    inlineStyles: true,
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      }),
-    )
-    .pipe($.gulp.dest(`${$.path.srcFolder}/img/sprites`));
-};
+    .pipe(svgSprite(multiColorSpriteConfig))
+    .pipe($.gulp.dest(`${$.paths.srcFolder}/img/sprites`));

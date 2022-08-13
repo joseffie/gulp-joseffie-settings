@@ -1,11 +1,5 @@
-export const server = (done) => {
-  $.plugins.browsersync.init({
-    server: {
-      baseDir: $.path.buildFolder,
-    },
-    notify: false,
-    port: 3000,
-  });
+import { browserSyncConfig } from '../config/options.js';
 
-  done();
+export const server = async () => {
+  $.plugins.browsersync.init(browserSyncConfig);
 };

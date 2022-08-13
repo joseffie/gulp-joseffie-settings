@@ -1,4 +1,4 @@
-const body = document.body;
+const { body } = document;
 
 export function overlayAdd() {
   const overlay = document.createElement('div');

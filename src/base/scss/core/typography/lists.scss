@@ -1,0 +1,19 @@
+ol,
+ul {
+  padding-left: 2em;
+
+  @media (max-width: $breakpoint480) {
+    padding-left: 0;
+    list-style-position: inside;
+  }
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin-bottom: $base-spacing;
+  margin-left: 0;
+  padding-left: $base-spacing;
+}

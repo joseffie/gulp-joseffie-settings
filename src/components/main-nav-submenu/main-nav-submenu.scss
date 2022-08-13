@@ -1,0 +1,44 @@
+.main-nav-submenu {
+  max-height: 70vh;
+  overflow-y: auto;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 0;
+    background: none;
+  }
+
+  &__link {
+    &,
+    &:visited {
+      display: block;
+      padding: em(12) 1em;
+      color: $color-main;
+      font-size: em(14);
+      text-decoration: none;
+      transition: 125ms ease;
+      transition-property: color, background-color;
+      will-change: color, background-color;
+
+      @media (max-width: $breakpoint768) {
+        color: $nav-opened-text-color;
+        font-size: em(16);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: $color-main;
+    }
+
+    &:active {
+      box-shadow: inset 0 3px 5px rgb(0 0 0 / 12.5%);
+    }
+  }
+}

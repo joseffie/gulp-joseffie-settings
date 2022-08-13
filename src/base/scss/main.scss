@@ -1,9 +1,3 @@
-@import '../../mixins/mixins';
-
-@import './_variables';
-
-// @import './_fonts';
-
-// @import './_print';
-
+@import '_globals';
 @import '../../components/components';
+@import '_common';

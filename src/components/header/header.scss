@@ -1,3 +1,12 @@
 .header {
-  padding: rem(20) 0px;
+  padding: em(15) 0;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+
+  &__container {
+    display: flex;
+    gap: em(15);
+    align-items: center;
+    justify-content: space-between;
+  }
 }

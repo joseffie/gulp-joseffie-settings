@@ -1,34 +1,30 @@
 {
-  "mainmenuData": [
+  "mainNavData": [
     {
-      "text": "Main",
-      "link": "/"
+      "title": "Home",
+      "url": "index.html"
     },
     {
-      "text": "Item 2",
-      "link": "#",
-      "subitems": [
+      "title": "About us",
+      "url": "about.html"
+    },
+    {
+      "title": "Our blog",
+      "url": "blog.html",
+      "submenu": [
         {
-          "text": "Sub-item 1",
-          "link": "#"
+          "title": "Recent",
+          "url": "recent.html"
         },
         {
-          "text": "Sub-item 2",
-          "link": "#"
-        },
-        {
-          "text": "Sub-item 3",
-          "link": "#"
+          "title": "Popular",
+          "url": "popular.html"
         }
       ]
     },
     {
-      "text": "Item 3",
-      "link": "#"
-    },
-    {
-      "text": "Item 4",
-      "link": "#"
+      "title": "Contacts",
+      "url": "contacts.html"
     }
   ]
 }

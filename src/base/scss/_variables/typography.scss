@@ -1,0 +1,25 @@
+// Base
+$base-body-bg: $gray-900;
+$base-text-color: $gray-100;
+$base-font-family: $system-font;
+$base-font-family-monospace: $mono-font;
+$base-font-size: rem(16);
+$base-font-size-sm: 0.8em;
+$base-line-height: 1.5;
+$base-spacing: em(20px);
+
+// Headings
+$heading-font-family: $base-text-color;
+$heading-color: $base-text-color;
+$heading-font-weight: 700;
+$h1-font-size: 2.25em;
+$h2-font-size: 2em;
+$h3-font-size: 1.75em;
+$h4-font-size: 1.5em;
+$h5-font-size: 1.25em;
+$h6-font-size: 1em;
+
+// Links
+$link-color: hsl(209, 77%, 47%);
+$link-hover-color: hsl(0, 86%, 59%);
+$link-visited-color: hsl(255, 67%, 55%);

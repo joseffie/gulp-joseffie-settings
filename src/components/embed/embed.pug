@@ -1,0 +1,21 @@
+  //- Example usage
+    +embed('16x9')
+      iframe(src='https://www.youtube.com/embed/dQw4w9WgXcQ', frameborder='0', allowfullscreen='')
+    +embed('4x3')
+      iframe(src='https://www.youtube.com/embed/7pOr3dBFAeY', frameborder='0', allowfullscreen='')
+
+mixin embed(mods)
+  //- Params
+  //- mods {string} - list of modifiers
+
+  -
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' embed_' + modsList[i].trim();
+      }
+    }
+
+  .embed(class=allMods)&attributes(attributes)
+    block

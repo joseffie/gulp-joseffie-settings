@@ -1,251 +1,41 @@
-// Fix for IE10
-@at-root {
-  @viewport {
-    width: device-width;
-  }
-}
-
 .page {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
-  text-size-adjust: 100%;
-  min-width: 320px;
-  min-height: 100%;
-}
+  position: relative;
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
 
-* {
-  -webkit-tap-highlight-color: transparent;
-}
+    // IE11 fix
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      display: block;
+    }
+  }
 
-body {
-  min-height: 100%;
-  margin: 0;
-  color: $text-color;
-  font-size: $font-size;
-  font-family: $font-family;
-  text-align: left;
-  word-break: break-word;
-  background-color: $body-bg;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  &__header,
+  &__footer {
+    flex: none;
+  }
 
-  &._no-scroll {
+  &__header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $zi-fixed;
+    width: 100%;
+  }
+
+  &__main {
+    flex: 1 0 auto;
+    width: 100%;
+    padding-top: em(100);
+
     @media (max-width: $breakpoint768) {
-      overflow: hidden;
+      padding-top: em(60);
     }
-  }
-}
-
-[tabindex='-1']:focus {
-  outline: none !important;
-}
-
-// Correction for clickable elements with specified role in iOS
-[role='button'] {
-  cursor: pointer;
-}
-
-[type='search']::-webkit-search-decoration {
-  appearance: none;
-}
-
-area,
-summary,
-a,
-button,
-[role='button'],
-input,
-label,
-select,
-textarea {
-  margin: 0;
-  touch-action: manipulation;
-}
-
-button,
-input {
-  overflow: visible;
-  text-transform: none;
-}
-
-// Fix styling issues for Safari
-button,
-html [type='button'],
-[type='reset'],
-[type='submit'] {
-  appearance: button;
-}
-
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-  padding: 0;
-  border-style: none;
-}
-
-// Correction for Safari Mobile (https://github.com/twbs/bootstrap/issues/11266)
-input[type='date'],
-input[type='time'],
-input[type='datetime-local'],
-input[type='month'] {
-  appearance: listbox;
-}
-
-textarea {
-  overflow: auto; // Removing vertical scroll in IE
-  resize: vertical;
-}
-
-svg {
-  fill: currentcolor;
-
-  a &,
-  button & {
-    pointer-events: none;
-  }
-
-  &:not(:root) {
-    overflow: hidden;
-  }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-a {
-  background-color: transparent;
-  transition: color 0.3s ease;
-
-  &[href^='tel:'] {
-    // On large screens, phone links are made in usual text
-    @media (min-width: $breakpoint1248) {
-      color: inherit;
-      white-space: nowrap;
-      text-decoration: inherit;
-    }
-  }
-}
-
-hr {
-  box-sizing: content-box; // Fix for Firefox
-  height: 0; // Fix for Firefox
-  margin-top: 15px * 2;
-  margin-bottom: 15px * 2;
-  overflow: visible; // Fix for Edge and IE
-  border: 0;
-  border-top: 1px solid;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-  color: currentcolor;
-  font-weight: 700;
-  font-family: $font-family;
-  line-height: 1.2;
-}
-
-p,
-ul,
-ol,
-dl,
-table,
-blockquote,
-pre,
-address,
-figure {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-p {
-  // http://clagnut.com/blog/2395
-  hyphens: auto;
-  hyphenate-limit-chars: 6 3 3;
-  hyphenate-limit-lines: 2;
-  hyphenate-limit-last: always;
-  hyphenate-limit-zone: 8%;
-}
-
-address {
-  font-style: normal;
-}
-
-ul,
-ol {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-li {
-  line-height: inherit;
-}
-
-dt {
-  font-weight: 700;
-}
-
-// .mark,
-mark {
-  padding: 0.1em 0.3em;
-  background: rgba(#efac4d, 0.3);
-}
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-abbr[title] {
-  text-decoration: underline dotted;
-}
-
-blockquote {
-  margin-right: 0;
-  margin-left: 0;
-  padding: 0;
-}
-
-code {
-  padding: 0.06em 0.3em;
-  color: $text-color;
-  background-color: rgba(#000, 0.08);
-  border-radius: 3px;
-}
-
-kbd {
-  padding: 0.06em 0.3em;
-  color: $text-color;
-  border-radius: 3px;
-
-  kbd {
-    padding: 0;
-  }
-}
-
-pre {
-  display: block;
-  width: 100%;
-  margin-bottom: 20px;
-  overflow-x: auto;
-  tab-size: 2;
-  background-color: rgba(#000, 0.08);
-
-  code {
-    background: transparent;
   }
 }

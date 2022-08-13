@@ -1,0 +1,61 @@
+p {
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
+  // http://clagnut.com/blog/2395
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-last: always;
+  hyphenate-limit-zone: 8%;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+q {
+  font-style: italic;
+  quotes: '«' '»';
+
+  q {
+    font-style: italic;
+    quotes: '„' '“';
+  }
+}
+
+mark,
+kbd,
+code {
+  display: inline-block;
+  padding: 0 5px;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+kbd {
+  color: #fff;
+  background-color: #222;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}

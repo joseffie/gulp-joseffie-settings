@@ -1,37 +1,24 @@
-mixin menuItem(item)
-  - var activeClass = menuHref === item.link ? " is-active" : "";
-  - item.subitems ? activeClass += "main-nav__item--parent" : null;
-    li.main-nav__item(class= activeClass)
-      if (typeof(item.link) !== 'undefined' && item.link)
-        a(href = item.link)!= item.text
-      else
-        a(href = '#')!= item.text
+include ../main-nav-submenu/main-nav-submenu.pug
 
-      if block
-        block
+mixin mainMenu()
+  nav.main-nav&attributes(attributes)
+    ul.main-nav__list
+      each item in mainNavData
+        - var itemClasses = ['main-nav__item']
 
-mixin navMenu(hasBurger = true)
+        if (item.submenu)
+          - itemClasses.push('main-nav__item_dropdown')
 
-  //- Takes on:
-  //- hasBurger { true / false } - if set to true, then a burger menu appears at a certain width
+        if (item.url === pageUrl)
+          - itemClasses.push('main-nav__item_active')
 
-  if (typeof(hasBurger) !== 'undefined' && hasBurger)
-    nav.main-nav(data-burger-nav)
-      ul.main-nav__list
-        each item in mainmenuData
-          +menuItem(item)
+        li(class=itemClasses)
+          if (item.url)
+            a.main-nav__link(href=item.url)= item.title
+          else
+            span.main-nav__link= item.title
 
-            if (item.subitems)
-              ul.main-nav__dropdown
-                each subitem in item.subitems
-                  +menuItem(subitem)
-  else
-    nav.main-nav
-      ul.main-nav__list
-        each item in mainmenuData
-          +menuItem(item)
-
-            if (item.subitems)
-              ul.main-nav__dropdown
-                each subitem in item.subitems
-                  +menuItem(subitem)
+          if (item.submenu)
+            - item.submenu.parent = item.url
+            .main-nav__dropdown
+              +main-nav-submenu(item.submenu)

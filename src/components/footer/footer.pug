@@ -1,2 +1,5 @@
-footer.footer
-  .container
+include ../container/container.pug
+
+mixin footer()
+  footer.footer&attributes(attributes)
+    +container()

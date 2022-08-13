@@ -1,0 +1,14 @@
+mixin icon()
+  -
+    const name = attributes.name
+    const type = attributes.type
+
+    delete attributes.name
+    delete attributes.type
+
+  if (type == 'mono')
+    svg.icon(role='img')&attributes(attributes)
+      use(xlink:href=`img/sprites/sprite-mono.svg#${name}`)
+  else
+    svg.icon(role='img')&attributes(attributes)
+      use(xlink:href=`img/sprites/sprite-multi.svg#${name}`)

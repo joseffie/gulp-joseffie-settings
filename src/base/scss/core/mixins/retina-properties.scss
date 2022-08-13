@@ -1,0 +1,33 @@
+@import '../../_variables/container';
+
+$maxWidth: $layout-width;
+$maxWidthContainer: $container-width-no-units;
+
+// $property - any CSS property
+// $startSize - initial size
+// $minSize - 320px size
+@mixin adaptive-value($property, $startSize, $minSize, $type: 0) {
+  $additionalSize: $startSize - $minSize;
+
+  @if $type == 1 {
+    #{$property}: $startSize + px;
+
+    @media (max-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$additionalSize} * ((100vw - 320px) / #{$maxWidthContainer - 320})
+      );
+    }
+  } @else if $type == 2 {
+    #{$property}: $startSize + px;
+
+    @media (min-width: #{$maxWidthContainer + px}) {
+      #{$property}: calc(
+        #{$minSize + px} + #{$additionalSize} + ((100vw - 320px) / #{$maxWidth - 320})
+      );
+    }
+  } @else {
+    #{$property}: calc(
+      #{$minSize + px} + #{$additionalSize} * ((100vw - 320px) / #{$maxWidth - 320})
+    );
+  }
+}

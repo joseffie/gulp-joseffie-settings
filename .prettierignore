@@ -1,6 +1,6 @@
 test/fixtures
 **/app/public
 node_modules
+.browserslistrc
+dist
 src/img/sprite.svg
-*.min.js
-*.min.css

@@ -1,0 +1,21 @@
+html {
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  text-size-adjust: 100%;
+  font-family: $base-font-family;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  color: $base-text-color;
+  font-size: $base-font-size;
+  text-align: left;
+  word-break: break-word;
+  background-color: $base-body-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &._no-scroll {
+    overflow: hidden;
+  }
+}

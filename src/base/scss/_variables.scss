@@ -1,75 +1,10 @@
-// Do not specify units of measurement in this varriables
-$layout-width: 1440; // <<- Layout full width
-$content-width-no-units: 1200; // <<- Layout container width
-$container-offset-no-units: 20; // <<- Container left and right padding
-$container-width-no-units: calc($content-width-no-units + ($container-offset-no-units * 2));
-
-$content-width: $content-width-no-units * 1px;
-$container-offset: $container-offset-no-units * 1px;
-$container-width: $content-width + ($container-offset * 2);
-
-// Breakpoints
-// Breakpoints are written as a fraction for mobile-first to work correctly.
-$breakpoint1440: 1439.98px;
-$breakpoint1248: 1247.98px;
-$breakpoint1024: 1023.98px;
-$breakpoint768: 767.98px;
-$breakpoint640: 639.98px;
-$breakpoint560: 559.98px;
-$breakpoint480: 479.98px;
-$breakpoint400: 399.98px;
-
-// Basic colors
-$black: hsl(0, 0%, 0%);
-$gray-100: hsl(0, 0%, 10%);
-$gray-200: hsl(0, 0%, 20%);
-$gray-300: hsl(0, 0%, 30%);
-$gray-400: hsl(0, 0%, 40%);
-$gray-500: hsl(0, 0%, 50%);
-$gray-600: hsl(0, 0%, 60%);
-$gray-700: hsl(0, 0%, 70%);
-$gray-800: hsl(0, 0%, 80%);
-$gray-900: hsl(0, 0%, 90%);
-$white: hsl(0, 0%, 100%);
-
-// Semantic colors
-$color-main: #026dca;
-$color-success: #5cb75c;
-$color-danger: #d8544f;
-$color-warning: #efac4d;
-
-$text-color: $gray-100;
-$body-bg: $gray-900;
-
-// Fonts
-$font-size: rem(16);
-$font-size-sm: 0.8em;
-$font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Ubuntu', 'Droid Sans', 'Helvetica Neue',
-  'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-
-// Main-navigation styles
-$nav-color: $black;
-$nav-text-color: $text-color;
-$nav-text-color-active: $color-main;
-$nav-opened-text-color: $gray-800;
-$nav-font-size: $font-size;
-$nav-opened-font-size: rem(28);
-
-$burger-color: $text-color;
-$burger-color-active: $gray-800;
+@import '_variables/colors';
+@import '_variables/typography';
+@import '_variables/_container';
+@import '_variables/_nav';
 
 // Other
 $field-padding-vertical: rem(5);
 $field-padding-horizontal: rem(12);
 $btn-bg-color: $gray-600;
 $btn-border-rad: 5px;
-
-// Z-index
-$zi-dropdown: 1000;
-$zi-sticky: 1020;
-$zi-fixed: 1030;
-$zi-modal-backdrop: 1040;
-$zi-offcanvas: 1050;
-$zi-modal: 1060;
-$zi-popup: 1070;
-$zi-tooltip: 1080;

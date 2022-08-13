@@ -1,0 +1,27 @@
+blockquote {
+  margin: 0 0 $base-spacing;
+  padding: $base-spacing / 2;
+  border-left: 3px solid #eee;
+
+  p,
+  ul,
+  ol {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  footer,
+  small {
+    display: block;
+    font-size: 80%;
+
+    &::before {
+      content: '\2014 \00A0'; // em dash, nbsp
+    }
+  }
+}

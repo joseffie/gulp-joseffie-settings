@@ -1,0 +1,14 @@
+block pageConfig
+  -
+    let title = ''
+    let pageUrl = ''
+    let bodyClass = []
+
+doctype html
+html(lang='en')
+  head
+    include ./head.pug
+
+  body.page(class=bodyClass)
+    .page__wrapper
+      block page

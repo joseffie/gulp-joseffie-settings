@@ -1,0 +1,6 @@
+// Example usage:
+// width: rem(200);
+
+@function rem($value, $base: 16) {
+  @return calc($value / $base) * 1rem;
+}

@@ -1,0 +1,17 @@
+pre,
+code {
+  overflow: hidden;
+  font-family: $base-font-family-monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 3;
+  background-color: $gray-200;
+}
+
+pre {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 3px;
+}

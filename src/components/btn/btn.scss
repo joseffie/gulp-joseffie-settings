@@ -5,7 +5,7 @@
   margin: 0;
   padding: $field-padding-vertical $field-padding-horizontal;
   overflow: hidden;
-  color: $text-color;
+  color: $base-text-color;
   font-size: 1em;
   font-family: inherit;
   line-height: 150%;
@@ -21,23 +21,31 @@
   border-radius: $btn-border-rad;
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
 
   &:hover,
   &:focus {
-    color: $text-color;
+    color: $base-text-color;
     text-decoration: none;
     background-color: darken($btn-bg-color, 10%);
   }
 
-  &--disabled,
+  // &_disabled,
   &:disabled {
-    color: $text-color;
+    color: $base-text-color;
     background-color: $btn-bg-color;
     cursor: not-allowed;
     opacity: 0.8;
+    pointer-events: none;
+  }
 
-    @at-root a.btn--disabled {
-      pointer-events: none;
-    }
+  // Rounded
+  &_rounded {
+    border-radius: 4px;
+  }
+
+  // Pill (extra rounded)
+  &_pill {
+    border-radius: em(100);
   }
 }

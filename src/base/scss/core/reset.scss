@@ -1,0 +1,91 @@
+// Fix for IE10
+@at-root {
+  @viewport {
+    width: device-width;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+// Remove the gap between audio, canvas, iframes,
+// images, videos and the bottom of their containers:
+// https://github.com/h5bp/html5-boilerplate/issues/440
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+// Remove default fieldset styles.
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+// Remove iOS input shadows
+input[type='text'],
+input[type='email'],
+input[type='search'],
+input[type='password'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+// Correction for clickable elements with specified role in iOS
+[role='button'] {
+  cursor: pointer;
+}
+
+[type='search']::-webkit-search-decoration {
+  appearance: none;
+}
+
+// Fix styling issues for Safari
+button,
+html [type='button'],
+[type='reset'],
+[type='submit'] {
+  appearance: button;
+}
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+// Correction for Safari Mobile (https://github.com/twbs/bootstrap/issues/11266)
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'] {
+  appearance: listbox;
+}
+
+textarea {
+  overflow: auto; // Removing vertical scroll in IE
+  resize: vertical; // Allow only vertical resizing of textareas.
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

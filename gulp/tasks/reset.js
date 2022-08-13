@@ -1,8 +1,12 @@
-export const reset = async function () {
-  const deletedDirectoryPaths = $.plugins.del([$.path.buildFolder]);
+export const reset = async () => {
+  const deletedDirectoryPaths = $.plugins.del([$.paths.buildFolder]);
 
   return (
     deletedDirectoryPaths,
-    console.log(`Deleted directories:\n=> ${deletedDirectoryPaths.join('\n')}`)
+    console.log(
+      $.plugins.chalk.bold(
+        `${$.plugins.chalk.yellow('Deleted directories:')}\n> ${deletedDirectoryPaths.join('\n')}`,
+      ),
+    )
   );
 };

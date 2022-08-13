@@ -1,0 +1,20 @@
+extends ../base/pug/default.pug
+
+include ../components/header/header.pug
+include ../components/footer/footer.pug
+
+block pageConfig
+  - title = 'Page not found'
+
+block header
+  +header()
+
+block main
+  .not-exist
+    .container
+      h1.not-exist__title Whoops! 404!
+      p Sorry, the page doesn't seem to be found.
+      a(href='/') We invite you to return to the main page
+
+block footer
+  +footer()
