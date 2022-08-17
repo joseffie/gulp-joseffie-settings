@@ -46,11 +46,10 @@ $ npm run dev
 
 - `npm run dev` – launches watcher and server.
 - `npm run build` – compiles a project without compiling sprites and fonts.
-- `npm run fullbuild` – fully compiles a project.
 - `npm run zip` – compiles and archives a project.
 - `npm run deploy` – compiles project and pushes in `gh-pages` branch in Git repo.
-- `build:fonts` – compiles an existing fonts located in `src/fonts`.
-- `build:sprites` – compiles an existing SVG icons located in `src/svgico/**` into SVG sprites.
+- `npm run build:fonts` – compiles an existing fonts located in `src/fonts`.
+- `npm run build:sprites` – compiles an existing SVG icons located in `src/svgico/**` into SVG sprites.
 
 ## Component generator
 
