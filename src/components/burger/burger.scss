@@ -3,7 +3,7 @@
 
   @media (max-width: $breakpoint768) {
     position: relative;
-    z-index: $zi-tooltip;
+    z-index: 120;
     display: block;
     min-width: 30px;
     max-width: 30px;

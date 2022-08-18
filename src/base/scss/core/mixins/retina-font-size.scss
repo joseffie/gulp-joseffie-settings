@@ -2,7 +2,7 @@
 
 // $startSize { num } - initial size
 // $mobileSize { num } - 320px size
-@mixin adaptive-font($startSize, $mobileSize) {
+@mixin retina-font($startSize, $mobileSize) {
   $additionalSize: $startSize - $mobileSize;
   $additionalMobileSize: $additionalSize + ($additionalSize * 0.7);
 

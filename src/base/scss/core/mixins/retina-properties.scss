@@ -6,7 +6,7 @@ $maxWidthContainer: $container-width-no-units;
 // $property - any CSS property
 // $startSize - initial size
 // $minSize - 320px size
-@mixin adaptive-value($property, $startSize, $minSize, $type: 0) {
+@mixin retina-property($property, $startSize, $minSize, $type: 0) {
   $additionalSize: $startSize - $minSize;
 
   @if $type == 1 {

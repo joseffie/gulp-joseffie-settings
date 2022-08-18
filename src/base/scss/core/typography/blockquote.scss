@@ -1,6 +1,6 @@
 blockquote {
   margin: 0 0 $base-spacing;
-  padding: $base-spacing / 2;
+  padding: calc($base-spacing / 2);
   border-left: 3px solid #eee;
 
   p,

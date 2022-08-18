@@ -3,7 +3,7 @@
     position: fixed;
     top: -100%;
     left: 0;
-    z-index: $zi-modal;
+    z-index: 110;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -152,7 +152,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: $zi-dropdown;
+    z-index: 110;
     width: rem(250);
     padding: 0;
     overflow: hidden;

@@ -47,11 +47,11 @@
 
 ## Quickstart
 
-1. Install the [Node.js](https://nodejs.org/en/).
-2. Install the [Gulp](https://gulpjs.com/) globally:
+1. Install the [Node.js](https://nodejs.org/en/)
+2. Install the [Gulp](https://gulpjs.com/) and [Bem](https://en.bem.info/) globally:
 
 ```
-$ npm install gulp -g
+$ npm install -g gulp bem-tools-core bem-tools-create
 ```
 
 3. Clone the project:

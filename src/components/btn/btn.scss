@@ -5,7 +5,7 @@
   margin: 0;
   padding: $field-padding-vertical $field-padding-horizontal;
   overflow: hidden;
-  color: $base-text-color;
+  color: $btn-text-color;
   font-size: 1em;
   font-family: inherit;
   line-height: 150%;
@@ -20,14 +20,15 @@
   border: 0;
   border-radius: $btn-border-rad;
   cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
   user-select: none;
   touch-action: manipulation;
 
   &:hover,
   &:focus {
-    color: $base-text-color;
+    color: $btn-text-hover-color;
     text-decoration: none;
-    background-color: darken($btn-bg-color, 10%);
+    background-color: $btn-bg-hover-color;
   }
 
   // &_disabled,
@@ -41,7 +42,7 @@
 
   // Rounded
   &_rounded {
-    border-radius: 4px;
+    border-radius: 10px;
   }
 
   // Pill (extra rounded)
