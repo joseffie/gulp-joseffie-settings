@@ -108,7 +108,7 @@
         "npm run lint:styles --fix",
         "git add"
       ],
-      "*.(js,jsx,mjs)": [
+      "*.{js,jsx,cjs,mjs}": [
         "npm run lint:js --fix",
         "git add"
       ]
