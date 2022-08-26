@@ -1,5 +1,5 @@
 import gulpZip from 'gulp-zip';
-import getZipFileName from '../utils/getZipFileName.js';
+import getZipFileName from '../../utils/getZipFileName.js';
 
 const delExistingArchiveFolder = () => {
   // Deleting an archive folder if it exists

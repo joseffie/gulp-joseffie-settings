@@ -6,7 +6,7 @@ module.exports = {
     node: true,
     jquery: true,
   },
-  extends: ['airbnb'],
+  extends: ['airbnb-base'],
   plugins: ['prettier', 'unicorn'],
   parser: '@babel/eslint-parser',
   parserOptions: {

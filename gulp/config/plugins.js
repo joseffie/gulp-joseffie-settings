@@ -16,7 +16,6 @@ import logger from 'gulplog';
 import newer from 'gulp-newer';
 import notify from 'gulp-notify';
 import plumber from 'gulp-plumber';
-import rename from 'gulp-rename';
 import replace from 'gulp-replace';
 
 const plugins = {
@@ -29,7 +28,6 @@ const plugins = {
   newer,
   notify,
   plumber,
-  rename,
   replace,
   del: deleteSync,
   if: gulpIf,

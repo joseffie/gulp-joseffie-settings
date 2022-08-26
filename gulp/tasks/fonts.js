@@ -8,7 +8,7 @@ import fonter from 'gulp-fonter';
 import ttf2woff2 from 'gulp-ttf2woff2';
 
 // Convert otf fonts to ttf format
-export const otfToTtf = () =>
+export const otfToTtf = async () =>
   $.gulp
     .src(`${$.paths.srcFolder}/fonts/*.otf`, {})
     .pipe(
@@ -27,7 +27,7 @@ export const otfToTtf = () =>
     .pipe($.gulp.dest(`${$.paths.srcFolder}/fonts`));
 
 // Convert ttf fonts to woff & woff2 formats
-export const ttfToWoff = () =>
+export const ttfToWoff = async () =>
   $.gulp
     .src(`${$.paths.srcFolder}/fonts/*.ttf`, {})
     .pipe(
@@ -50,9 +50,9 @@ export const ttfToWoff = () =>
 
 // Creating a file with @font-face declarations
 const createFontStylesFile = async () => {
-  let fontsFile = `${$.config.path.srcFolder}/base/styles/_fonts.scss`;
+  let fontsFile = `${$.paths.srcFolder}/base/styles/_fonts.scss`;
 
-  $.plugins.fs.readdir(`${$.config.path.srcFolder}/fonts`, (_, fontFiles) => {
+  $.plugins.fs.readdir(`${$.paths.srcFolder}/fonts`, (_, fontFiles) => {
     if (fontFiles) {
       if (!$.plugins.fs.existsSync(fontsFile)) {
         $.plugins.fs.writeFile(fontsFile, '', () => {});

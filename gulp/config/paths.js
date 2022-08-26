@@ -8,15 +8,15 @@ const archiveFolder = './.archive';
 
 const paths = {
   build: {
-    js: `${buildFolder}/js`,
-    css: `${buildFolder}/css`,
-    html: `${buildFolder}`,
+    html: buildFolder,
+    styles: `${buildFolder}/styles`,
+    scripts: `${buildFolder}/scripts`,
     images: `${buildFolder}/img`,
     fonts: `${buildFolder}/fonts`,
   },
   src: {
-    pug: `${srcFolder}/pages`,
-    scss: [`${srcFolder}/base/scss/*.{sass,scss}`, `!${srcFolder}/base/scss/_*.{sass,scss}`],
+    pug: `${srcFolder}/views/**/*.pug`,
+    styles: [`${srcFolder}/base/styles/*.{sass,scss}`, `!${srcFolder}/base/styles/_*.{sass,scss}`],
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,ico,webp}`,
     fonts: `${srcFolder}/fonts/**/*.{otf,ttf,woff,woff2}`,
     svg: `${srcFolder}/img/**/*.svg`,
@@ -24,9 +24,9 @@ const paths = {
     iconsmulti: `${srcFolder}/svgico/multi/*.svg`,
   },
   watch: {
-    js: `${srcFolder}/**/*.{js,mjs}`,
-    scss: `${srcFolder}/**/*.scss`,
     pug: `${srcFolder}/**/*.pug`,
+    styles: `${srcFolder}/**/*.scss`,
+    scripts: `${srcFolder}/**/*.{js,mjs}`,
     images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
     fonts: `${srcFolder}/fonts/**/*.{otf,ttf,woff,woff2}`,
     iconsmono: `${srcFolder}/svgico/mono/*.svg`,

@@ -1,9 +1,9 @@
-import { pug } from './pug.js';
-import { styles } from './styles.js';
-import { js } from './js.js';
-import { images } from './images.js';
-import { makeMonoSprite, makeMultiSprite } from './sprite.js';
-import { convertFonts, fonts } from './fonts.js';
+import { pug } from '../pug.js';
+import { styles } from '../styles.js';
+import { scripts } from '../scripts.js';
+import { images } from '../images.js';
+import { makeMonoSprite, makeMultiSprite } from '../sprite.js';
+import { convertFonts, fonts } from '../fonts.js';
 
 export const watch = async () => {
   global.watch = true;
@@ -20,19 +20,19 @@ export const watch = async () => {
   });
 
   // Styles
-  $.gulp.watch($.paths.watch.scss, styles);
+  $.gulp.watch($.paths.watch.styles, styles);
 
   // Scripts
-  $.gulp.watch($.paths.watch.js, js);
+  $.gulp.watch($.paths.watch.scripts, scripts);
 
   // Images
   $.gulp.watch($.paths.watch.images, images);
 
   // Single-color SVG icons
-  $.gulp.watch($.paths.watch.iconsmono, $.gulp.series(makeMonoSprite));
+  $.gulp.watch($.paths.watch.iconsmono, makeMonoSprite);
 
   // Multi-color SVG icons
-  $.gulp.watch($.paths.watch.iconsmono, $.gulp.series(makeMultiSprite));
+  $.gulp.watch($.paths.watch.iconsmono, makeMultiSprite);
 
   // Fonts
   $.gulp.watch($.paths.watch.fonts, $.gulp.series(convertFonts, fonts));

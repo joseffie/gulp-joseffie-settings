@@ -10,12 +10,11 @@
 
   &__item {
     display: inline-block;
-    margin-right: rem(10);
-    white-space: nowrap;
+    margin-right: rem(8);
 
     &::after {
       display: inline-block;
-      margin-left: rem(15);
+      margin-left: rem(8);
       color: #5e5c5c;
       content: '/';
     }

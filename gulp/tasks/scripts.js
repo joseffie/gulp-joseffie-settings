@@ -3,7 +3,7 @@ import webpackStream from 'webpack-stream';
 
 import webpackConfig from '../../webpack.config.babel.js';
 
-export const js = (done) => {
+export const scripts = (done) => {
   let firstBuildReady = false;
 
   function webpackDone(error, stats) {
@@ -37,7 +37,7 @@ export const js = (done) => {
         ),
       )
       .pipe(webpackStream(webpackConfig, webpack, webpackDone))
-      .pipe($.gulp.dest($.paths.build.js))
+      .pipe($.gulp.dest($.paths.build.scripts))
       .pipe($.plugins.browsersync.stream())
       .on('data', () => {
         if (firstBuildReady) {

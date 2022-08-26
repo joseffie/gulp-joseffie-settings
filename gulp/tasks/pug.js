@@ -20,7 +20,7 @@ export const pug = (done) => {
   return new Promise((resolve, reject) => {
     emittyPug.scan(global.emittyPugChangedFile).then(() => {
       $.gulp
-        .src(`${$.paths.src.pug}/**/*.pug`)
+        .src($.paths.src.pug)
         .pipe(
           $.plugins.plumber(
             $.plugins.notify.onError({

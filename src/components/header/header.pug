@@ -2,8 +2,8 @@ include ../container/container.pug
 include ../burger/burger.pug
 include ../main-nav/main-nav.pug
 
-mixin header()
+mixin header
   header.header&attributes(attributes)
-    +container().header__container
-        +burger()
-        +mainMenu()
+    +container.header__container
+      +burger
+      +mainMenu

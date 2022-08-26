@@ -4,10 +4,10 @@ include ../components/header/header.pug
 include ../components/footer/footer.pug
 
 block pageConfig
-  - title = 'Page not found'
+  - title = 'Page not found';
 
 block header
-  +header()
+  +header
 
 block main
   .not-exist
@@ -17,4 +17,4 @@ block main
       a(href='/') We invite you to return to the main page
 
 block footer
-  +footer()
+  +footer

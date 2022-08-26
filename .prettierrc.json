@@ -1,9 +1,12 @@
 {
+  "plugins": ["@prettier/plugin-pug"],
   "printWidth": 100,
   "singleQuote": true,
   "trailingComma": "all",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "tabWidth": 2,
-  "semi": true
+  "semi": true,
+  "pugAttributeSeparator": "always",
+  "pugCommentPreserveSpaces": "keep-all"
 }

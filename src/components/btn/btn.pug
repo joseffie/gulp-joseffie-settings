@@ -1,18 +1,17 @@
-//- Example usage
+//- Usage example:
 //- +btn('Button-link')(href='/') - There is href - this is a link
 //- +btn('Button-input', '', true) - There is isInput flag - this is a input
 //- +btn('Button', 'success') - No href and isInput - this is a button
 
 mixin btn(text, mods, isInput)
-
-  //- Params
-  //- text    {string} - button text
-  //- mods    {string} - list of modifiers
-  //- isInput {bool}   - «This is a input» flag
+  //- Params:
+  //- text    { string } - button text
+  //- mods    { string } - list of modifiers
+  //- isInput { bool }   - «This is a input» flag
 
   -
     var allMods = '';
-    if(typeof(mods) !== 'undefined' && mods) {
+    if (typeof(mods) !== 'undefined' && mods) {
       var modsList = mods.split(',');
       for (var i = 0; i < modsList.length; i++) {
         allMods = allMods + ' btn_' + modsList[i].trim();

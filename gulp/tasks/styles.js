@@ -1,17 +1,13 @@
-import autoprefixer from 'gulp-autoprefixer';
-import cleanCss from 'gulp-clean-css';
 import webpCss from 'gulp-webpcss';
-import groupMedia from 'gulp-group-css-media-queries';
 import gulpSass from 'gulp-sass';
 import dartSass from 'sass';
-
-import { autoprefixerConfig } from '../config/options.js';
+import postcss from 'gulp-postcss';
 
 const sass = gulpSass(dartSass);
 
-export const styles = () =>
+export const styles = async () =>
   $.gulp
-    .src($.paths.src.scss, { sourcemaps: $.isDev })
+    .src($.paths.src.styles, { sourcemaps: $.isDev })
     .pipe(
       $.plugins.plumber(
         $.plugins.notify.onError({
@@ -28,7 +24,6 @@ export const styles = () =>
         outputStyle: 'expanded',
       }),
     )
-    .pipe(groupMedia())
     .pipe(
       $.plugins.if(
         $.isProd,
@@ -38,7 +33,6 @@ export const styles = () =>
         }),
       ),
     )
-    .pipe($.plugins.if($.isProd, autoprefixer(autoprefixerConfig)))
-    .pipe($.plugins.if($.isProd, cleanCss()))
-    .pipe($.gulp.dest($.paths.build.css))
+    .pipe(postcss())
+    .pipe($.gulp.dest($.paths.build.styles))
     .pipe($.plugins.browsersync.stream());

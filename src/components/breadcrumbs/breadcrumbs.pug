@@ -1,12 +1,11 @@
-//- Сall example:
+//- Usage example:
   +breadcrumbs()
     +breadcrumbs-item('Main', '/home')
     +breadcrumbs-item('Services', '/services')
     +breadcrumbs-item('Contact')
 
 mixin breadcrumbs(mods)
-
-  //- Takes on:
+  //- Params
   //- mods {string} - list of modifiers
 
   -
@@ -14,32 +13,30 @@ mixin breadcrumbs(mods)
     if (typeof(mods) !== 'undefined' && mods) {
       var modsList = mods.split(',');
       for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' breadcrumbs--' + modsList[i].trim();
+        allMods = allMods + ' breadcrumbs_' + modsList[i].trim();
       }
     }
 
   ul.breadcrumbs(class=allMods, aria-label='Breadcrumb', role='navigation')&attributes(attributes)
     block
 
-
 mixin breadcrumbs-item(text, href, mods)
-
-  //- Takes on:
-  //- text {string} - item content
-  //- href {string} - link of this item (if empty, then this is not a link, but a span)
-  //- mods {string} - list of modifiers
+  //- Params:
+  //- text { string } - item content
+  //- href { string } - link of this item (if empty, then this is not a link, but a span)
+  //- mods { string } - list of modifiers
 
   -
     var allMods = '';
     if(typeof(mods) !== 'undefined' && mods) {
       var modsList = mods.split(',');
       for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' breadcrumbs__item--' + modsList[i].trim();
+        allMods = allMods + ' breadcrumbs__item_' + modsList[i].trim();
       }
     }
 
   li.breadcrumbs__item(class=allMods)&attributes(attributes)
-    if(typeof(href) !== 'undefined' && href)
+    if (typeof(href) !== 'undefined' && href)
       a(href=href)!= text
     else
       span!= text

@@ -1,16 +1,16 @@
 include ../main-nav-submenu/main-nav-submenu.pug
 
-mixin mainMenu()
+mixin mainMenu
   nav.main-nav&attributes(attributes)
     ul.main-nav__list
       each item in mainNavData
-        - var itemClasses = ['main-nav__item']
+        - var itemClasses = ['main-nav__item'];
 
         if (item.submenu)
-          - itemClasses.push('main-nav__item_dropdown')
+          - itemClasses.push('main-nav__item_dropdown');
 
         if (item.url === pageUrl)
-          - itemClasses.push('main-nav__item_active')
+          - itemClasses.push('main-nav__item_active');
 
         li(class=itemClasses)
           if (item.url)
@@ -19,6 +19,6 @@ mixin mainMenu()
             span.main-nav__link= item.title
 
           if (item.submenu)
-            - item.submenu.parent = item.url
+            - item.submenu.parent = item.url;
             .main-nav__dropdown
               +main-nav-submenu(item.submenu)

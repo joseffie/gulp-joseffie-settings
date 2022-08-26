@@ -3,19 +3,15 @@ import postHtmlAttrsSorter from 'posthtml-attrs-sorter';
 import paths from './paths.js';
 import { isDev } from '../utils/environment.js';
 
+const port = 9050;
+
 export const browserSyncConfig = {
   server: {
     baseDir: paths.buildFolder,
   },
   notify: false,
   reloadOnRestart: true,
-  port: 3000,
-};
-
-export const autoprefixerConfig = {
-  grid: true,
-  overrideBrowserslist: ['last 3 versions'],
-  cascade: true,
+  port: port || 5050,
 };
 
 export const pugConfig = {
