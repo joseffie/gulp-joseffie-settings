@@ -2,7 +2,6 @@ import path from 'path';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin';
-import HappyPack from 'happypack';
 import TerserPlugin from 'terser-webpack-plugin';
 
 import { fileURLToPath } from 'url';
@@ -13,10 +12,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 /* eslint-enable no-underscore-dangle */
 
-const options = {
+const webpackConfig = {
   mode: isProd ? 'production' : 'development',
   entry: {
     index: './index.js',
+    // vendor: '../../vendor/vendor.js',
   },
   output: {
     filename: '[name].js',
@@ -24,12 +24,11 @@ const options = {
     path: path.join(__dirname, '/dist/js'),
     publicPath: '/js/',
   },
-  context: path.resolve(__dirname, 'src/base/js'),
+  context: path.resolve(__dirname, 'src/base/scripts'),
   optimization: {
     minimize: isProd,
     minimizer: [
       new TerserPlugin({
-        // preventing the creation of the LICENSE.txt file
         terserOptions: {
           format: {
             comments: false,
@@ -38,16 +37,6 @@ const options = {
         extractComments: false,
       }),
     ],
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'vendor',
-          enforce: true,
-        },
-      },
-    },
   },
   module: {
     noParse: /\/node_modules\/(jquery|backbone)/,
@@ -56,7 +45,7 @@ const options = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'happypack/loader',
+          loader: 'babel-loader',
         },
       },
     ],
@@ -70,10 +59,7 @@ const options = {
       failOnError: true,
     }),
     new DuplicatePackageCheckerPlugin(),
-    new HappyPack({
-      loaders: ['babel-loader'],
-    }),
   ],
 };
 
-export default options;
+export default webpackConfig;
