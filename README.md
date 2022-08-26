@@ -77,7 +77,11 @@ By default generates only `*.pug`, `*.scss` and `*.js` files.
 Syntax:
 
 ```console
+<<<<<<< HEAD
 $ bem create <component-name> <args>
+=======
+$ bem create <component-name> <tags>
+>>>>>>> 6b20bb7f0b56d2c8657a94cd8fe3598d0c39bd32
 ```
 
 If you need to create only one file type, use the `-T` flag:

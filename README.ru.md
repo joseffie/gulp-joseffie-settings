@@ -77,7 +77,11 @@ _Создать пустой компонент по имени в папке `s
 Синтаксис:
 
 ```console
+<<<<<<< HEAD
 $ bem create <component-name> <args>
+=======
+$ bem create <component-name> <flags>
+>>>>>>> 6b20bb7f0b56d2c8657a94cd8fe3598d0c39bd32
 ```
 
 Если вам нужно создать только один тип файла, используйте флаг `-T`:
