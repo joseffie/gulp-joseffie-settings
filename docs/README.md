@@ -10,13 +10,18 @@
   - [Building](#building)
   - [Deploying to GitHub Pages](#deploying-to-github-pages)
   - [Structure](#structure)
-  - [CSS](#css)
-  - [HTML](#html)
-    - [Pages](#pages)
-  - [JavaScript](#javascript)
-  - [Local fonts](#fonts)
-  - [SVG Sprites](#svg-sprites)
-  - [Data](#data)
+  - <details>
+      <summary><b>Common</b></summary>
+
+    - [CSS](#css)
+    - [HTML](#html)
+      - [Pages](#pages)
+    - [JavaScript](#javascript)
+    - [Local fonts](#fonts)
+    - [SVG Sprites](#svg-sprites)
+    - [Data](#data)
+    - [Libraries](#libraries)
+    </details>
 
   - <details>
       <summary><b>Recommendations for use</b></summary>
@@ -28,72 +33,69 @@
 
     </details>
 
-  - <details>
-      <summary><b>CLI</b></summary>
-
-    - [Download dependencies](#download-dependencies)
-    - [Building](#building-1)
-    - [Deploying](#deploying)
-    - [Archiving](#archiving)
-    - [Build of individual file types](#build-of-individual-file-types)
-    - [Code linting](#code-linting)
-      - [Lint](#lint)
-      - [Automatic fix](#automatic-fix)
-
-    </details>
-
-  - [Component generator](#component-generator-using-bem-toolshttpsgithubcombem-toolsbem-tools-create)
+  - [CLI](#cli)
+  - [Code linting](#code-linting)
+    - [Lint](#lint)
+    - [Automatic fix](#automatic-fix)
+  - [Component generator](#component-generator)
   - [License](#license)
 
 ## Quickstart
 
-1. Install the [Node.js](https://nodejs.org/en/)
-2. Install the [Gulp](https://gulpjs.com/) and [Bem](https://en.bem.info/) globally:
+Make sure you have [Node.js](https://nodejs.org/en/) installed.
 
-```
-$ npm install -g gulp bem-tools-core bem-tools-create
-```
+Install the [Yarn](https://yarnpkg.com/) globally:
 
-3. Clone the project:
-
-```
-$ git clone https://github.com/joseffie/gulp-joseffie-settings.git --depth 1 my-project
+```console
+$ npm i -g yarn
 ```
 
-4. Go to the project and run:
+Install the [Gulp](https://gulpjs.com/) and [bem-tools](https://en.bem.info/) globally:
 
-```
-$ npm install
+```console
+$ yarn add --global gulp bem-tools-core bem-tools-create
 ```
 
-5. After installing the dependencies, start the dev server:
+Clone the project:
 
+```console
+$ git clone https://github.com/joseffie/gulp-joseffie-settings.git my-project
 ```
-$ npm run dev
+
+Go to the project and install needed dependencies:
+
+```console
+$ yarn
+```
+
+After installing the dependencies, you may start the dev server:
+
+```console
+$ yarn run dev
 ```
 
 ## Development
 
-1. Run `npm run dev` to see your app at `http://localhost:3000/`.
+1. Run `yarn run dev` to see your app at `http://localhost:9050/`.
 
 > **TIP:** In order to provide a quick development start, local fonts and SVG sprites <ins>are not</ins> automatically compiled. If your project has them, you must compile the fonts and SVG icons yourself before starting development:
 
 ```
-$ npm run build:fonts     # converts a local fonts to woff/woff2 format
-$ npm run build:sprites   # converts a SVG icons into SVG sprite
+$ yarn run build:fonts     # converts a local fonts to woff/woff2 format
+$ yarn run build:sprites   # converts a SVG icons into SVG sprite
 ```
 
-> You don't have to do this when you run `npm run build` and `npm run deploy`.
+> You don't have to do this when you run `yarn run build` and `yarn run deploy`.
 
 ## Building
 
-1. Run `npm run build` to build your project in production mode. This mode will automatically compile SVG sprites, local fonts, create a SCSS file with `@font-face` declarations, optimize images, minify files.
+1. Run `yarn run build` to build your project in production mode. This mode will automatically compile SVG sprites, local fonts, create a SCSS file with `@font-face` declarations, optimize images, minify files.
 
 ## Deploying to Github Pages
 
 1. Run `git init` to init Git.
 2. Push your project to repository.
-3. Run `npm run deploy`. This command will build your project in production mode and push the contents of the `dist` folder to the `gh-pages` branch of your GitHub repository.
+3. Run `yarn run deploy`. This command will build your project in production mode and push the contents of the `dist` folder to the `gh-pages` branch of your GitHub repository.
 4. You can now navigate to your GitHub Page at `username.github.io/repository-name`
 
 ## Structure
@@ -106,45 +108,53 @@ gulp-joseffie-settings/              # Project root
 ├── src
 |   ├── base
 |   |   ├── data                     # Folder with data.json
-|   |   ├── js
+|   |   ├── scripts
 |   |   |   ├── helpers              # JS various helpers
 |   |   |   ├── index.js             # JS main file
 |   |   ├── pug                      # Pug layouts
-|   |   ├── scss
+|   |   ├── styles
 |   |   |   ├── core
 |   |   |   |   ├── mixins           # System level mixins
 |   |   |   |   ├── typography       # Typography styles
 |   |   |   |   ├── variables        # System level variables
-|   |   |   ├── _common.scss         # Different styles
+|   |   |   ├── _common.scss         # Common styles
 |   |   |   ├── _variables.scss      # Project variables
 |   |   |   ├── main.scss            # Main styles
 |   |   |   ├── reset.scss           # Styles reset
 |   ├── components                   # Components folder
 |   ├── fonts                        # Local fonts
 |   ├── img
-|   ├── pages                        # Pug pages
+|   ├── views                        # Pug pages
 |   ├── svgico
 |   |   ├── mono                     # Single-color SVG icons
 |   |   ├── multi                    # Multi-color SVG icons
 |   ├── vendor                       # Files of libraries
+└── templates                        # bem-create templates
 └── .archive                         # Folder with ZIP archive
 ```
 
-## CSS
+## Common
+
+### CSS
 
 - [Sass (SCSS syntax)](https://sass-lang.com/) – popular, feature CSS-preprocessor. Possible to use both syntaxes (Sass and SCSS) in a project at the same time.
-- [Autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer) – parses CSS and add vendor prefixes to rules by [Can I Use](https://caniuse.com/).
+- [PostCSS](https://postcss.org/)
+  - [Autoprefixer](https://github.com/postcss/autoprefixer) - parses CSS and add vendor prefixes to rules by [Can I Use](https://caniuse.com/).
+  - [CSSNANO](https://cssnano.co/) - a pack of PostCSS plugins that optimize your CSS code.
+  - [postcss-preset-env](https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env) - plugin that converts modern CSS code into code that browsers understand.
+  - [css-mqpacker](https://github.com/hail2u/node-css-mqpacker) - plugin that combines same media queries into one.
+  - [postcss-flexbugs-fixes](https://github.com/luisrudge/postcss-flexbugs-fixes) - plugin that fixes bugs in Flex layout.
 - [Stylelint.](https://stylelint.io/)
-  - [Stylelint-order](https://github.com/hudochenkov/stylelint-order) – helps keep the rules and content of at-rules in order.
+  - [Stylelint-order](https://github.com/hudochenkov/stylelint-order) – helps to keep rules and properties in a certain order.
 
-## HTML
+### HTML
 
 - [Pug (aka Jade)](https://pugjs.org/api/getting-started.html) – convenient, functional template engine.
 - [PostHTML](https://github.com/posthtml/posthtml) – tool to transform HTML/XML with JS plugins.
 
-### Pages
+#### Pages
 
-The `src/pages` folder contains the page files. Each of the pages must extend the template `src/base/pug/default.pug`.
+The `src/views` folder contains the page files. Each of the pages must extend the template `src/base/pug/default.pug`.
 
 The variables of `pageConfig` block can be used to manipulate the contents of pages. Syntax:
 
@@ -161,35 +171,35 @@ block pageConfig
 - Using the `pageUrl` variable, you can give the main navigation link to the current page an active class ([more about it](#active-class-for-link-to-current-page)).
 - With the `bodyClass` array, you can assign any classes to the `body` tag.
 
-## JavaScript
+### JavaScript
 
 - Tools:
   - [Node.js](https://nodejs.org/en/) - JavaScript runtime.
   - [Webpack 5](https://webpack.js.org/) – module bundler.
-  - [npm](https://www.npmjs.com/) - package manager.
   - [Babel](https://babeljs.io/) - JavaScript transpiler.
+  - [Yarn](https://yarnpkg.com/) - package manager.
 
-## Fonts
+### Fonts
 
 Place local fonts in `src/fonts` folder. You can use `otf`, `ttf`, `woff` and `woff2` formats.
 
 > It is important that the name of the font file is in the format "Font Name - Font Shape", such as "Roboto-Regular" or "IbarraRealNova-Mediumitalic". Otherwise, the `fonts` Gulp task will not be able to determine the font weight and font style, and an incorrect `@font-face` will end up in the `_fonts.scss` file.
 
-To compile the local fonts and create stylesheet file, run `npm run build:fonts`. After using the command, in the `src/base/scss` folder will appear the `_fonts.scss` file that contains `@font-face` declarations for fonts.
+To compile the local fonts and create font stylesheet file, run `yarn run build:fonts`. After using the command, in the `src/base/styles` folder will appear the `_fonts.scss` file that contains `@font-face` declarations for fonts.
 
-To use local fonts in styles, don't forget to uncomment this line in the `src/base/scss/reset.scss` file:
+To use local fonts in styles, don't forget to uncomment this line in the `src/base/styles/reset.scss` file:
 
 ```scss
 // @import '_fonts';
 ```
 
-## SVG Sprites
+### SVG Sprites
 
 To convert SVG icons to SVG sprite, you need to follow a few simple steps.
 
 1. Depending on the number of colors in your SVG, put the icons in the appropriate folders: if the icon has only one color, put it in `src/svgico/mono`, otherwise in `src/svgico/multi`. This division into colors is done so that each of the types of icons (single-color/multi-color) is optimized as it is necessary for the current type. For example, fill is removed from single-color icons so that it can be easily changed, otherwise `Shadow DOM` prevents this.
-2. Run `npm run build:sprites`.
-3. In any Pug component, import icon mixin `include ../icon/icon.pug`.
+2. Run `yarn run build:sprites`.
+3. In any Pug component, import icon mixin: `include ../icon/icon.pug`.
 4. Use `+icon(name='icon-name', type='icon-type')`. A couple of examples:
 
 ```pug
@@ -197,9 +207,43 @@ To convert SVG icons to SVG sprite, you need to follow a few simple steps.
 +icon(name='apple', type='mono')
 ```
 
-## Data
+### Data
 
 All data in modules stores in `src/base/data/data.json`.
+
+### Libraries
+
+Put the library files in the `src/vendor` folder.
+
+SCSS library files import into `src/vendor/_vendor.scss`.
+
+The JS library files import into `src/vendor/vendor.js`. If you include anything in this file, don't forget to do the following for everything to apply:
+
+1. In `webpack.config.babel.js` uncomment the line containing the `vendor` property in the `entry` object:
+
+```js
+const webpackConfig = {
+  entry: {
+    index: './index.js',
+    // vendor: '../../vendor/vendor.js', # uncomment this line
+  },
+};
+```
+
+2. In the page file, for example `index.pug`, where you want to add the library script, paste:
+
+```pug
+block append scripts
+  script(src='scripts/vendor.js')
+```
+
+If you want this script to be included in all pages of your project, you can add it directly to the `src/base/pug/default.pug` template, in the `scripts` block:
+
+```pug
+block scripts
+  script(src='scripts/index.js')
+  script(src='scripts/vendor.js') //- add this to the block
+```
 
 ## Recommendations for use
 
@@ -228,7 +272,7 @@ Then we can iterate over this array in Pug with its built-in `each in` loop:
 ```pug
 h3.list-label Paradigms of OOP:
 ul.list
-  for item in paradigms
+  each item in paradigms
     li.list-item!= item.title
 ```
 
@@ -245,9 +289,9 @@ The end result of this code will be this HTML markup:
 
 ### Component approach
 
-For reuse and easy layout extensibility, you should distribute the code into components. All components located in `src/compoents` directory. Component Pug files should be formatted as mixins, this makes it easier to change the contents of a component if you use it in multiple places without creating a similar component or changing the current one.
+For reuse and easy layout extensibility, you should distribute the code into components. All components located in `src/components` folder. Component Pug files should be formatted as mixins, this makes it easier to change the contents of a component if you use it in multiple places without creating a similar component or changing the current one.
 
-You can include pug component files in page files or other components. Import the component SCSS files into `src/components/components.scss`. JS files of components import `src/components/components.js`.
+You can include Pug component files in page files or other components. Import the component SCSS files into `src/components/components.scss`. JS files of components import `src/components/components.js`.
 
 To learn how to create components easier, see [Component generator.](#component-generator-using-bem-toolshttpsgithubcombem-toolsbem-tools-create)
 
@@ -270,7 +314,7 @@ If you need to highlight the link to active page on the site, then in correspond
 
 ```pug
 block pageConfig
-  - pageUrl = 'index.html' //- same values
+  - pageUrl = 'index.html'; //- same values
 ```
 
 ```jsonc
@@ -292,10 +336,10 @@ In the `main-nav.pug` mixin, when iterating over the `mainNavData` array, some c
 
 ```pug
 each item in mainNavData
-  - var itemClasses = ['main-nav__item']
+  - var itemClasses = ['main-nav__item'];
 
   if (item.url === pageUrl)
-    - itemClasses.push('main-nav__item_active')
+    - itemClasses.push('main-nav__item_active');
 
   li(class=itemClasses)
 ```
@@ -313,110 +357,80 @@ So the result would be this HTML markup:
 
 ## CLI
 
-### Download dependencies
-
-```
-$ npm install
-```
-
-### Building
-
-Builds project:
-
-```
-$ npm run build
-```
-
-### Deploying
-
-Init GitHub repository, build your project and push compiled files:
-
-```
-$ npm run deploy
-```
-
-If you have previously built the project with `npm run build`, you can only push the compiled files:
-
-```
-$ npm run publish
-```
-
-### Archiving
-
-Build a project and pack contents of `dist` in `*.zip` file.
-
-```
-$ npm run zip
-```
-
-### Build of individual file types
-
-Building in production mode certain types of files and sending them to the `dist` folder.
-
-```
-$ npm run build:pug        # builds the src Pug files
-$ npm run build:scss       # builds the src SCSS files
-$ npm run build:js         # builds the src JS files
-$ npm run build:images     # builds the src images
-$ npm run build:fonts      # builds the src fonts
-$ npm run build:sprites    # builds the SVG sprite
-```
+|    Command    |                                                       Description                                                       |
+| :-----------: | :---------------------------------------------------------------------------------------------------------------------: |
+|      dev      |                                           runs the build in development mode                                            |
+|     build     |    optimizes source files, converts preprocessor files into browser-understandable files, and sends to `dist` folder    |
+|      zip      |                                          runs `build` and archives the project                                          |
+|   build:pug   |                                        optimizes page files and pushs to `dist`                                         |
+| build:styles  |                                        optimizes style files and pushs to `dist`                                        |
+| build:scripts |                                         optimizes JS files and pushs to `dist`                                          |
+| build:images  |                                          optimizes images and pushs to `dist`                                           |
+|  build:fonts  |       converts local fonts to woff/woff2 formats, automatically generate SCSS file with `@font-face` declarations       |
+| build:sprites |                                            converts SVG icons to SVG sprite                                             |
+|    deploy     |                         runs `build`, then pushs the build to GitHub Pages (`gh-pages` branch)                          |
+|    publish    |                                   pushs the build to GitHub pages without run `build`                                   |
+|   lint:pug    |                                               checks Pug code for errors                                                |
+|  lint:styles  | checks SCSS code for errors. If you specify the `--fix` flag, then the errors will be automatically fixed by the linter |
+| lint:scripts  |  checks JS code for errors. If you specify the `--fix` flag, then the errors will be automatically fixed by the linter  |
 
 ### Code linting
 
-Force you to follow a rigid code guide, which leads to good readability of your code, and automatically check your code for errors.
+_Force you to follow a rigid code guide, which leads to good readability of your code, and automatically check your code for errors._
 
 For more convenient work with linters, I advise you to install the `Stylelint`, `ESLint`, `puglint` extensions in your IDEs. To make sure your code is automatically formatted on save, I also recommend installing the `Prettier` extension.
 
 #### Lint
 
 ```
-$ npm run lint:pug      # check for errors in Pug code
-$ npm run lint:scss     # check for errors in SCSS code
-$ npm run lint:js       # check for errors in JS code
+$ yarn run lint:pug          # check for errors in Pug code
+$ yarn run lint:styles       # check for errors in SCSS code
+$ yarn run lint:scripts      # check for errors in JS code
 ```
 
 #### Automatic Fix
 
 ```
-$ npm run lint:scss --fix   # fix all errors in SCSS code
-$ npm run lint:js --fix     # fix all errors in JS code
+$ yarn run lint:styles --fix      # fix all errors in SCSS code
+$ yarn run lint:scripts --fix     # fix all errors in JS code
 ```
 
-Unfortunately, automatic linting of Pug code is not available because the [Pug-linter](https://github.com/pugjs/pug-lint) developer did not implement the `--fix` flag. So in the case of Pug, you will have to use `npm run lint:pug` and fix errors manually with it. At least for now.
+Unfortunately, automatic fix of Pug code is not available because the [Pug-linter](https://github.com/pugjs/pug-lint) developer did not implement the `--fix` flag. So in the case of Pug, you will have to use `yarn run lint:pug` and fix errors manually with it. At least for now.
 
-## Component generator (using [bem-tools](https://github.com/bem-tools/bem-tools-create))
+## Component generator
 
-Create empty component by name in `src/components` folder.
+_Create empty component by name in `src/components` folder._
 
 By default generates only `*.pug`, `*.scss` and `*.js` files.
 
-```
-$ bem create component-name
+Syntax:
+
+```console
+$ bem create <component-name> <args>
 ```
 
-If you only need to create one file type, use the `-T` flag:
+If you need to create only one file type, use the `-T` flag:
 
-```
-$ bem create component-name -T pug
+```console
+$ bem create header -T pug
 ```
 
 If you need to remove one or more default file types, use the `-n` flag:
 
-```
-$ bem create component-name -n js
+```console
+$ bem create header -n js
 ```
 
 If you need to add another file type to your component folder, use the `-t` flag:
 
-```
-$ bem create component-name -t md
+```console
+$ bem create header -t md
 ```
 
 You can also combine flags:
 
-```
-$ bem create component-name -n js -t yml
+```console
+$ bem create menu -n js -t yml
 ```
 
 ## License
