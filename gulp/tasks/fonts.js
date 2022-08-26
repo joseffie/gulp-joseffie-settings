@@ -49,137 +49,91 @@ export const ttfToWoff = () =>
     .pipe($.gulp.dest(`${$.paths.srcFolder}/fonts`));
 
 // Creating a file with @font-face declarations
-export const CREATE_FONT_STYLES_FILE = async () => {
-  let fontsFile = `${$.paths.srcFolder}/base/scss/_fonts.scss`;
+const createFontStylesFile = async () => {
+  let fontsFile = `${$.config.path.srcFolder}/base/styles/_fonts.scss`;
 
-  $.plugins.fs.readdir(`${$.paths.srcFolder}/fonts`, (err, fontsFiles) => {
-    if (fontsFiles) {
+  $.plugins.fs.readdir(`${$.config.path.srcFolder}/fonts`, (_, fontFiles) => {
+    if (fontFiles) {
       if (!$.plugins.fs.existsSync(fontsFile)) {
         $.plugins.fs.writeFile(fontsFile, '', () => {});
-        let newFileOnly;
-        for (let i = 0; i < fontsFiles.length; i++) {
-          const fontFileName = fontsFiles[i].split('.')[0];
-          const fontFileExtension = fontsFiles[i].split('.')[1];
+        let currentFile;
 
-          //  Skip file if it is not a font
-          if (
-            fontFileExtension !== 'otf' &&
-            fontFileExtension !== 'ttf' &&
-            fontFileExtension !== 'woff' &&
-            fontFileExtension !== 'woff2'
-          ) {
-            console.log(
-              $.plugins.chalk.yellow.bold(
-                `[${fontFileName}.${fontFileExtension}] is not a font. Continue.`,
-              ),
-            );
-            // eslint-disable-next-line no-continue
-            continue;
-          }
+        const fontWeightMap = {
+          thin: 100,
+          extralight: 200,
+          light: 300,
+          book: 350,
+          regular: 400,
+          retina: 450,
+          medium: 500,
+          semibold: 600,
+          bold: 700,
+          extrabold: 800,
+          heavy: 800,
+          black: 900,
+        };
 
-          if (newFileOnly !== fontFileName) {
+        for (let i = 0; i < fontFiles.length; i++) {
+          const fontFileName = fontFiles[i].split('.')[0];
+          const fontFileExtension = fontFiles[i].split('.')[1];
+
+          if (currentFile !== fontFileName) {
             const fontName = fontFileName.split('-')[0] ? fontFileName.split('-')[0] : fontFileName;
             const fontType = fontFileName.split('-')[1] ? fontFileName.split('-')[1] : fontFileName;
             const lowerFontType = fontType.toLowerCase();
 
-            // Declaring variables for the font-weight and font-style properties
-            let fontWeight;
-            let fontStyle = 'normal';
+            let outStyles = {
+              fontWeight: 400,
+              fontStyle: 'normal',
+            };
 
-            switch (lowerFontType) {
-              case 'thin':
-                fontWeight = 100;
-                break;
-              case 'thinitalic':
-                fontWeight = 100;
-                fontStyle = 'italic';
-                break;
-              case 'extralight':
-                fontWeight = 200;
-                break;
-              case 'extralightitalic':
-                fontWeight = 200;
-                fontStyle = 'italic';
-                break;
-              case 'light':
-                fontWeight = 300;
-                break;
-              case 'lightitalic':
-                fontWeight = 300;
-                fontStyle = 'italic';
-                break;
-              case 'book':
-                fontWeight = 350;
-                break;
-              case 'bookitalic':
-                fontWeight = 350;
-                fontStyle = 'italic';
-                break;
-              case 'retina':
-                fontWeight = 450;
-                break;
-              case 'retinaitalic':
-                fontWeight = 450;
-                fontStyle = 'italic';
-                break;
-              case 'medium':
-                fontWeight = 500;
-                break;
-              case 'mediumitalic':
-                fontWeight = 500;
-                fontStyle = 'italic';
-                break;
-              case 'semibold':
-                fontWeight = 600;
-                break;
-              case 'semibolditalic':
-                fontWeight = 600;
-                fontStyle = 'italic';
-                break;
-              case 'bold':
-                fontWeight = 700;
-                break;
-              case 'bolditalic':
-                fontWeight = 700;
-                fontStyle = 'italic';
-                break;
-              case 'extrabold':
-              case 'heavy':
-                fontWeight = 800;
-                break;
-              case 'extrabolditalic':
-              case 'heavyitalic':
-                fontWeight = 800;
-                fontStyle = 'italic';
-                break;
-              case 'black':
-                fontWeight = 900;
-                break;
-              case 'blackitalic':
-                fontWeight = 900;
-                fontStyle = 'italic';
-                break;
-              case 'regularitalic':
-                fontWeight = 400;
-                fontStyle = 'italic';
-                break;
-              default:
-                fontWeight = 400;
+            //  Skip file if it is not a font
+            if (
+              fontFileExtension !== 'otf' &&
+              fontFileExtension !== 'ttf' &&
+              fontFileExtension !== 'woff' &&
+              fontFileExtension !== 'woff2'
+            ) {
+              console.log(
+                $.plugins.chalk.yellow(
+                  `[${fontFileName}.${fontFileExtension}] is in an unsupported format or is not a font. Continue.`,
+                ),
+              );
+              // eslint-disable-next-line no-continue
+              continue;
+            }
+
+            // Determining the value of `font-weight`
+            // eslint-disable-next-line array-callback-return
+            Object.entries(fontWeightMap).map(([key, value]) => {
+              if (lowerFontType.indexOf(key) !== -1) {
+                console.log(`Current iteration: [${key}: ${value}].`);
+                outStyles.fontWeight = value;
+              }
+            });
+
+            if (lowerFontType === 'italic') {
+              console.log('Current iteration: [regular: 400]');
+              outStyles.fontWeight = 400;
+            }
+
+            // If the font type in the file name contains `italic`,
+            // the value of `font-style` is defined as 'italic'
+            if (lowerFontType.indexOf('italic') !== -1) {
+              console.log('Defined as italic.');
+              outStyles.fontStyle = 'italic';
             }
 
             $.plugins.fs.appendFile(
               fontsFile,
               // eslint-disable-next-line max-len
-              `@font-face {\n\tfont-weight: ${fontWeight};\n\tfont-family: ${fontName};\n\tfont-style: ${fontStyle};\n\tsrc: url('../fonts/${fontFileName}.woff2') format('woff2'), url('../fonts/${fontFileName}.woff') format('woff'), url('../fonts/${fontFileName}.ttf') format('ttf');\n\tfont-display: swap;\n}\r\n`,
+              `@font-face {\n\tfont-weight: ${outStyles.fontWeight};\n\tfont-family: ${fontName};\n\tfont-style: ${outStyles.fontStyle};\n\tsrc: url('../assets/fonts/${fontFileName}.woff2') format('woff2'), url('../assets/fonts/${fontFileName}.woff') format('woff'), url('../assets/fonts/${fontFileName}.ttf') format('ttf'), url('../assets/fonts/${fontFileName}.otf') format('otf');\n\tfont-display: swap;\n}\n`,
               () => {},
             );
-            newFileOnly = fontFileName;
+
+            currentFile = fontFileName;
           } else {
-            console.log(
-              $.plugins.chalk.yellow(
-                'The file already exists. To update a file, it will be deleted',
-              ),
-            );
+            console.log($.plugins.chalk.yellow('Refreshing `_fonts.scss` file...'));
           }
         }
       }
@@ -187,7 +141,7 @@ export const CREATE_FONT_STYLES_FILE = async () => {
   });
 };
 
-export const convertFonts = gulp.series(otfToTtf, ttfToWoff, CREATE_FONT_STYLES_FILE);
+export const convertFonts = gulp.series(otfToTtf, ttfToWoff, createFontStylesFile);
 
 export const fonts = async () =>
   $.gulp
