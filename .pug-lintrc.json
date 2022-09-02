@@ -1,7 +1,7 @@
 {
   "validateExtensions": true,
   "validateDivTags": true,
-  "validateAttributeSeparator": { "separator": ", ", "multiLineSeparator": ",\n " },
+  "validateAttributeSeparator": { "separator": " ", "multiLineSeparator": "\n " },
   "validateAttributeQuoteMarks": "'",
   "requireSpecificAttributes": [{ "img": ["src", "alt"] }],
   "requireSpaceAfterCodeOperator": true,

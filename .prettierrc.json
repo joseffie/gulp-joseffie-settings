@@ -7,6 +7,6 @@
   "jsxBracketSameLine": false,
   "tabWidth": 2,
   "semi": true,
-  "pugAttributeSeparator": "always",
+  "pugAttributeSeparator": "none",
   "pugCommentPreserveSpaces": "keep-all"
 }

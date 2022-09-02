@@ -24,7 +24,7 @@ mixin btn(text, mods, isInput)
 
   //- else if passes isInput as true, this is a input
   else if (typeof(isInput) !== 'undefined' && isInput)
-    input.btn(class=allMods, value=text, type='button')&attributes(attributes)
+    input.btn(class=allMods value=text type='button')&attributes(attributes)
 
   //- else this is a button
   else
