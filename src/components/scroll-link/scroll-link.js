@@ -1,9 +1,11 @@
-const scrollLinks = document.querySelectorAll('a[data-scroll-link]');
+export const initScrollLinks = () => {
+  const scrollLinks = document.querySelectorAll('a[data-scroll-link]');
 
-if (scrollLinks.length > 0) {
-  scrollLinks.forEach((scrollLink) => {
-    scrollLink.addEventListener('click', scrollingOnClick);
-  });
+  if (scrollLinks.length > 0) {
+    scrollLinks.forEach((link) => {
+      link.addEventListener('click', scrollingOnClick);
+    });
+  }
 
   const scrollingOnClick = (e) => {
     const link = e.target;
@@ -11,10 +13,10 @@ if (scrollLinks.length > 0) {
 
     if (link.dataset.scrollLink && document.querySelector(link.dataset.scrollLink)) {
       const gotoBlock = document.querySelector(link.dataset.scrollLink);
+      // If the link is clicked while opening the burger menu.
       const gotoBlockValue =
         gotoBlock.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
-      // If the link is clicked while opening the burger menu.
       const burger = document.querySelector('[data-burger');
 
       if (burger) {
@@ -34,4 +36,4 @@ if (scrollLinks.length > 0) {
       e.preventDefault();
     }
   };
-}
+};
