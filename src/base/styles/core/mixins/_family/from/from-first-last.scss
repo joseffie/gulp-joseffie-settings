@@ -1,0 +1,11 @@
+/// Select the `$num` child from the start and the `$num` child from the last.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+/// @param {number} $num - id of the child
+
+@mixin from-first-last($num) {
+  &:nth-child(#{$num}),
+  &:nth-last-child(#{$num}) {
+    @content;
+  }
+}

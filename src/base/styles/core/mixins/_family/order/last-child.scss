@@ -1,0 +1,9 @@
+/// Select the last exact child
+/// @group no-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+
+@mixin last-child() {
+  &:last-of-type {
+    @content;
+  }
+}

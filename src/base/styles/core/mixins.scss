@@ -1,10 +1,7 @@
-@import 'mixins/retina-font-size';
-@import 'mixins/retina-properties';
-@import 'mixins/retina-ratio';
-@import 'mixins/rem';
-@import 'mixins/em';
-@import 'mixins/hover';
-@import 'mixins/clearfix';
+@import 'mixins/retina/_retina';
+@import 'mixins/units/_units';
+@import 'mixins/fixes/_fixes';
+@import 'mixins/_family/_family';
 @import 'mixins/input-placeholder';
 @import 'mixins/vhidden';
 @import 'mixins/truncate-text';

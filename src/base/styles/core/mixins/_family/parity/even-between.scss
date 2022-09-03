@@ -1,0 +1,9 @@
+/// Select all even children between `$first` and `$last`.
+/// @group with-arguments
+/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
+
+@mixin even-between($first, $last) {
+  &:nth-child(even):nth-child(n + #{$first}):nth-child(-n + #{$last}) {
+    @content;
+  }
+}
