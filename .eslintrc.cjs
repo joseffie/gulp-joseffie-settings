@@ -79,4 +79,12 @@ module.exports = {
     'import/no-self-import': 'off',
     'import/no-extraneous-dependencies': 'off',
   },
+
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: path.resolve(__dirname, 'webpack.config.babel.js'),
+      },
+    },
+  },
 };

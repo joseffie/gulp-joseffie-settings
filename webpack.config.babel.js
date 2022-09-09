@@ -25,6 +25,12 @@ const webpackConfig = {
     publicPath: '/js/',
   },
   context: path.resolve(__dirname, 'src/base/scripts'),
+  resolve: {
+    modules: ['node_modules', path.join(__dirname, 'src')],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   optimization: {
     minimize: isProd,
     minimizer: [
