@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   root: true,
   env: {
@@ -11,7 +13,10 @@ module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceTyp: 'module',
+    sourceType: 'module',
+    resolve: {
+      extensions: ['*', '.js', '.jsx'],
+    },
   },
   rules: {
     // Only allow debugger in development mode
@@ -81,7 +86,9 @@ module.exports = {
   },
 
   settings: {
+    'import/ignore': ['node_modules'],
     'import/resolver': {
+      node: {},
       webpack: {
         config: path.resolve(__dirname, 'webpack.config.babel.js'),
       },
