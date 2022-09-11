@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   root: true,
   env: {
@@ -84,14 +82,11 @@ module.exports = {
     'import/no-self-import': 'off',
     'import/no-extraneous-dependencies': 'off',
   },
-
   settings: {
-    'import/ignore': ['node_modules'],
     'import/resolver': {
-      node: {},
-      webpack: {
-        config: path.resolve(__dirname, 'webpack.config.babel.js'),
-      },
+      alias: [
+        ['@', 'src'],
+      ],
     },
   },
 };

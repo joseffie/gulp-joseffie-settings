@@ -4,15 +4,6 @@
  * https://github.com/zoxon/gulp-front/blob/master/source/scripts/helpers/is.js
  */
 
-export const isWebp = (callback) => {
-  const webP = new Image();
-  webP.onload = webP.onerror = () => {
-    callback(webP.height === 2);
-  };
-  webP.src =
-    'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-};
-
 export const isObject = (value) => Object(value) === value;
 
 export const isArray = Array.isArray || ((value) => toString.call(value) === '[object Array]');

@@ -51,9 +51,9 @@
     "del": "^7.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "emitty": "^1.4.0",
-    "eslint": "^8.22.0",
+    "eslint": "^8.23.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-unicorn": "^43.0.2",
@@ -100,7 +100,8 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "svg4everybody": "^2.1.9"
   },
   "husky": {
     "hooks": {

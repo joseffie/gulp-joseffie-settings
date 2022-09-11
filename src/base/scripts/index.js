@@ -1,18 +1,22 @@
-import { isWebp } from './helpers/is.js';
+import svg4everybody from 'svg4everybody';
+
+import initWebp from './helpers/initWebp.js';
+import ready from './helpers/DOM/ready.js';
 import matchWidthResize from './helpers/matchWidthResize.js';
 
-isWebp((support) => {
-  if (support === true) {
-    document.body.classList.add('webp');
-  } else {
-    document.body.classList.add('no-webp');
-  }
+initWebp((support) => {
+  const addBodyClass = document.body.classList.add;
+  return support === true ? addBodyClass('webp') : addBodyClass('no-webp');
 });
 
 import components from '../../components/components.js';
 
-components.burger.initBurgerMenu();
-components.header.setHeaderHeight();
+ready(() => {
+  components.burger.initBurgerMenu();
+  components.header.setHeaderHeight();
+
+  svg4everybody();
+});
 
 matchWidthResize(() => {
   // Update header height CSS variable on resize width screen
