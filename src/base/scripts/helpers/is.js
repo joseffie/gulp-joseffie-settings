@@ -6,10 +6,13 @@
 
 export const isObject = (value) => Object(value) === value;
 
-export const isArray = Array.isArray || ((value) => toString.call(value) === '[object Array]');
+export const isArray =
+  Array.isArray || ((value) => toString.call(value) === '[object Array]');
 
 export const isBoolean = (value) =>
-  value === true || value === false || toString.call(value) === '[object Boolean]';
+  value === true ||
+  value === false ||
+  toString.call(value) === '[object Boolean]';
 
 export const isString = (value) => toString.call(value) === '[object String]';
 
@@ -49,7 +52,11 @@ export const isEmpty = (value) => {
     const { length } = Object.getOwnPropertyNames(value);
 
     // eslint-disable-next-line no-extra-parens
-    if (length === 0 || (length === 1 && isArray(value)) || (length === 2 && isArguments(value))) {
+    if (
+      length === 0 ||
+      (length === 1 && isArray(value)) ||
+      (length === 2 && isArguments(value))
+    ) {
       return true;
     }
 

@@ -3,7 +3,9 @@ $layout-width: 1440; // <<- Layout full width
 $content-width-no-units: 1200; // <<- Layout container width
 $container-offset-no-units: 20; // <<- Container left and right padding
 
-$container-width-no-units: calc($content-width-no-units + ($container-offset-no-units * 2));
+$container-width-no-units: calc(
+  $content-width-no-units + ($container-offset-no-units * 2)
+);
 $content-width: $content-width-no-units * 1px;
 $container-offset: $container-offset-no-units * 1px;
 $container-width: $content-width + ($container-offset * 2);

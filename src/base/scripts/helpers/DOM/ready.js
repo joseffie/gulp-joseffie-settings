@@ -1,6 +1,8 @@
 const ready = (callback) => {
   if (
-    document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading'
+    document.attachEvent
+      ? document.readyState === 'complete'
+      : document.readyState !== 'loading'
   ) {
     callback();
   } else {

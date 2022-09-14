@@ -10,7 +10,10 @@ const matchWidthResize = (cb, timeout) => {
 
       windowWidthArr.push(windowWidth);
 
-      if (windowWidthArr[winWidthArrLength] !== windowWidthArr[winWidthArrLength - 1]) {
+      if (
+        windowWidthArr[winWidthArrLength] !==
+        windowWidthArr[winWidthArrLength - 1]
+      ) {
         clearTimeout(timeout);
         timeout = this.setTimeout(cb, 50);
       }

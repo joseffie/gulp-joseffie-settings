@@ -110,17 +110,17 @@
   },
   "lint-staged": {
     "*.pug": [
-      "yarn prettier --write **/*.pug --config .prettierrc.json",
+      "yarn prettier --write src/**/*.pug --config .prettierrc.json",
       "yarn pug-lint src/",
       "git add"
     ],
     "*.scss": [
-      "yarn prettier --write **/*.scss --config .prettierrc.json",
+      "yarn prettier --write src/**/*.scss --config .prettierrc.json",
       "yarn stylelint \"src/**/*.scss\" --fix",
       "git add"
     ],
     "*.{js,cjs}": [
-      "yarn prettier --write **/*.{js,cjs} --config .prettierrc.json",
+      "yarn prettier --write src/**/*.{js,cjs} --config .prettierrc.json",
       "yarn eslint --ext .js,.cjs src/**/*.js --fix",
       "git add"
     ]

@@ -6,5 +6,8 @@ export const getHeaderHeight = () => {
 };
 
 export const setHeaderHeight = () => {
-  document.documentElement.style.setProperty('--header-height', getHeaderHeight());
+  document.documentElement.style.setProperty(
+    '--header-height',
+    getHeaderHeight(),
+  );
 };

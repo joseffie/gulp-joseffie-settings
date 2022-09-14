@@ -21,7 +21,10 @@ export const createElement = (type, properties, ...children) => {
 
   for (const propertyName in properties || {}) {
     if (propertyName.startsWith('on')) {
-      element.addEventListener(propertyName.slice(2).toLowerCase(), properties[propertyName]);
+      element.addEventListener(
+        propertyName.slice(2).toLowerCase(),
+        properties[propertyName],
+      );
     } else {
       element[propertyName] = properties[propertyName];
     }
