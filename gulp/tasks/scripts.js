@@ -26,7 +26,7 @@ export const scripts = (done) => {
 
   return (
     $.gulp
-      .src(['*.js', '!_*.js'], { cwd: 'src/base/js', sourcemaps: $.isDev })
+      .src(['*.js', '!_*.js'], { cwd: 'src/base/scripts', sourcemaps: $.isDev })
       .pipe(
         $.plugins.plumber(
           $.plugins.notify.onError({
