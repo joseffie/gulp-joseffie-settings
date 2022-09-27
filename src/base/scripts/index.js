@@ -4,10 +4,15 @@ import initWebp from './helpers/initWebp.js';
 import ready from './helpers/DOM/ready.js';
 import matchWidthResize from './helpers/matchWidthResize.js';
 
+import Accordion from '@/components/accordion/accordion.js';
+
 initWebp((support) => {
   const addBodyClass = document.body.classList.add;
   return support === true ? addBodyClass('webp') : addBodyClass('no-webp');
 });
+
+// Factories class based plugins
+Accordion('.accordion');
 
 import components from '../../components/components.js';
 
@@ -18,7 +23,7 @@ ready(() => {
   svg4everybody();
 });
 
+// Do something on viewport width resize
 matchWidthResize(() => {
-  // Update header height CSS variable on resize width screen
   components.header.setHeaderHeight();
 });

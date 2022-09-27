@@ -1,0 +1,68 @@
+mixin accordion
+  -
+    const {
+      color,
+      size,
+      look = 'default',
+      mode = 'single', // or 'multiple'
+      baseClassName = 'accordion'
+    } = attributes;
+
+    const otherAttrs = _.omit(
+      attributes,
+      ['color', 'size', 'look', 'mode', 'baseClassName']
+    );
+
+    const stringToArray = (str) => {
+      return str ? str.split(" ").filter(v => v.length) : [];
+    };
+
+    const styles = stringToArray(look)
+      .map(str => `${baseClassName}_style_${str}`);
+
+    const classes = _.classnames(
+      [
+        {
+          [baseClassName]: baseClassName,
+          [`${baseClassName}_color_${color}`]: color,
+          [`${baseClassName}_size_${color}`]: size,
+        }
+      ].concat(styles)
+    );
+
+  div(class=classes data-accordion-mode=mode)&attributes(otherAttrs)
+    block
+
+mixin accordion-item
+  -
+    const {
+      label,
+      expanded: isOpen = false,
+      disabled: isDisabled = false,
+      baseClassName = 'accordion'
+    } = attributes;
+
+    const otherAttrs = _.omit(
+      attributes,
+      ['expanded', 'disabled', 'label', 'baseClassName']
+    );
+
+    const tabIndex = isDisabled ? '-1' : '0';
+
+  div(
+    class=`${baseClassName}__item`
+    data-accordion-item
+    data-accordion-item-open=`${isOpen}`
+    aria-disabled=isDisabled ? 'true' : 'false'
+  )&attributes(otherAttrs)
+    button(
+      class=`${baseClassName}__trigger`
+      disabled=isDisabled
+      tabindex=tabIndex
+      aria-expanded=`${isOpen}`
+      data-accordion-trigger
+    )= label
+
+    div(class=`${baseClassName}__panel` data-accordion-panel aria-hidden=`${!isOpen}`)
+      div(class=`${baseClassName}__content` data-accordion-content)
+        block

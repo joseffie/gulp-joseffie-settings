@@ -1,3 +1,5 @@
+import classnames from 'classnames/dedupe.js';
+import omit from 'object.omit';
 import postHtmlAttrsSorter from 'posthtml-attrs-sorter';
 
 import paths from './paths.js';
@@ -15,6 +17,12 @@ export const browserSyncConfig = {
 };
 
 export const pugConfig = {
+  locals: {
+    _: {
+      classnames,
+      omit,
+    },
+  },
   pretty: isDev,
   verbose: true,
 };

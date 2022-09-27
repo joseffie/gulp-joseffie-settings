@@ -7,10 +7,8 @@ import TerserPlugin from 'terser-webpack-plugin';
 import { fileURLToPath } from 'url';
 import { isProd } from './gulp/utils/environment.js';
 
-/* eslint-disable no-underscore-dangle */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-/* eslint-enable no-underscore-dangle */
 
 const webpackConfig = {
   mode: isProd ? 'production' : 'development',
@@ -21,11 +19,12 @@ const webpackConfig = {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].js',
-    path: path.join(__dirname, '/dist/js'),
-    publicPath: '/js/',
+    path: path.join(__dirname, '/dist/scripts'),
+    publicPath: '/scripts',
   },
   context: path.resolve(__dirname, 'src/base/scripts'),
   resolve: {
+    extensions: ['.js', '.cjs', '.mjs'],
     modules: ['node_modules', path.join(__dirname, 'src')],
     alias: {
       '@': path.resolve(__dirname, 'src'),

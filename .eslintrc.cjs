@@ -67,6 +67,8 @@ module.exports = {
     'no-multi-assign': 'off',
     'prefer-const': 'off',
     'implicit-arrow-linebreak': 'off',
+    'no-underscore-dangle': 'off',
+    'class-methods-use-this': 'off',
 
     // https://eslint.org/docs/latest/rules/max-len
     'max-len': ['warn', 150],

@@ -26,7 +26,6 @@ export const scripts = (done) => {
 
   return (
     $.gulp
-      // eslint-disable-next-line object-property-newline
       .src(['*.js', '!_*.js'], { cwd: 'src/base/js', sourcemaps: $.isDev })
       .pipe(
         $.plugins.plumber(
