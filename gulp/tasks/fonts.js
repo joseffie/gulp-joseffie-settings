@@ -127,7 +127,7 @@ const createFontStylesFile = async () => {
             $.plugins.fs.appendFile(
               fontsFile,
               // eslint-disable-next-line max-len
-              `@font-face {\n\tfont-weight: ${outStyles.fontWeight};\n\tfont-family: ${fontName};\n\tfont-style: ${outStyles.fontStyle};\n\tsrc: url('../assets/fonts/${fontFileName}.woff2') format('woff2'), url('../assets/fonts/${fontFileName}.woff') format('woff'), url('../assets/fonts/${fontFileName}.ttf') format('ttf'), url('../assets/fonts/${fontFileName}.otf') format('otf');\n\tfont-display: swap;\n}\n`,
+              `@font-face {\n\tfont-weight: ${outStyles.fontWeight};\n\tfont-family: ${fontName};\n\tfont-style: ${outStyles.fontStyle};\n\tsrc: url('../fonts/${fontFileName}.woff2') format('woff2'), url('../fonts/${fontFileName}.woff') format('woff'), url('../fonts/${fontFileName}.ttf') format('ttf'), url('../fonts/${fontFileName}.otf') format('otf');\n\tfont-display: swap;\n}\n`,
               () => {},
             );
 
