@@ -3,7 +3,10 @@ import { styles } from '../styles.js';
 import { scripts } from '../scripts.js';
 import { images } from '../images.js';
 import { makeMonoSprite, makeMultiSprite } from '../sprite.js';
-import { convertFonts, fonts } from '../fonts.js';
+import { otfToTtf } from '../fonts/otfToTtf.js';
+import { ttfToWoff } from '../fonts/ttfToWoff.js';
+import { createFontStylesFile } from '../fonts/createFontStylesFile.js';
+import { fonts } from '../fonts/fonts.js';
 
 export const watch = async () => {
   global.watch = true;
@@ -35,5 +38,5 @@ export const watch = async () => {
   $.gulp.watch($.paths.watch.iconsmono, makeMultiSprite);
 
   // Fonts
-  $.gulp.watch($.paths.watch.fonts, $.gulp.series(convertFonts, fonts));
+  $.gulp.watch($.paths.watch.fonts, $.gulp.series(otfToTtf, ttfToWoff, createFontStylesFile, fonts));
 };

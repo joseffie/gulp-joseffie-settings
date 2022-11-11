@@ -78,10 +78,9 @@ $ yarn run dev
 
 1. Run `yarn run dev` to see your app at `http://localhost:9050/`.
 
-> **TIP:** In order to provide a quick development start, local fonts and SVG sprites <ins>are not</ins> automatically compiled. If your project has them, you must compile the fonts and SVG icons yourself before starting development:
+> **TIP:** In order to provide a quick development start, SVG sprites <ins>are not</ins> automatically compiled. If your project has SVG, you must compile the SVG icons yourself before starting development:
 
 ```
-$ yarn run build:fonts     # converts a local fonts to woff/woff2 format
 $ yarn run build:sprites   # converts a SVG icons into SVG sprite
 ```
 
@@ -203,8 +202,8 @@ To convert SVG icons to SVG sprite, you need to follow a few simple steps.
 4. Use `+icon(name='icon-name', type='icon-type')`. A couple of examples:
 
 ```pug
-+icon(name='logo', type='multi')
-+icon(name='apple', type='mono')
++icon(name='logo' type='multi')
++icon(name='apple' type='mono')
 ```
 
 ### Data
@@ -349,7 +348,9 @@ So the result would be this HTML markup:
 ```html
 <nav class="main-nav">
   <ul class="main-nav__list">
-    <li class="main-nav__item main-nav__item_active"><a href="index.html">Home</a></li>
+    <li class="main-nav__item main-nav__item_active">
+      <a href="index.html">Home</a>
+    </li>
     <li class="main-nav__item"><a href="about.html">About us</a></li>
   </ul>
 </nav>

@@ -1,7 +1,7 @@
 import svgSprite from 'gulp-svg-sprite';
 import { monoColorSpriteConfig, multiColorSpriteConfig } from '../config/options.js';
 
-export const makeMonoSprite = async () =>
+export const makeMonoSprite = () =>
   $.gulp
     .src(`${$.paths.src.iconsmono}`)
     .pipe(

@@ -20,7 +20,10 @@ import { styles } from './gulp/tasks/styles.js';
 import { scripts } from './gulp/tasks/scripts.js';
 import { images } from './gulp/tasks/images.js';
 import { makeMonoSprite, makeMultiSprite } from './gulp/tasks/sprite.js';
-import { convertFonts, fonts } from './gulp/tasks/fonts.js';
+import { otfToTtf } from './gulp/tasks/fonts/otfToTtf.js';
+import { ttfToWoff } from './gulp/tasks/fonts/ttfToWoff.js';
+import { createFontStylesFile } from './gulp/tasks/fonts/createFontStylesFile.js';
+import { fonts } from './gulp/tasks/fonts/fonts.js';
 
 // Main tasks
 gulp.task('development', development);
@@ -33,7 +36,8 @@ gulp.task('styles', styles);
 gulp.task('scripts', scripts);
 gulp.task('images', images);
 gulp.task('sprites', gulp.parallel(makeMonoSprite, makeMultiSprite));
-gulp.task('fonts', gulp.series(convertFonts, fonts));
+gulp.task('compileFonts', gulp.series(otfToTtf, ttfToWoff, createFontStylesFile));
+gulp.task('fonts', fonts);
 
 // Default task
 gulp.task('default', gulp.series('development'));

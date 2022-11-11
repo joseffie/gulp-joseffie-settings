@@ -78,10 +78,9 @@ $ yarn run dev
 
 1. Запустите `yarn run dev`, чтобы увидеть ваше приложение на `http://localhost:9050/`.
 
-> **ПРИМЕЧАНИЕ:** С целью обеспечить обеспечить быстрый старт разработки, локальные шрифты и SVG спрайты автоматически <ins>НЕ</ins> компилируются. Если ваш проект содержит что-то из этого, вы должны скомпилировать шрифты и SVG иконки самостоятельно перед стартом разработки:
+> **ПРИМЕЧАНИЕ:** С целью обеспечить обеспечить быстрый старт разработки, SVG спрайты автоматически <ins>НЕ</ins> компилируются. Если ваш проект содержит SVG, вы должны скомпилировать SVG иконки самостоятельно перед стартом разработки:
 
 ```console
-$ yarn run build:fonts     # конвертирует локал. шрифты в форматы woff/woff2
 $ yarn run build:sprites   # конвертирует SVG иконки в SVG спрайт
 ```
 
@@ -203,8 +202,8 @@ block pageConfig
 4. Используйте `+icon(name='название-иконки', type='тип-иконки'). Пара примеров:
 
 ```pug
-+icon(name='logo', type='multi')
-+icon(name='apple', type='mono')
++icon(name='logo' type='multi')
++icon(name='apple' type='mono')
 ```
 
 ### Данные
@@ -353,7 +352,9 @@ each item in mainNavData
 ```html
 <nav class="main-nav">
   <ul class="main-nav__list">
-    <li class="main-nav__item main-nav__item_active"><a href="index.html">Home</a></li>
+    <li class="main-nav__item main-nav__item_active">
+      <a href="index.html">Home</a>
+    </li>
     <li class="main-nav__item"><a href="about.html">About us</a></li>
   </ul>
 </nav>

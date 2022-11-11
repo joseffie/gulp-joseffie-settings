@@ -5,7 +5,7 @@ import postcss from 'gulp-postcss';
 
 const sass = gulpSass(dartSass);
 
-export const styles = async () =>
+export const styles = () =>
   $.gulp
     .src($.paths.src.styles, { sourcemaps: $.isDev })
     .pipe(

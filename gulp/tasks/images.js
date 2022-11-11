@@ -3,7 +3,7 @@ import gulpWebp from 'gulp-webp';
 
 import { imageminConfig } from '../config/options.js';
 
-export const images = async () =>
+export const images = () =>
   $.gulp
     .src($.paths.src.images)
     .pipe(

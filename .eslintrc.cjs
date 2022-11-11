@@ -69,6 +69,9 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
+    'consistent-return': 'off',
+    'no-bitwise': 'off',
+    'no-continue': 'off',
 
     // https://eslint.org/docs/latest/rules/max-len
     'max-len': ['warn', 150],
