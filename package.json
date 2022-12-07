@@ -23,8 +23,8 @@
     "deploy": "npm run build && gh-pages -d dist",
     "publish": "gh-pages -d dist",
     "lint:pug": "pug-lint src/",
-    "lint:styles": "npx stylelint \"src/**/*.scss\"",
-    "lint:scripts": "npx eslint --ext .js,.cjs,.mjs src/**/*.js"
+    "lint:styles": "stylelint \"src/**/*.scss\"",
+    "lint:scripts": "eslint --ext .js,.cjs,.mjs src/**/*.js"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

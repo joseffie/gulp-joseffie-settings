@@ -594,6 +594,7 @@
         "message": "Selectors must not have a space before the comma"
       }
     ],
+    "max-line-length": 100,
     "media-feature-colon-space-after": [
       "always",
       {
