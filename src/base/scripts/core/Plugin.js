@@ -27,6 +27,7 @@ export default class Plugin {
     this.options = deepMerge(this.defaults(), this.options);
   }
 
+  /* eslint-disable class-methods-use-this */
   defaults() {
     return {};
   }
@@ -36,6 +37,7 @@ export default class Plugin {
   buildCache() { }
 
   bindEvents() { }
+  /* eslint-enable class-methods-use-this */
 
   setInited() {
     this.element.setAttribute(`data-${this.name}-inited`, true);
@@ -43,9 +45,9 @@ export default class Plugin {
 
   isInited() {
     return (
-      this.element.hasAttribute(`data-${this.name}-inited`) ||
-      this.element.getAttribute(`data-${this.name}-inited`) ||
-      false
+      this.element.hasAttribute(`data-${this.name}-inited`)
+      || this.element.getAttribute(`data-${this.name}-inited`)
+      || false
     );
   }
 

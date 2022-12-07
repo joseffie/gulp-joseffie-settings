@@ -19,9 +19,7 @@ export default class EventsBus {
    */
   on(event, handler) {
     if (isArray(event)) {
-      for (const element of event) {
-        this.on(element, handler);
-      }
+      event.forEach((element) => this.on(element, handler));
     }
 
     // Create the event's object if not yet created
@@ -48,9 +46,7 @@ export default class EventsBus {
    */
   emit(event, context) {
     if (isArray(event)) {
-      for (const element of event) {
-        this.emit(element, context);
-      }
+      event.forEach((element) => this.emit(element, context));
     }
 
     // If the event doesn't exist, or there's no handlers in queue, just leave

@@ -1,13 +1,16 @@
 import gulpZip from 'gulp-zip';
 import getZipFileName from '../../utils/getZipFileName.js';
+import { log } from '../../utils/logger.js';
 
 const delExistingArchiveFolder = () => {
   const { archiveFolder } = $.paths;
 
   if ($.plugins.fs.existsSync(archiveFolder)) {
     $.plugins.del([archiveFolder]);
-    return console.log($.plugins.chalk.bold.yellow('Removed old archive folder.'));
+    return log('Removed old archive folder.');
   }
+
+  return null;
 };
 
 export const buildZip = () => {

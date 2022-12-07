@@ -20,7 +20,7 @@ export const development = gulp.series(
     pug,
     styles,
     images,
-    gulp.series(otfToTtf, ttfToWoff, createFontStylesFile, fonts)
+    gulp.series(otfToTtf, ttfToWoff, createFontStylesFile, fonts),
   ),
   scripts,
   gulp.parallel(watch, server),

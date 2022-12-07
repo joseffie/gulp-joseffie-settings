@@ -28,6 +28,8 @@ const webpackConfig = {
     modules: ['node_modules', path.join(__dirname, 'src')],
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@helpers': path.resolve(__dirname, 'src/base/scripts/helpers'),
+      '@core': path.resolve(__dirname, 'src/base/scripts/core'),
     },
   },
   optimization: {

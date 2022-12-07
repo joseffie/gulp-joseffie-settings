@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import moment from 'moment';
 
 const sendLogs = (level, content, data) => {
-  const timestamp = `${moment().format('DD-MM-yyyy HH:mm:ss')}`;
+  const timestamp = `${moment().format('HH:mm:ss')}`;
 
   switch (level) {
     case 'log':

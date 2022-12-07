@@ -24,24 +24,22 @@ export const scripts = (done) => {
     );
   }
 
-  return (
-    $.gulp
-      .src(['*.js', '!_*.js'], { cwd: 'src/base/scripts', sourcemaps: $.isDev })
-      .pipe(
-        $.plugins.plumber(
-          $.plugins.notify.onError({
-            title: 'JS',
-            message: 'You got an error: <%= error.message %>',
-          }),
-        ),
-      )
-      .pipe(webpackStream(webpackConfig, webpack, webpackDone))
-      .pipe($.gulp.dest($.paths.build.scripts))
-      .pipe($.plugins.browsersync.stream())
-      .on('data', () => {
-        if (firstBuildReady) {
-          done();
-        }
-      })
-  );
+  return $.gulp
+    .src(['*.js', '!_*.js'], { cwd: 'src/base/scripts', sourcemaps: $.isDev })
+    .pipe(
+      $.plugins.plumber(
+        $.plugins.notify.onError({
+          title: 'JS',
+          message: 'You got an error: <%= error.message %>',
+        }),
+      ),
+    )
+    .pipe(webpackStream(webpackConfig, webpack, webpackDone))
+    .pipe($.gulp.dest($.paths.build.scripts))
+    .pipe($.plugins.browsersync.stream())
+    .on('data', () => {
+      if (firstBuildReady) {
+        done();
+      }
+    });
 };

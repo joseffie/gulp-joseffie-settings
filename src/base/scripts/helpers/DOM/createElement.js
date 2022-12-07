@@ -19,7 +19,7 @@ export const createElement = (type, properties, ...children) => {
 
   const element = document.createElement(type);
 
-  for (const propertyName in properties || {}) {
+  Object.keys(properties || {}).forEach((propertyName) => {
     if (propertyName.startsWith('on')) {
       element.addEventListener(
         propertyName.slice(2).toLowerCase(),
@@ -28,17 +28,18 @@ export const createElement = (type, properties, ...children) => {
     } else {
       element[propertyName] = properties[propertyName];
     }
-  }
+  });
 
-  for (let child of children || []) {
-    if (child) {
-      if (child.constructor === String) {
-        child = document.createTextNode(child);
-      }
+  (children || []).forEach((child) => {
+    if (!child) return {};
 
-      element.append(child);
+    if (child.constructor === String) {
+      child = document.createTextNode(child);
     }
-  }
+
+    element.append(child);
+    return null;
+  });
 
   return element;
 };

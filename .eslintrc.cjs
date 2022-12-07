@@ -7,91 +7,44 @@ module.exports = {
     jquery: true,
   },
   extends: ['airbnb-base'],
-  plugins: ['prettier', 'unicorn'],
+  plugins: ['prettier'],
   parser: '@babel/eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
     resolve: {
-      extensions: ['*', '.js', '.jsx'],
+      extensions: ['*', '.js'],
     },
   },
   rules: {
-    // Only allow debugger in development mode
-    'no-debugger': process.argv.includes('--production') ? 'error' : 'off',
-
-    // Only allow `console.log` in development mode
-    'no-console': process.argv.includes('--production')
-      ? ['error', { allow: ['warn', 'error'] }]
-      : 'off',
-
-    // https://eslint.org/docs/rules/multiline-comment-style
-    'multiline-comment-style': 'off',
-
-    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/no-null.md
-    'unicorn/no-null': 'off',
-
-    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/master/docs/rules/filename-case.md
-    'unicorn/filename-case': [
-      'error',
-      {
-        cases: {
-          camelCase: true,
-          pascalCase: true,
-          kebabCase: true,
-        },
-      },
-    ],
-    /**
-     * using only single quotes
-     * @see https://eslint.org/docs/latest/rules/quotes
-     */
-    quotes: [
-      'error',
-      'single',
-      {
-        avoidEscape: true,
-      },
-    ],
-    'jsx-quotes': 'off',
-    'no-restricted-syntax': 'off',
-    'no-param-reassign': 'off',
-    'no-plusplus': 'off',
-    'no-use-before-define': 'off',
-    'no-else-return': 'off',
-    'no-lonely-if': 'off',
-    'default-case': 'off',
-    'no-unused-vars': 'warn',
-    'comma-dangle': 'warn',
-    'operator-linebreak': 'off',
-    'no-multi-assign': 'off',
-    'prefer-const': 'off',
-    'implicit-arrow-linebreak': 'off',
-    'no-underscore-dangle': 'off',
-    'class-methods-use-this': 'off',
-    'consistent-return': 'off',
-    'no-bitwise': 'off',
+    'no-console': 'off',
     'no-continue': 'off',
-
-    // https://eslint.org/docs/latest/rules/max-len
-    'max-len': ['warn', 150],
-
-    // Conflict with unicorn/prefer-spread
-    'array-func/prefer-array-from': 'off',
-
-    'import/order': 'off',
+    'no-bitwise': 'off',
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
+    'no-return-assign': ['error', 'except-parens'],
     'import/first': 'off',
+    'import/order': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
-    'import/no-unresolved': 'off',
-    'import/no-self-import': 'off',
-    'import/no-extraneous-dependencies': 'off',
   },
+  overrides: [{
+    files: ['gulp/**/*.js', 'postcss.config.cjs'],
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+    },
+  }],
   settings: {
     'import/resolver': {
-      alias: [
-        ['@', 'src'],
-      ],
+      alias: {
+        extensions: ['.js', '.cjs'],
+        map: [
+          ['@', './src'],
+          ['@helpers', './src/base/scripts/helpers'],
+          ['@core', './src/base/scripts/core'],
+        ],
+      },
     },
   },
 };

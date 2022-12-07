@@ -4,8 +4,11 @@
     "allowSyntheticDefaultImports": false,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@helpers/*": ["src/base/scripts/helpers/*"],
+      "@core/*": ["src/base/scripts/core/*"]
     }
   },
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

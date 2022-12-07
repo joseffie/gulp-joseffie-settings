@@ -38,5 +38,8 @@ export const watch = async () => {
   $.gulp.watch($.paths.watch.iconsmono, makeMultiSprite);
 
   // Fonts
-  $.gulp.watch($.paths.watch.fonts, $.gulp.series(otfToTtf, ttfToWoff, createFontStylesFile, fonts));
+  $.gulp.watch(
+    $.paths.watch.fonts,
+    $.gulp.series(otfToTtf, ttfToWoff, createFontStylesFile, fonts),
+  );
 };

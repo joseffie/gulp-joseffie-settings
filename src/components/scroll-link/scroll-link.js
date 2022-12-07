@@ -1,26 +1,19 @@
 export const initScrollLinks = () => {
   const scrollLinks = document.querySelectorAll('a[data-scroll-link]');
 
-  if (scrollLinks.length > 0) {
-    scrollLinks.forEach((link) => {
-      link.addEventListener('click', scrollingOnClick);
-    });
-  }
-
   const scrollingOnClick = (e) => {
     const link = e.target;
     const headerHeight = document.querySelector('.header').offsetHeight;
 
     if (
-      link.dataset.scrollLink &&
-      document.querySelector(link.dataset.scrollLink)
+      link.dataset.scrollLink
+      && document.querySelector(link.dataset.scrollLink)
     ) {
       const gotoBlock = document.querySelector(link.dataset.scrollLink);
       // If the link is clicked while opening the burger menu.
-      const gotoBlockValue =
-        gotoBlock.getBoundingClientRect().top +
-        window.pageYOffset -
-        headerHeight;
+      const gotoBlockValue = gotoBlock.getBoundingClientRect().top
+        + window.pageYOffset
+        - headerHeight;
 
       const burger = document.querySelector('[data-burger');
 
@@ -28,8 +21,8 @@ export const initScrollLinks = () => {
         const nav = document.querySelector('.main-nav');
 
         if (
-          burger.classList.contains('_active') ||
-          nav.classList.contains('_active')
+          burger.classList.contains('_active')
+          || nav.classList.contains('_active')
         ) {
           document.body.classList.remove('_no-scroll');
           nav.classList.remove('_active');
@@ -44,4 +37,10 @@ export const initScrollLinks = () => {
       e.preventDefault();
     }
   };
+
+  if (scrollLinks.length > 0) {
+    scrollLinks.forEach((link) => {
+      link.addEventListener('click', scrollingOnClick);
+    });
+  }
 };

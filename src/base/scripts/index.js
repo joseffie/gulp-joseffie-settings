@@ -14,7 +14,7 @@ initWebp((support) => {
 // Factories class based plugins
 Accordion('.accordion');
 
-import components from '../../components/components.js';
+import components from '@/components/components.js';
 
 ready(() => {
   components.burger.initBurgerMenu();

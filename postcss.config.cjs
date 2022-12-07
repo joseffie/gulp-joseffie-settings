@@ -1,15 +1,16 @@
+const isProd = process.argv.includes('--production');
 const sortMQ = require('sort-css-media-queries');
 
 module.exports = () => ({
   plugins: {
-    'postcss-flexbugs-fixes': {},
-    autoprefixer: {
+    'postcss-flexbugs-fixes': isProd ? {} : false,
+    autoprefixer: isProd ? {
       flexbox: 'no-2009',
       cascade: true,
       grid: true,
-    },
-    'postcss-preset-env': {},
-    cssnano: {
+    } : false,
+    'postcss-preset-env': isProd ? {} : false,
+    cssnano: isProd ? {
       preset: [
         'default',
         {
@@ -18,7 +19,7 @@ module.exports = () => ({
           },
         },
       ],
-    },
+    } : false,
     'css-mqpacker': {
       sort: sortMQ,
     },
