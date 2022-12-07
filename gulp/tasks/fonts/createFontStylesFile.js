@@ -1,22 +1,24 @@
-/* eslint-disable array-callback-return */
-
 //                        !! IMPORTANT !!
 // IF THE FILE NAME DOES NOT MATCH THE FORMAT "FONT NAME-FONT SHAPE"
 // (EXAMPLE: "Roboto-Regular" or "IbarraRealNova-MediumItalic"), THEN THE SCRIPT WILL NOT WORK.
 // IF THE NAME OF YOUR FONT FILE DOES NOT MATCH THE TEMPLATE, RENAME IT MANUALLY!
 
+// import why from 'why-is-node-running';
+import { success, warn, log } from '../../utils/logger.js';
+
 export const createFontStylesFile = async () => {
+  log('Getting started.');
+
   const { fs } = $.plugins;
   const fontsFile = `${$.paths.srcFolder}/base/styles/_fonts.scss`;
 
   if (fs.existsSync(fontsFile)) {
-    return console.log(
-      'The font styles file exists, no operation is required.',
-      '\nIf you have added new fonts, delete the \'src/base/styles/_fonts.scss\' file and try again.',
-    );
+    warn('The font styles file exists, no operations is required');
+    warn('If you have added new fonts, delete the \'src/base/styles/_fonts.scss\' file and try again.');
+    return;
   }
 
-  fs.readdir(`${$.paths.srcFolder}/fonts`, (_, fontFiles) => {
+  fs.readdir(`${$.paths.srcFolder}/fonts`, async (_, fontFiles) => {
     let fontFound = false;
 
     for (let i = 0; i < fontFiles.length; i++) {
@@ -28,13 +30,14 @@ export const createFontStylesFile = async () => {
       }
     }
 
-    if (!fontFound) return console.log('No local fonts found.');
+    if (!fontFound) return Promise.resolve(success('No local fonts found.'));
 
     if (!fs.existsSync(fontsFile)) {
+      log('Starting creating _fonts.scss...');
       fs.writeFile(fontsFile, '', () => { });
-      let currentFile;
-      let fontsList = {};
 
+      let currentFile;
+      const fontsList = {};
       const fontWeightMap = {
         thin: 100,
         extralight: 200,
@@ -54,18 +57,13 @@ export const createFontStylesFile = async () => {
         const fontFileName = fontFiles[i].split('.')[0];
         const fontFileExtension = fontFiles[i].slice((fontFiles[i].lastIndexOf('.') - 1 >>> 0) + 2);
 
+        // Skip file if it is not a font
+        if (!['otf', 'ttf', 'woff', 'woff2'].includes(fontFileExtension)) {
+          warn(`${fontFileName}.${fontFileExtension} is in an unsupported font format or is not a font.`);
+          continue;
+        }
+
         if (currentFile !== fontFileName) {
-          //  Skip file if it is not a font
-          if (!['otf', 'ttf', 'woff', 'woff2'].includes(fontFileExtension)) {
-            console.log(
-              $.plugins.chalk.yellow(
-                `[${fontFileName}.${fontFileExtension}] is in an unsupported format or is not a font. Continue.`,
-              ),
-            );
-
-            continue;
-          }
-
           const fontName = fontFileName.split('-')[0] ? fontFileName.split('-')[0] : fontFileName;
           const fontType = fontFileName.split('-')[1] ? fontFileName.split('-')[1] : fontFileName;
           const lowerFontType = fontType.toLowerCase();
@@ -81,15 +79,15 @@ export const createFontStylesFile = async () => {
           font.fontStyle = 'normal';
 
           // Determining the value of `font-weight`
-          Object.entries(fontWeightMap).map(([key, value]) => {
+          Object.entries(fontWeightMap).forEach(([key, value]) => {
             if (lowerFontType.indexOf(key) !== -1) {
-              iterationMessage += `Current (${fontName}): [${key}: ${value}].`;
+              iterationMessage += `Current (${fontFileName}): [${key}: ${value}].`;
               font.fontWeight = value;
             }
           });
 
           if (lowerFontType === 'italic') {
-            iterationMessage += `Current (${fontName}): [regular: 400].`;
+            iterationMessage += `Current (${fontFileName}): [regular: 400].`;
             font.fontWeight = 400;
           }
 
@@ -100,23 +98,23 @@ export const createFontStylesFile = async () => {
             font.fontStyle = 'italic';
           }
 
-          console.log(iterationMessage);
+          log(iterationMessage);
 
           currentFile = fontFileName;
         } else fontsList[fontFileName].ext.push(fontFileExtension);
       }
 
-      Object.entries(fontsList).map(([key, value]) => {
+      Object.entries(fontsList).forEach(([key, value]) => {
         const extensions = {
           otf: '',
           ttf: '',
           woff: '',
           woff2: '',
         };
-        let src = [];
+        const src = [];
 
         for (let i = 0; i < value.ext.length; i++) {
-          Object.keys(extensions).map((ext) => {
+          Object.keys(extensions).forEach((ext) => {
             if (value.ext[i] === ext) {
               src.push(`url('../fonts/${key}.${value.ext[i]}') format('${value.ext[i]}')`);
             }
@@ -130,6 +128,10 @@ export const createFontStylesFile = async () => {
           () => { },
         );
       });
+
+      return success('_fonts.scss has been created successfully.');
     }
+
+    return null;
   });
 };
