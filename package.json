@@ -3,7 +3,7 @@
   "description": "Starter template and gulp settings for web development",
   "author": "Ivan Gavrilich (joseffie)",
   "license": "GPL-3.0-only",
-  "version": "6.2.0",
+  "version": "6.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/joseffie/gulp-joseffie-settings.git"
