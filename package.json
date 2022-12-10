@@ -89,7 +89,6 @@
     "prettier": "^2.7.1",
     "pug-lint": "^2.6.0",
     "sass": "^1.54.5",
-    "simple-node-logger": "^21.8.12",
     "sort-css-media-queries": "^2.0.4",
     "stylelint": "^14.11.0",
     "stylelint-config-standard-scss": "^6.1.0",
