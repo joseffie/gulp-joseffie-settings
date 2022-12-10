@@ -15,7 +15,7 @@
     "build": "gulp build --production",
     "zip": "gulp zip --production",
     "build:pug": "gulp pug --production",
-    "build:styles": "gulp styles --production PACKAGE='./package.json'",
+    "build:styles": "gulp styles --production",
     "build:scripts": "gulp scripts --production",
     "build:images": "gulp images --production",
     "build:fonts": "gulp compileFonts && gulp fonts",
