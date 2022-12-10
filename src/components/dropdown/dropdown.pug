@@ -1,0 +1,60 @@
+mixin dropdown
+  -
+    const {
+      color,
+      size,
+      style = 'default',
+      caret = true,
+      ['trigger-text']: triggerText,
+      block: blockAttr = false,
+      disabled: disabledAttr = false,
+      baseClassName = 'dropdown'
+    } = attributes;
+
+    const otherAttrs = _.omit(
+      attributes,
+      [
+        'color',
+        'size',
+        'style',
+        'caret',
+        'trigger-text',
+        'block',
+        'disabled',
+        'baseClassName',
+      ]
+    );
+
+    const stringToArray = (str) => str
+      ? str.split(' ').filter((v) => v.length)
+      : [];
+
+    const styles = stringToArray(style)
+      .map((style) => `${baseClassName}_style_${style}`);
+
+    const classes = _.classnames(
+      [
+        {
+          [baseClassName]: baseClassName,
+          [`${baseClassName}_block`]: blockAttr.toString() === 'true',
+          [`${baseClassName}_color_${color}`]: color,
+          [`${baseClassName}_size_${size}`]: size,
+          [`${baseClassName}_disabled`]: disabledAttr,
+        }
+      ].concat(styles)
+    );
+
+  div(class=classes aria-disabled=disabledAttr.toString())&attributes(otherAttrs)
+    div(
+      class=`${baseClassName}__trigger`
+      role='button'
+      data-dropdown-trigger
+      aria-hascaret=caret.toString() === 'true' ? 'true' : 'false'
+    )
+      div(class=`${baseClassName}__text`)= triggerText
+
+      if (caret.toString() === 'true')
+        div(class=`${baseClassName}__caret`)
+
+    div(class=`${baseClassName}__menu` data-dropdown-menu)
+      block

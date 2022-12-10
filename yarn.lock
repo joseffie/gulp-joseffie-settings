@@ -1319,6 +1319,11 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@popperjs/core@^2.11.6":
+  version "2.11.6"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
+  integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
+
 "@prettier/plugin-pug@^2.2.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-2.3.0.tgz#6c9ec1be8af595b04d086d5b350a282cd512aa8b"
@@ -2131,6 +2136,13 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+attrs@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/attrs/-/attrs-1.1.0.tgz#b261caf84a073a86f777e0daef893b11722f322d"
+  integrity sha512-56WLIWt5nymM6aJK+8osFDWXNcWJGOE1eBGHPVIi/tbd1gk6NLFWyCDVbiELQpvPYPdid92zbPLDtAiCgKxprg==
+  dependencies:
+    stylon "0.0.1"
 
 autoprefixer@^10.4.11, autoprefixer@^10.4.8:
   version "10.4.13"
@@ -7502,6 +7514,11 @@ nanoid@^3.3.4:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
+nanoid@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-4.0.0.tgz#6e144dee117609232c3f415c34b0e550e64999a5"
+  integrity sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -10431,6 +10448,11 @@ stylelint@^14.11.0:
     table "^6.8.1"
     v8-compile-cache "^2.3.0"
     write-file-atomic "^4.0.2"
+
+stylon@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/stylon/-/stylon-0.0.1.tgz#6482594cd5dd287d93420c48b9f4b4070bef1a7b"
+  integrity sha512-k8pAeWw6HbRKx1kRU7dIWg53z+GIR501wuF50nkRqdscfnjO7SZt3oQrIJVzhYzzgQLLkSigRpUhjCxQEHQRVg==
 
 supports-color@^2.0.0:
   version "2.0.0"

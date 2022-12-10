@@ -2,6 +2,11 @@
   padding: em(15) 0;
   background-color: #fff;
   box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+  transition: all 0.25s ease;
+
+  /// &_sticky {
+  ///
+  /// }
 
   &__container {
     display: flex;

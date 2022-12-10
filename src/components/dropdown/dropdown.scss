@@ -1,0 +1,117 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 50px;
+
+  &__trigger {
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__menu {
+    z-index: 100;
+    min-width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+    will-change: opacity, visibility;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__caret {
+    display: none;
+  }
+
+  &[data-dropdown-open='true'] &__menu {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &[disabled] &__trigger,
+  &[aria-disabled='true'] &__trigger {
+    pointer-events: none;
+
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  &_block {
+    display: block;
+  }
+
+  &_style_default &__trigger {
+    display: flex;
+    box-sizing: border-box;
+    padding: em(12) em(24);
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px 0px rgba(#000, 0.2), 0px 1px 1px 0px rgba(#000, 0.14),
+      0px 2px 1px -1px rgba(#000, 0.12);
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+  }
+
+  &_style_default &__trigger[aria-hascaret='true'] {
+    padding: em(12) em(48) em(12) em(24);
+  }
+
+  &_style_default &__caret {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-color: #535353;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    transform: translateY(-50%) rotate(45deg);
+    transform-origin: 65% 65%;
+    transition: 150ms all ease-in-out;
+  }
+
+  &_style_default &__menu {
+    z-index: 100;
+    min-width: 100%;
+    max-width: 300px;
+    max-height: 60vh;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    text-align: left;
+    background-color: #fafafa;
+    border-radius: 4px;
+    box-shadow: 0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%),
+      0 5px 5px -3px rgb(0 0 0 / 20%);
+    visibility: hidden;
+    opacity: 0;
+    transition: 125ms all ease-in-out;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &_style_default[data-dropdown-open='true'] &__caret {
+    transform: translateY(-50%) rotate(225deg);
+  }
+
+  &_style_default[disabled] &__trigger,
+  &_style_default[aria-disabled='true'] &__trigger {
+    background-color: rgba(#000, 0.12);
+  }
+
+  &_style_default[disabled] &__text,
+  &_style_default[disabled] &__caret,
+  &_style_default[aria-disabled='true'] &__text,
+  &_style_default[aria-disabled='true'] &__caret {
+    opacity: 0.5;
+  }
+}

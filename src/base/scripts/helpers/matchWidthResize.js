@@ -12,7 +12,7 @@ const matchWidthResize = (cb, timeout) => {
       !== windowWidthArr[winWidthArrLength - 1]
     ) {
       clearTimeout(timeout);
-      timeout = this.setTimeout(cb, 50);
+      timeout = setTimeout(cb, 50);
     }
   });
 };

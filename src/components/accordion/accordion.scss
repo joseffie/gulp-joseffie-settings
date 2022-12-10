@@ -1,6 +1,5 @@
 .accordion {
   $block-class: &;
-  // $panel-anim-ease: cubic-bezier(0.19, 1, 0.22, 1);
 
   &__item {
     position: relative;
@@ -44,8 +43,8 @@
   &_style_default {
     @at-root #{$block-class}__item {
       background-color: #fff;
-      box-shadow: 0px 1px 3px 0px rgba(#000, 0.2),
-        0px 1px 1px 0px rgba(#000, 0.14), 0px 2px 1px -1px rgba(#000, 0.12);
+      box-shadow: 0px 1px 3px 0px rgba(#000, 0.2), 0px 1px 1px 0px rgba(#000, 0.14),
+        0px 2px 1px -1px rgba(#000, 0.12);
       transition: margin 0.2s ease-in-out;
 
       &[data-accordion-item-open='true'] {

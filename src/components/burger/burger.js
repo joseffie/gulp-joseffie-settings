@@ -1,5 +1,5 @@
 export const initBurgerMenu = () => {
-  const burgerMenu = document.querySelector('[data-burger');
+  const burgerMenu = document.querySelector('[data-burger]');
   const mainNavMenu = document.querySelector('.main-nav');
 
   if (burgerMenu) {
