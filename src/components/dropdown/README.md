@@ -128,7 +128,7 @@ You can create style patterns based on the size of the dropdown. To do this, spe
 +dropdown(size='md')
 ```
 
-Then you can implement your size pattern in SCSS by accessing the `&_size_<your-color>` selector. In our example, this is:
+Then you can implement your size pattern in SCSS by accessing the `&_size_<your-size>` selector. In our example, this is:
 
 ```scss
 .dropdown {
