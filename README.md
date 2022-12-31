@@ -28,7 +28,9 @@ $ npm i -g yarn
 2. Install the [Gulp](https://gulpjs.com/) and [bem-tools](https://en.bem.info/) globally:
 
 ```console
-$ yarn add --global gulp bem-tools-core bem-tools-create
+$ yarn global add gulp bem-tools-core bem-tools-create
+# or
+$ npm i -g gulp bem-tools-core bem-tools-create
 ```
 
 3. Clone the project:

@@ -28,7 +28,9 @@ $ npm i -g yarn
 2. Установите [Gulp](https://gulpjs.com/) и [bem-tools](https://en.bem.info/) глобально:
 
 ```console
-$ yarn add --global gulp bem-tools-core bem-tools-create
+$ yarn global add gulp bem-tools-core bem-tools-create
+# или
+$ npm i -g gulp bem-tools-core bem-tools-create
 ```
 
 3. Клонируйте сборку:

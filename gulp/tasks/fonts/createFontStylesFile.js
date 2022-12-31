@@ -3,7 +3,6 @@
 // (EXAMPLE: "Roboto-Regular" or "IbarraRealNova-MediumItalic"), THEN THE SCRIPT WILL NOT WORK.
 // IF THE NAME OF YOUR FONT FILE DOES NOT MATCH THE TEMPLATE, RENAME IT MANUALLY!
 
-// import why from 'why-is-node-running';
 import { success, warn, log } from '../../utils/logger.js';
 
 export const createFontStylesFile = async () => {
@@ -30,13 +29,13 @@ export const createFontStylesFile = async () => {
       }
     }
 
-    if (!fontFound) return Promise.resolve(success('No local fonts found.'));
+    if (!fontFound) return success('No local fonts found.');
 
     if (!fs.existsSync(fontsFile)) {
       log('Starting creating _fonts.scss...');
       fs.writeFile(fontsFile, '', () => { });
 
-      let currentFile;
+      let lastFileName = null;
       const fontsList = {};
       const fontWeightMap = {
         thin: 100,
@@ -63,9 +62,9 @@ export const createFontStylesFile = async () => {
           continue;
         }
 
-        if (currentFile !== fontFileName) {
-          const fontName = fontFileName.split('-')[0] ? fontFileName.split('-')[0] : fontFileName;
-          const fontType = fontFileName.split('-')[1] ? fontFileName.split('-')[1] : fontFileName;
+        if (lastFileName !== fontFileName) {
+          const fontName = fontFileName.split('-')[0];
+          const fontType = fontFileName.split('-')[1];
           const lowerFontType = fontType.toLowerCase();
           let iterationMessage = '';
 
@@ -73,58 +72,51 @@ export const createFontStylesFile = async () => {
           const font = fontsList[fontFileName];
 
           font.name = fontName;
-          font.ext = [];
-          font.ext.push(fontFileExtension);
-          font.fontWeight = 400;
-          font.fontStyle = 'normal';
+          font.extensions = [fontFileExtension];
+          font.weight = 400;
+          font.style = 'normal';
 
           // Determining the value of `font-weight`
           Object.entries(fontWeightMap).forEach(([key, value]) => {
             if (lowerFontType.indexOf(key) !== -1) {
               iterationMessage += `Current (${fontFileName}): [${key}: ${value}].`;
-              font.fontWeight = value;
+              font.weight = value;
             }
           });
 
           if (lowerFontType === 'italic') {
             iterationMessage += `Current (${fontFileName}): [regular: 400].`;
-            font.fontWeight = 400;
+            font.weight = 400;
           }
 
           // If the font type in the file name contains `italic`,
           // the value of `font-style` is defined as 'italic'
           if (lowerFontType.indexOf('italic') !== -1) {
             iterationMessage += ' Defined as italic.';
-            font.fontStyle = 'italic';
+            font.style = 'italic';
           }
 
           log(iterationMessage);
 
-          currentFile = fontFileName;
-        } else fontsList[fontFileName].ext.push(fontFileExtension);
+          lastFileName = fontFileName;
+        } else fontsList[fontFileName].extensions.push(fontFileExtension);
       }
 
-      Object.entries(fontsList).forEach(([key, value]) => {
-        const extensions = {
-          otf: '',
-          ttf: '',
-          woff: '',
-          woff2: '',
-        };
+      Object.entries(fontsList).forEach(([fullname, options]) => {
         const src = [];
 
-        for (let i = 0; i < value.ext.length; i++) {
-          Object.keys(extensions).forEach((ext) => {
-            if (value.ext[i] === ext) {
-              src.push(`url('../fonts/${key}.${value.ext[i]}') format('${value.ext[i]}')`);
-            }
-          });
+        for (let i = 0; i < options.extensions.length; i++) {
+          const ext = options.extensions[i];
+
+          if (['otf', 'ttf', 'woff', 'woff2'].includes(ext)) {
+            src.push(`url('../fonts/${fullname}.${ext}') format('${ext}')`);
+          }
         }
 
         fs.appendFile(
           fontsFile,
           // eslint-disable-next-line max-len
-          `@font-face {\n  font-weight: ${value.fontWeight};\n  font-family: ${value.name};\n  font-style: ${value.fontStyle};\n  src: ${src.join(', ')};\n  font-display: swap;\n}\n`,
+          `@font-face {\n  font-weight: ${options.weight};\n  font-family: ${options.name};\n  font-style: ${options.style};\n  src: ${src.join(', ')};\n  font-display: swap;\n}\n`,
           () => { },
         );
       });
