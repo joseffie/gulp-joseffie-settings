@@ -1,11 +1,10 @@
-import getTimestamp from './getTimestamp.js';
-import paths from '../config/paths.js';
+import { dirs } from '../../app.config.cjs';
 import lodash from 'lodash';
+import getTimestamp from './getTimestamp.js';
 
-const getZipFileName = () => {
-  const directoryName = paths.rootFolder || 'dist';
+export default () => {
+  const directoryName = lodash.kebabCase([dirs.root || 'build']);
+  const timestamp = getTimestamp();
 
-  return `${lodash.kebabCase([directoryName])}-${getTimestamp()}.zip`;
+  return `${directoryName}-${timestamp}.zip`;
 };
-
-export default getZipFileName;

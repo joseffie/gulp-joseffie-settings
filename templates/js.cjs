@@ -2,7 +2,4 @@
 
 const { EOL } = require('os');
 
-// eslint-disable-next-line func-names
-module.exports = function () {
-  return [].join(EOL);
-};
+module.exports = () => [].join(EOL);

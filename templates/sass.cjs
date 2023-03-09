@@ -2,7 +2,7 @@
 
 const { EOL } = require('os');
 
-// eslint-disable-next-line func-names
-module.exports = function (entity, naming) {
-  return [`.${naming.stringify(entity)}\n  `, ''].join(EOL);
-};
+module.exports = (entity, naming) => [
+  `.${naming.stringify(entity)}\n  `,
+  '',
+].join(EOL);

@@ -9,24 +9,18 @@ mixin btn(text, mods, isInput)
   //- mods    { string } - list of modifiers
   //- isInput { bool }   - «This is a input» flag
 
-  -
-    var allMods = '';
-    if (typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' btn_' + modsList[i].trim();
-      }
-    }
+  - const classes = getModes('btn', mods);
+
   //- passed href, this is a link
   if (attributes.href)
-    a.btn(class=allMods)&attributes(attributes)!= text
+    a.btn(class=classes)&attributes(attributes)!= text
       block
 
   //- else if passes isInput as true, this is a input
-  else if (typeof(isInput) !== 'undefined' && isInput)
-    input.btn(class=allMods value=text type='button')&attributes(attributes)
+  else if (isInput)
+    input.btn(class=classes value=text type='button')&attributes(attributes)
 
   //- else this is a button
   else
-    button.btn(class=allMods)&attributes(attributes)!= text
+    button.btn(class=classes)&attributes(attributes)!= text
       block

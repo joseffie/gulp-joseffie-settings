@@ -1,4 +1,4 @@
-const initWebp = (callback) => {
+export default (callback) => {
   const webP = new Image();
 
   webP.onerror = () => {
@@ -9,5 +9,3 @@ const initWebp = (callback) => {
 
   webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 };
-
-export default initWebp;

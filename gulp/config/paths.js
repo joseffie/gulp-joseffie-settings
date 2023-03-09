@@ -1,42 +1,46 @@
-import * as nodePath from 'path';
+import { dirs, availableFontFormats } from '../../app.config.cjs';
 
-const rootFolder = nodePath.basename(nodePath.resolve());
+const { dist: dest, src: source } = dirs;
+const fontExts = availableFontFormats.length > 1
+  ? `{${availableFontFormats.join(',')}}`
+  : availableFontFormats.join('');
 
-const buildFolder = './dist';
-const srcFolder = './src';
-const archiveFolder = './.archive';
-
-const paths = {
-  build: {
-    html: buildFolder,
-    styles: `${buildFolder}/styles`,
-    scripts: `${buildFolder}/scripts`,
-    images: `${buildFolder}/img`,
-    fonts: `${buildFolder}/fonts`,
-  },
-  src: {
-    pug: `${srcFolder}/views/**/*.pug`,
-    styles: [`${srcFolder}/base/styles/*.{sass,scss}`, `!${srcFolder}/base/styles/_*.{sass,scss}`],
-    images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,ico,webp}`,
-    fonts: `${srcFolder}/fonts/**/*.{otf,ttf,woff,woff2}`,
-    svg: `${srcFolder}/img/**/*.svg`,
-    iconsmono: `${srcFolder}/svgico/mono/*.svg`,
-    iconsmulti: `${srcFolder}/svgico/multi/*.svg`,
-  },
-  watch: {
-    pug: `${srcFolder}/**/*.pug`,
-    styles: `${srcFolder}/**/*.scss`,
-    scripts: `${srcFolder}/**/*.{js,mjs}`,
-    images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
-    fonts: `${srcFolder}/fonts/**/*.{otf,ttf,woff,woff2}`,
-    iconsmono: `${srcFolder}/svgico/mono/*.svg`,
-    iconsmulti: `${srcFolder}/svgico/multi/*.svg`,
-    data: `${srcFolder}/base/data/*.{json,jsonc}`,
-  },
-  buildFolder,
-  srcFolder,
-  archiveFolder,
-  rootFolder,
+export const dist = {
+  html: dest,
+  styles: `${dest}/styles`,
+  scripts: `${dest}/scripts`,
+  images: `${dest}/img`,
+  fonts: `${dest}/fonts`,
 };
 
-export default paths;
+export const src = {
+  pug: `${source}/views/**/*.pug`,
+  styles: [
+    `${source}/base/styles/*.{sass,scss}`,
+    `!${source}/base/styles/_*.{sass,scss}`,
+  ],
+  scripts: [
+    `${source}/base/scripts/*.js`,
+    `!${source}/base/scripts/_*.js`,
+  ],
+  images: `${source}/img/**/*.{jpg,jpeg,png,gif,ico,webp}`,
+  fonts: `${source}/fonts/**/*.${fontExts}`,
+  svg: `${source}/img/**/*.svg`,
+  icons: {
+    mono: `${source}/svgico/mono/*.svg`,
+    multi: `${source}/svgico/multi/*.svg`,
+  },
+};
+
+export const watch = {
+  pug: `${source}/**/*.pug`,
+  styles: `${source}/**/*.{sass,scss}`,
+  scripts: `${source}/**/*.js`,
+  images: `${source}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
+  fonts: `${source}/fonts/**/*.${fontExts}`,
+  icons: {
+    mono: `${source}/svgico/mono/*.svg`,
+    multi: `${source}/svgico/multi/*.svg`,
+  },
+  data: `${source}/base/data/*.json`,
+};

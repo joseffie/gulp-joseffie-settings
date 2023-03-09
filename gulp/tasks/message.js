@@ -1,4 +1,4 @@
-import environment from '../utils/environment.js';
+import { environment } from '../../app.config.cjs';
 import { log } from '../utils/logger.js';
 
 export const startMessage = (done) => {

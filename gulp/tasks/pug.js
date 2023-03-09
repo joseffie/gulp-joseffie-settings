@@ -1,54 +1,64 @@
-import gulpPug from 'gulp-pug';
-import posthtml from 'gulp-posthtml';
-import versionNumber from 'gulp-version-number';
-import webpHtmlNosvg from 'gulp-webp-html-nosvg';
+import gulp from 'gulp';
+import { relative } from 'path';
+import { dist, src } from '../config/paths.js';
+import { dirs, isProd } from '../../app.config.cjs';
+import { gulpLoadPluginsOpts, pugConfig, versionNumberConfig } from '../config/options.js';
 import readingJson from '../utils/readingJson.js';
 
-import { pugConfig, postHtmlConfig, versionNumberConfig } from '../config/options.js';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import browserSync from 'browser-sync';
+import emitty from 'emitty';
 
-let emittyPug;
+const $ = gulpLoadPlugins(gulpLoadPluginsOpts);
+
+let emittyPug = null;
 global.watch = false;
 global.forceRebuild = false;
 
 export const pug = (done) => {
   if (!emittyPug) {
-    emittyPug = $.plugins.emitty.setup('src', 'pug', {
+    emittyPug = emitty.setup(dirs.src, 'pug', {
       makeVinylFile: true,
     });
   }
 
   return new Promise((resolve, reject) => {
     emittyPug.scan(global.emittyPugChangedFile).then(() => {
-      $.gulp
-        .src($.paths.src.pug)
+      const imgPath = relative(dirs.dist, `${dirs.dist}/img`);
+
+      gulp
+        .src(src.pug)
         .pipe(
-          $.plugins.plumber(
-            $.plugins.notify.onError({
+          $.plumber(
+            $.notify.onError({
               title: 'PUG',
               message: 'You got an error: <%= error.message %>',
             }),
           ),
         )
         .pipe(
-          $.plugins.if(
+          $.if(
             global.watch && !global.forceRebuild,
             emittyPug.filter(global.emittyPugChangedFile),
           ),
         )
-        .pipe($.plugins.data(readingJson()))
-        .pipe(gulpPug(pugConfig))
-        .pipe(posthtml(postHtmlConfig.plugins, postHtmlConfig.options))
+        .pipe($.data(readingJson()))
+        .pipe($.pug(pugConfig))
+        .pipe($.posthtml())
         // Required for correct operation of the `path-autocomplete` extension.
         // If you don't use it, you can delete this line.
-        .pipe($.plugins.replace(/@img\//g, 'img/'))
-        .pipe($.plugins.if($.isProd, webpHtmlNosvg()))
-        .pipe($.plugins.if($.isProd, versionNumber(versionNumberConfig)))
-        .pipe($.gulp.dest($.paths.build.html))
-        .pipe($.plugins.browsersync.stream())
+        .pipe(
+          $.replace(
+            /@img\//g,
+            `${imgPath.replaceAll(/\\/g, '/')}/`,
+          ),
+        )
+        .pipe($.if(isProd, $.webpHtmlNosvg()))
+        .pipe($.if(isProd, $.versionNumber(versionNumberConfig)))
+        .pipe(gulp.dest(dist.html))
+        .pipe(browserSync.stream())
         .on('end', resolve)
         .on('error', reject);
-    });
-
-    done();
+    }).then(() => { done(); });
   });
 };

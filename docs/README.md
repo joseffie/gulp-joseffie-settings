@@ -108,6 +108,7 @@ gulp-joseffie-settings/              # Project root
 |   ├── base
 |   |   ├── data                     # Folder with data.json
 |   |   ├── scripts
+|   |   |   ├── core
 |   |   |   ├── helpers              # JS various helpers
 |   |   |   ├── index.js             # JS main file
 |   |   ├── pug                      # Pug layouts

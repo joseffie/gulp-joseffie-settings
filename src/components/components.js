@@ -1,18 +1,13 @@
+import Accordion from './accordion/accordion.js';
+import Header from './header/header.js';
+import Dropdown from './dropdown/dropdown.js';
 import { initBurgerMenu } from './burger/burger.js';
-// import { initScrollLinks } from './scroll-link/scroll-link.js';
-// import { overlayAdd, overlayRemove } from './overlay/overlay.js';
+import { initScrollLinks } from './scroll-link/scroll-link.js';
 
-const components = {
-  burger: {
-    initBurgerMenu,
-  },
-  // scrollLinks: {
-  //   initScrollLinks,
-  // },
-  // overlay: {
-  //   overlayAdd,
-  //   overlayRemove,
-  // },
+export {
+  Accordion,
+  Header,
+  Dropdown,
+  initBurgerMenu,
+  initScrollLinks,
 };
-
-export default components;

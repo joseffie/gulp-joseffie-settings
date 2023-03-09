@@ -1,7 +1,4 @@
 import { slideDown, slideUp, slideStop } from 'slide-anim';
-// import Plugin from '@/base/scripts/core/Plugin.js';
-// import init from '@/base/scripts/core/init.js';
-// import toArray from '@/base/scripts/helpers/DOM/toArray.js';
 import Plugin from '@core/Plugin.js';
 import init from '@core/init.js';
 import toArray from '@helpers/DOM/toArray.js';

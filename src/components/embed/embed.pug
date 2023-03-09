@@ -6,16 +6,7 @@
 
 mixin embed(mods)
   //- Params
-  //- mods {string} - list of modifiers
+  //- mods { string } - list of modifiers
 
-  -
-    var allMods = '';
-    if(typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' embed_' + modsList[i].trim();
-      }
-    }
-
-  .embed(class=allMods)&attributes(attributes)
+  .embed(class=getModes('embed', mods))&attributes(attributes)
     block

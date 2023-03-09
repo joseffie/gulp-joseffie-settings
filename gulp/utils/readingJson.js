@@ -1,5 +1,8 @@
-import fs from 'fs';
+import { dirs } from '../../app.config.cjs';
+import { readFileSync } from 'fs';
 
-const readingJson = () => JSON.parse(fs.readFileSync('./src/base/data/data.json', 'utf8'));
+export default () => {
+  const dataFile = `${dirs.src}/base/data/data.json`;
 
-export default readingJson;
+  return JSON.parse(readFileSync(dataFile, 'utf8'));
+};

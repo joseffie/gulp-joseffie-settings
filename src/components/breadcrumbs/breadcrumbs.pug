@@ -8,16 +8,9 @@ mixin breadcrumbs(mods)
   //- Params
   //- mods {string} - list of modifiers
 
-  -
-    var allMods = '';
-    if (typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' breadcrumbs_' + modsList[i].trim();
-      }
-    }
+  - const classes = getModes('breadcrumbs', mods);
 
-  ul.breadcrumbs(class=allMods aria-label='Breadcrumb' role='navigation')&attributes(attributes)
+  ul.breadcrumbs(class=classes aria-label='Breadcrumb' role='navigation')&attributes(attributes)
     block
 
 mixin breadcrumbs-item(text, href, mods)
@@ -26,17 +19,10 @@ mixin breadcrumbs-item(text, href, mods)
   //- href { string } - link of this item (if empty, then this is not a link, but a span)
   //- mods { string } - list of modifiers
 
-  -
-    var allMods = '';
-    if(typeof(mods) !== 'undefined' && mods) {
-      var modsList = mods.split(',');
-      for (var i = 0; i < modsList.length; i++) {
-        allMods = allMods + ' breadcrumbs__item_' + modsList[i].trim();
-      }
-    }
+  - const classes = getModes('breadcrumbs__item', mods);
 
-  li.breadcrumbs__item(class=allMods)&attributes(attributes)
-    if (typeof(href) !== 'undefined' && href)
+  li.breadcrumbs__item(class=classes)&attributes(attributes)
+    if (href)
       a(href=href)!= text
     else
       span!= text

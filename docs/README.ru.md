@@ -108,6 +108,7 @@ gulp-joseffie-settings/              # Корень проекта
 |   ├── base
 |   |   ├── data                     # Папка с data.json
 |   |   ├── scripts
+|   |   |   ├── core
 |   |   |   ├── helpers              # Различные JS-хелперы
 |   |   |   ├── index.js             # Главный JS-файл
 |   |   ├── pug                      # Pug-шаблоны

@@ -7,10 +7,9 @@ import { styles } from '../styles.js';
 import { scripts } from '../scripts.js';
 import { images } from '../images.js';
 import { makeMonoSprite, makeMultiSprite } from '../sprite.js';
-import { otfToTtf } from '../fonts/otfToTtf.js';
-import { ttfToWoff } from '../fonts/ttfToWoff.js';
-import { createFontStylesFile } from '../fonts/createFontStylesFile.js';
-import { fonts } from '../fonts/fonts.js';
+import {
+  otfToTtf, ttfToWoff, createFontStylesFile, fonts,
+} from '../fonts/index.js';
 
 export const build = gulp.series(
   startMessage,

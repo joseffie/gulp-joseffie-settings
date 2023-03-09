@@ -1,15 +1,17 @@
+import { pathsToDelete } from '../../app.config.cjs';
 import { log } from '../utils/logger.js';
+import { deleteSync } from 'del';
 
 export const reset = async () => {
-  const deletedDirectoryPaths = $.plugins.del([$.paths.buildFolder]);
+  const deleted = deleteSync(pathsToDelete, {
+    dot: true,
+  });
 
   // If there are no directories to remove, the function does nothing
-  if (deletedDirectoryPaths.join('').length < 1) return 0;
+  if (deleted.length === 0) {
+    log('The directories or files to be deleted do not exist.');
+    return null;
+  }
 
-  return (
-    deletedDirectoryPaths,
-    deletedDirectoryPaths.forEach((path) => {
-      log(`Deleted '${path}'`);
-    })
-  );
+  return deleted.forEach((path) => { log(`Deleted '${path}'`); });
 };

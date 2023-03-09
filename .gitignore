@@ -1,6 +1,7 @@
 dist/
 node_modules/
 .archive/
+gulp/version.json
 
 __MACOSX
 .Saved/

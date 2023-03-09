@@ -1,6 +1,6 @@
 import correctNumber from './correctNumber.js';
 
-const getTimestamp = () => {
+export default () => {
   const now = new Date();
   const year = now.getFullYear();
   const month = correctNumber(now.getMonth() + 1);
@@ -8,5 +8,3 @@ const getTimestamp = () => {
 
   return `${year}-${month}-${day}`;
 };
-
-export default getTimestamp;

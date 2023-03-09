@@ -1,31 +1,33 @@
-import gulpZip from 'gulp-zip';
-import getZipFileName from '../../utils/getZipFileName.js';
-import { log } from '../../utils/logger.js';
+import gulp from 'gulp';
+import { dirs } from '../../../app.config.cjs';
+import { gulpLoadPluginsOpts } from '../../config/options.js';
+import { existsSync } from 'fs';
+import { getZipFileName, log } from '../../utils/index.js';
+
+import { deleteSync } from 'del';
+import gulpLoadPlugins from 'gulp-load-plugins';
+
+const $ = gulpLoadPlugins(gulpLoadPluginsOpts);
 
 const delExistingArchiveFolder = () => {
-  const { archiveFolder } = $.paths;
-
-  if ($.plugins.fs.existsSync(archiveFolder)) {
-    $.plugins.del([archiveFolder]);
-    return log('Removed old archive folder.');
-  }
-
-  return null;
+  if (!existsSync(dirs.archive)) return;
+  deleteSync(dirs.archive);
+  log('Removed old archive folder.');
 };
 
 export const buildZip = () => {
   delExistingArchiveFolder();
 
-  return $.gulp
-    .src(`${$.paths.buildFolder}/**/*.*`, {})
+  return gulp
+    .src(`${dirs.dist}/**/*.*`)
     .pipe(
-      $.plugins.plumber(
-        $.plugins.notify.onError({
+      $.plumber(
+        $.notify.onError({
           title: 'ZIP',
           message: 'You got an error: <%= error.message %>',
         }),
       ),
     )
-    .pipe(gulpZip(getZipFileName()))
-    .pipe($.gulp.dest($.paths.archiveFolder));
+    .pipe($.zip(getZipFileName()))
+    .pipe(gulp.dest(dirs.archive));
 };

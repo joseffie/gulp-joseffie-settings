@@ -1,19 +1,36 @@
-import classnames from 'classnames/dedupe.js';
+import { resolve, join } from 'path';
+import {
+  dirs, isProd, reloadDebounce, serverPort,
+} from '../../app.config.cjs';
+import classnames from 'classnames';
 import omit from 'object.omit';
-import postHtmlAttrsSorter from 'posthtml-attrs-sorter';
 
-import paths from './paths.js';
-import { isDev } from '../utils/environment.js';
+const { dist } = dirs;
 
-const port = 9050;
+export const ghPagesConfig = {
+  dir: dist,
+  options: {
+    dotfiles: true,
+  },
+};
+
+export const gulpLoadPluginsOpts = {
+  attern: ['gulp-*', 'gulp.*', '@*/gulp{-,.}*', 'gulplog'],
+  config: (join(resolve(), 'package.json')),
+  scope: ['dependencies', 'devDependencies'],
+  rename: {
+    gulplog: 'logger',
+  },
+};
 
 export const browserSyncConfig = {
   server: {
-    baseDir: paths.buildFolder,
+    baseDir: dist,
   },
   notify: false,
   reloadOnRestart: true,
-  port: port || 5050,
+  reloadDebounce,
+  port: serverPort,
 };
 
 export const pugConfig = {
@@ -22,33 +39,20 @@ export const pugConfig = {
       classnames,
       omit,
     },
-  },
-  pretty: isDev,
-  verbose: true,
-};
+    getModes: (component, mods) => {
+      if (!mods) return '';
 
-export const postHtmlConfig = {
-  plugins: [
-    postHtmlAttrsSorter({
-      order: [
-        'class',
-        'id',
-        'name',
-        'data',
-        'ng',
-        'src',
-        'for',
-        'type',
-        'href',
-        'values',
-        'title',
-        'alt',
-        'role',
-        'aria',
-      ],
-    }),
-  ],
-  options: {},
+      const classes = [];
+
+      mods.split(',').forEach((mod) => {
+        classes.push(`${component}_${mod.trim()}`);
+      });
+
+      return classes.join(' ');
+    },
+  },
+  pretty: !isProd,
+  verbose: true,
 };
 
 export const versionNumberConfig = {
@@ -67,57 +71,49 @@ export const imageminConfig = {
   progressive: true,
   svgoPlugins: [{ removeViewBox: false }],
   interlaced: true,
-  optimizationLevel: 3, // 0 to 7
+  optimizationLevel: 3,
 };
 
-export const monoColorSpriteConfig = {
-  mode: {
-    symbol: {
-      sprite: '../sprite-mono.svg',
+const getSvgoPluginsOptions = (...options) => ({
+  transform: [{
+    svgo: {
+      plugins: options,
     },
-  },
-  shape: {
-    transform: [
-      {
-        svgo: {
-          plugins: [
-            {
-              removeAttrs: {
-                attrs: ['class', 'data-name', 'fill', 'stroke.*'],
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-};
+  }],
+});
 
-export const multiColorSpriteConfig = {
-  mode: {
-    symbol: {
-      sprite: '../sprite-multi.svg',
+export const spriteConfigs = {
+  monoColor: {
+    mode: {
+      symbol: {
+        sprite: '../sprite-mono.svg',
+      },
     },
+    shape: getSvgoPluginsOptions({
+      name: 'removeAttrs',
+      params: {
+        attrs: ['class', 'data-name', 'fill', 'stroke.*'],
+      },
+    }),
   },
-  shape: {
-    transform: [
+
+  multiColor: {
+    mode: {
+      symbol: {
+        sprite: '../sprite-multi.svg',
+      },
+    },
+    shape: getSvgoPluginsOptions(
       {
-        svgo: {
-          plugins: [
-            {
-              removeAttrs: {
-                attrs: ['class', 'data-name'],
-              },
-            },
-            {
-              removeUseLessStrokeAndFill: false,
-            },
-            {
-              inlineStyles: true,
-            },
-          ],
+        name: 'removeAttrs',
+        params: {
+          attrs: ['class', 'data-name'],
         },
       },
-    ],
+      {
+        name: 'removeUselessStrokeAndFill',
+        params: false,
+      },
+    ),
   },
 };

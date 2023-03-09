@@ -1,4 +1,4 @@
-const ready = (callback) => {
+export default (callback) => {
   if (
     document.attachEvent
       ? document.readyState === 'complete'
@@ -9,5 +9,3 @@ const ready = (callback) => {
     document.addEventListener('DOMContentLoaded', callback);
   }
 };
-
-export default ready;

@@ -1,5 +1,4 @@
-const isProd = process.argv.includes('--production');
-const sortMQ = require('sort-css-media-queries');
+const { isProd, sortingMediaQueriesMode } = require('./app.config.cjs');
 
 module.exports = () => ({
   plugins: {
@@ -20,8 +19,8 @@ module.exports = () => ({
         },
       ],
     } : false,
-    'css-mqpacker': {
-      sort: sortMQ,
+    'postcss-sort-media-queries': {
+      sort: sortingMediaQueriesMode || 'desktop-first',
     },
     'postcss-reporter': {},
   },

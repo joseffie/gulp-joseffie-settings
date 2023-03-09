@@ -1,28 +1,33 @@
-import svgSprite from 'gulp-svg-sprite';
-import { monoColorSpriteConfig, multiColorSpriteConfig } from '../config/options.js';
+import gulp from 'gulp';
+import { src } from '../config/paths.js';
+import { dirs } from '../../app.config.cjs';
+import { gulpLoadPluginsOpts, spriteConfigs } from '../config/options.js';
+import gulpLoadPlugins from 'gulp-load-plugins';
 
-export const makeMonoSprite = () => $.gulp
-  .src(`${$.paths.src.iconsmono}`)
+const $ = gulpLoadPlugins(gulpLoadPluginsOpts);
+
+export const makeMonoSprite = () => gulp
+  .src(src.icons.mono)
   .pipe(
-    $.plugins.plumber(
-      $.plugins.notify.onError({
+    $.plumber(
+      $.notify.onError({
         title: 'Mono-color SVG',
         message: 'You got an error: <%= error.message %>',
       }),
     ),
   )
-  .pipe(svgSprite(monoColorSpriteConfig))
-  .pipe($.gulp.dest(`${$.paths.srcFolder}/img/sprites`));
+  .pipe($.svgSprite(spriteConfigs.monoColor))
+  .pipe(gulp.dest(`${dirs.src}/img/sprites`));
 
-export const makeMultiSprite = async () => $.gulp
-  .src(`${$.paths.src.iconsmulti}`)
+export const makeMultiSprite = () => gulp
+  .src(src.icons.multi)
   .pipe(
-    $.plugins.plumber(
-      $.plugins.notify.onError({
+    $.plumber(
+      $.notify.onError({
         title: 'Multi-color SVG',
         message: 'You got an error: <%= error.message %>',
       }),
     ),
   )
-  .pipe(svgSprite(multiColorSpriteConfig))
-  .pipe($.gulp.dest(`${$.paths.srcFolder}/img/sprites`));
+  .pipe($.svgSprite(spriteConfigs.multiColor))
+  .pipe(gulp.dest(`${dirs.src}/img/sprites`));

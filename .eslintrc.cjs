@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     resolve: {
-      extensions: ['*', '.js'],
+      extensions: ['*', '.js', '.mjs', '.cjs'],
     },
   },
   rules: {
@@ -30,7 +30,7 @@ module.exports = {
     'import/extensions': 'off',
   },
   overrides: [{
-    files: ['gulp/**/*.js', 'postcss.config.cjs'],
+    files: ['gulp/**/*.js', 'posthtml.config.js', 'postcss.config.cjs'],
     rules: {
       'import/no-extraneous-dependencies': 'off',
     },
@@ -38,7 +38,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       alias: {
-        extensions: ['.js', '.cjs'],
+        extensions: ['.js', '.mjs', '.cjs'],
         map: [
           ['@', './src'],
           ['@helpers', './src/base/scripts/helpers'],

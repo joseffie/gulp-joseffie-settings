@@ -1,45 +1,38 @@
-import webpack from 'webpack';
-import webpackStream from 'webpack-stream';
+import gulp from 'gulp';
+import { src, dist } from '../config/paths.js';
+import { gulpLoadPluginsOpts } from '../config/options.js';
+import rollupConfig from '../../rollup.config.js';
 
-import webpackConfig from '../../webpack.config.babel.js';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import rollupEach from 'gulp-rollup-each';
+import browserSync from 'browser-sync';
 
-export const scripts = (done) => {
-  let firstBuildReady = false;
+const $ = gulpLoadPlugins(gulpLoadPluginsOpts);
 
-  function webpackDone(error, stats) {
-    firstBuildReady = true;
+const {
+  input, plugins, treeshake, output,
+} = rollupConfig;
 
-    if (error) {
-      return; // emit('error', err) in webpack-stream
-    }
-
-    // https://webpack.js.org/api/node/#stats-object
-    // https://webpack.js.org/configuration/stats/
-    $.plugins.logger[stats.hasErrors() ? 'error' : 'info'](
-      stats.toString({
-        chunks: false, // Makes the build much quieter
-        modules: false,
-        colors: true, // Shows colors in the console
+export const scripts = () => gulp
+  .src(src.scripts)
+  .pipe(
+    $.plumber(
+      $.notify.onError({
+        title: 'SCRIPTS',
+        message: 'You got an error: <%= error.message %>',
       }),
-    );
-  }
-
-  return $.gulp
-    .src(['*.js', '!_*.js'], { cwd: 'src/base/scripts', sourcemaps: $.isDev })
-    .pipe(
-      $.plugins.plumber(
-        $.plugins.notify.onError({
-          title: 'JS',
-          message: 'You got an error: <%= error.message %>',
-        }),
-      ),
-    )
-    .pipe(webpackStream(webpackConfig, webpack, webpackDone))
-    .pipe($.gulp.dest($.paths.build.scripts))
-    .pipe($.plugins.browsersync.stream())
-    .on('data', () => {
-      if (firstBuildReady) {
-        done();
-      }
-    });
-};
+    ),
+  )
+  .pipe(
+    rollupEach(
+      {
+        input,
+        plugins,
+        treeshake,
+        isCache: true,
+      },
+      output,
+    ),
+  )
+  .pipe(gulp.dest(dist.scripts))
+  .pipe(browserSync.stream());
