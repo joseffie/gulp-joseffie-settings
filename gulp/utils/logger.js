@@ -3,27 +3,27 @@ import chalk from 'chalk';
 import moment from 'moment';
 
 const sendLogs = (level, content, data) => {
-  const timestamp = `${moment().format('HH:mm:ss')}`;
+  const timestamp = chalk.gray(moment().format('HH:mm:ss'));
 
   switch (level) {
     case 'log':
-      console.log(`[${chalk.cyan(timestamp)}] [${chalk.blueBright('info')}] ${content}`);
+      console.log(`[${timestamp}] [${chalk.blueBright('info')}] ${content}`);
       break;
 
     case 'success':
-      console.log(`[${chalk.cyan(timestamp)}] [${chalk.green(level)}] ${content} `);
+      console.log(`[${timestamp}] [${chalk.green('success')}] ${content} `);
       break;
 
     case 'warn':
-      console.log(`[${chalk.cyan(timestamp)}] [${chalk.yellow('warn')}] ${content} `);
+      console.log(`[${timestamp}] [${chalk.yellow('warn')}] ${content} `);
       break;
 
     case 'error':
       // eslint-disable-next-line no-case-declarations
-      const dataMessage = data ? `: ${inspect(data.message ?? data)}` : '';
+      const dataMessage = data ? inspect(data.message ?? data) : '';
 
       console.log(
-        `[${chalk.cyan(timestamp)}] [${chalk.redBright(level)}] ${content} ${dataMessage}`,
+        `[${timestamp}] [${chalk.redBright('error')}] ${content} : ${dataMessage}`,
       );
       break;
 
@@ -33,6 +33,9 @@ const sendLogs = (level, content, data) => {
 };
 
 export const success = (content) => sendLogs('success', content);
+
 export const warn = (content) => sendLogs('warn', content);
+
 export const error = (content, err) => sendLogs('error', content, err);
-export const log = (content) => sendLogs('log', content);
+
+export const log = (content) => sendLogs('info', content);
