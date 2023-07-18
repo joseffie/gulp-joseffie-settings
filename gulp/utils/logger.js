@@ -2,11 +2,16 @@ import { inspect } from 'util';
 import chalk from 'chalk';
 import moment from 'moment';
 
+/**
+ * @param { string } level
+ * @param { string } content
+ * @param { string } data
+ */
 const sendLogs = (level, content, data) => {
   const timestamp = chalk.gray(moment().format('HH:mm:ss'));
 
   switch (level) {
-    case 'log':
+    case 'info':
       console.log(`[${timestamp}] [${chalk.blueBright('info')}] ${content}`);
       break;
 
