@@ -312,7 +312,7 @@
       }
     ],
     "font-family-name-quotes": [
-      "always-where-recommended",
+      "always-unless-keyword",
       {
         "message": "The font name must be enclosed in quotation marks"
       }
