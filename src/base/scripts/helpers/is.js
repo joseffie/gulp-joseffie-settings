@@ -6,7 +6,7 @@
 
 export const isObject = (value) => Object(value) === value;
 
-export const isArray = Array.isArray || ((value) => toString.call(value) === '[object Array]');
+export const isArray = (value) => Array.isArray(value) || toString.call(value) === '[object Array]';
 
 export const isBoolean = (value) => value === true
   || value === false
