@@ -27,14 +27,13 @@ export const isFunction = (value) => toString.call(value) === '[object Function]
 export const isJson = (value) => toString.call(value) === '[object Object]';
 
 // eslint-disable-next-line no-self-compare
-export const isNotANumber = (value) => Number.isNaN || value !== value;
+export const isNotANumber = (value) => Number.isNaN(value) || value !== value;
 
 export const isNull = (value) => value === null;
 
 export const isNumber = (value) => !isNotANumber(value) && toString.call(value) === '[object Number]';
 
 export const isArguments = (value) => toString.call(value) === '[object Arguments]'
-  // eslint-disable-next-line no-extra-parens
   || (value != null && typeof value === 'object' && 'callee' in value);
 
 export const isUndefined = (value) => typeof value === 'undefined';
@@ -45,14 +44,11 @@ export const isEmpty = (value) => {
   if (isObject(value)) {
     const { length } = Object.getOwnPropertyNames(value);
 
-    // eslint-disable-next-line no-extra-parens
     if (
       length === 0
       || (length === 1 && isArray(value))
       || (length === 2 && isArguments(value))
-    ) {
-      return true;
-    }
+    ) return true;
 
     return false;
   }
