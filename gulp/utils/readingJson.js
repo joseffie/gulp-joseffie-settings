@@ -1,8 +1,15 @@
 import { dirs } from '../../app.config.cjs';
-import { readFileSync } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
+import { extname } from 'path';
 
 export default () => {
-  const dataFile = `${dirs.src}/base/data/data.json`;
+  const parsedData = readdirSync(`${dirs.src}/base/data`)
+    .filter((file) => extname(file) === '.json')
+    .map((file) => {
+      const pathToFile = `${dirs.src}/base/data/${file}`;
 
-  return JSON.parse(readFileSync(dataFile, 'utf8'));
+      return JSON.parse(readFileSync(pathToFile, 'utf8'));
+    });
+
+  return Object.assign({}, ...parsedData);
 };
