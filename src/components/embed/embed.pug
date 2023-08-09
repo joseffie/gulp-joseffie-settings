@@ -8,5 +8,5 @@ mixin embed(mods)
   //- Params
   //- mods { string } - list of modifiers
 
-  .embed(class=getModes('embed', mods))&attributes(attributes)
+  .embed(class=$getMods('embed', mods))&attributes(attributes)
     block

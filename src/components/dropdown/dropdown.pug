@@ -1,60 +1,46 @@
 mixin dropdown
   -
     const {
-      color,
-      size,
-      style = 'default',
-      caret = true,
-      ['trigger-text']: triggerText,
-      block: blockAttr = false,
-      disabled: disabledAttr = false,
+      items,
+      mods,
+      showCaret = 'true',
+      triggerText = 'Menu',
+      isDisabled = 'false',
       baseClassName = 'dropdown'
     } = attributes;
 
     const otherAttrs = _.omit(
       attributes,
       [
-        'color',
-        'size',
-        'style',
-        'caret',
-        'trigger-text',
-        'block',
-        'disabled',
+        'items',
+        'mods',
+        'showCaret',
+        'triggerText',
+        'isDisabled',
         'baseClassName',
       ]
     );
-
-    const stringToArray = (str) => str
-      ? str.split(' ').filter((v) => v.length)
-      : [];
-
-    const styles = stringToArray(style)
-      .map((style) => `${baseClassName}_style_${style}`);
 
     const classes = _.classnames(
       [
         {
           [baseClassName]: baseClassName,
-          [`${baseClassName}_block`]: blockAttr.toString() === 'true',
-          [`${baseClassName}_color_${color}`]: color,
-          [`${baseClassName}_size_${size}`]: size,
-          [`${baseClassName}_disabled`]: disabledAttr,
+          [`${baseClassName}_disabled`]: isDisabled,
         }
-      ].concat(styles)
+      ].concat($getModsArr(baseClassName, mods))
     );
 
-  div(class=classes aria-disabled=disabledAttr.toString())&attributes(otherAttrs)
-    div(
-      class=`${baseClassName}__trigger`
-      role='button'
-      data-dropdown-trigger
-      aria-hascaret=caret.toString() === 'true' ? 'true' : 'false'
-    )
+  div(class=classes aria-disabled=isDisabled)&attributes(otherAttrs)
+    button(class=`${baseClassName}__trigger` data-dropdown-trigger aria-hascaret=showCaret)
       div(class=`${baseClassName}__text`)= triggerText
 
-      if (caret.toString() === 'true')
+      if (showCaret === 'true')
         div(class=`${baseClassName}__caret`)
 
-    div(class=`${baseClassName}__menu` data-dropdown-menu)
-      block
+    ul(class=`${baseClassName}__menu` data-dropdown-menu)
+      each item in items
+        li(data-dropdown-item-active=`${item.isActive || false}`)
+          if (item.href)
+            a(tabindex='0' href=item.href)!= item.text
+          else
+            span!= item.text

@@ -3,22 +3,15 @@ mixin accordion
     const {
       color,
       size,
-      look = 'default',
+      pattern = 'default',
       mode = 'single', // or 'multiple'
       baseClassName = 'accordion'
     } = attributes;
 
     const otherAttrs = _.omit(
       attributes,
-      ['color', 'size', 'look', 'mode', 'baseClassName']
+      ['color', 'size', 'pattern', 'mode', 'baseClassName']
     );
-
-    const stringToArray = (str) => {
-      return str ? str.split(" ").filter(v => v.length) : [];
-    };
-
-    const styles = stringToArray(look)
-      .map(str => `${baseClassName}_style_${str}`);
 
     const classes = _.classnames(
       [
@@ -27,7 +20,7 @@ mixin accordion
           [`${baseClassName}_color_${color}`]: color,
           [`${baseClassName}_size_${color}`]: size,
         }
-      ].concat(styles)
+      ].concat($getModsArr(baseClassName, pattern))
     );
 
   div(class=classes data-accordion-mode=mode)&attributes(otherAttrs)

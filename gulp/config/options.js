@@ -39,16 +39,11 @@ export const pugConfig = {
       classnames,
       omit,
     },
-    getModes: (component, mods) => {
-      if (!mods) return '';
-
-      const classes = [];
-
-      mods.split(',').forEach((mod) => {
-        classes.push(`${component}_${mod.trim()}`);
-      });
-
-      return classes.join(' ');
+    $getMods(component, mods) {
+      return mods ? mods.split(',').map((mod) => `${component}_${mod.trim()}`).join(' ') : '';
+    },
+    $getModsArr(component, mods) {
+      return mods ? mods.split(',').map((mod) => `${component}_${mod.trim()}`) : [];
     },
   },
   pretty: !isProd,

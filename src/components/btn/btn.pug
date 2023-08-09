@@ -9,7 +9,7 @@ mixin btn(text, mods, isInput)
   //- mods    { string } - list of modifiers
   //- isInput { bool }   - «This is a input» flag
 
-  - const classes = getModes('btn', mods);
+  - const classes = $getMods('btn', mods);
 
   //- passed href, this is a link
   if (attributes.href)
