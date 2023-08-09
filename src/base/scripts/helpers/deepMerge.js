@@ -12,7 +12,7 @@ export const isObject = (item) => item && typeof item === 'object' && !Array.isA
  * @param target
  * @param source
  */
-const deepMerge = (target, source) => {
+export default function deepMerge(target, source) {
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
       if (isObject(source[key])) {
@@ -25,6 +25,4 @@ const deepMerge = (target, source) => {
   }
 
   return target;
-};
-
-export default deepMerge;
+}

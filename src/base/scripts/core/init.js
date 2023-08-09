@@ -5,7 +5,7 @@ import {
   isUndefined,
   isNull,
 } from '../helpers/is.js';
-import toArray from '../helpers/DOM/toArray.js';
+import nodeListToArray from '../helpers/DOM/nodeListToArray.js';
 
 export const getSelector = (selector) => {
   if (isUndefined(selector) || isNull(selector)) {
@@ -25,7 +25,8 @@ export default (Plugin, name = 'plugin') => (_selectors, options = {}) => {
 
   selectors.forEach((selector) => {
     if (selector && isString(selector)) {
-      const elements = toArray(document.querySelectorAll(selector));
+      const elements = nodeListToArray(document.querySelectorAll(selector));
+
       elements.forEach((element) => {
         instances.push(new Plugin(element, options, name));
       });

@@ -17,6 +17,7 @@ module.exports = {
     },
   },
   rules: {
+    'class-methods-use-this': 'off',
     'no-console': 'off',
     'no-continue': 'off',
     'no-bitwise': 'off',

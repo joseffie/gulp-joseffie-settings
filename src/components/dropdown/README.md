@@ -20,25 +20,42 @@ import Dropdown from '@/components/dropdown/dropdown.js';
 Dropdown('.dropdown');
 ```
 
-## Base features
+## Attributes
 
-### `trigger-text`
+### `items`
 
-To display text inside a dropdown button, use the `trigger-text` attribute:
+To display a list inside a dropdown menu, use the `items` attribute. It takes an array of objects with data about a list item. Declare this array in `src/base/data/data/data.json` (you can also create a separate JSON file).
 
-```pug
-+dropdown(trigger-text='Any trigger text')
+You can declare in the object of an item:
+
+- `text` (type: String): Text of an item.
+- `isActive` (type: Boolean): Indicate that this item is active (optional).
+- `href` (type: String): <a> link. On `true` value, the item automatically becomes a link (optional).
+
+```json
+{
+  "dropdownData": [
+    {
+      "text": "Item Text",
+      "isActive": true,
+      "href": "#"
+    }
+  ]
+}
 ```
 
-### Dropdown content
-
-Any elements written in the `+dropdown` block will be inside the dropdown menu.
+Afterwards, you can create a drop-down list like this:
 
 ```pug
-+dropdown(trigger-text='Any trigger text')
-  ul
-    li We created list inside dropdown menu
-    li And it was easily
++dropdown(items=dropdownData)
+```
+
+### `triggerText`
+
+To display text inside a dropdown button, use the `triggerText` attribute:
+
+```pug
++dropdown(triggerText='Any trigger text')
 ```
 
 ### `baseClassName`
@@ -58,90 +75,39 @@ Then the output will be something like this:
 </div>
 ```
 
-### `disabled`
+### `isDisabled`
 
-You can make your dropdown list disabled by specifying `disabled='true'`:
+You can make your dropdown list disabled by specifying `isDisabled='true'`:
 
 ```pug
-+dropdown(disabled='true')
-  p Any content
++dropdown(isDisabled='true')
 ```
 
-### `caret`
+### `showCaret`
 
-You can choose whether to display the caret inside the dropdown button by using the `caret` attribute and giving it a boolean value. By default is `true`.
+You can choose whether to display the caret inside the dropdown button by using the `showCaret` attribute. Default value is `true`.
 
 ```pug
-+dropdown(caret='true')
++dropdown(showCaret='true')
 //- or
-+dropdown(caret='false')
++dropdown(showCaret='false')
 ```
 
-## «Cosmetic» features
+### `mods`
 
-### `style`
-
-You can create different style patterns for your dropdowns. To do this, specify the name of the pattern you want in the `style` attribute. Default value is `default`.
+Specify the modifiers of the component:
 
 ```pug
-+dropdown(style='beautiful')
++dropdown(mods='mod1, mod2, mod3')
 ```
 
-Then you can implement your pattern in SCSS by accessing the `&_style_<your-style>` selector. In our example, this is:
+Converts to:
 
-```scss
-.dropdown {
-  &_style_beautiful &__trigger {
-  }
-  &_style_beautiful &__text {
-  }
-  &_style_beautiful &__caret {
-  }
-  &_style_beautiful &__menu {
-  }
-}
-```
-
-### `color`
-
-You can create style patterns based on the color of the dropdown. To do this, specify the color you want in the `color` attribute.
-
-```pug
-+dropdown(color='blue')
-```
-
-Then you can implement your color pattern in SCSS by accessing the `&_color_<your-color>` selector. In our example, this is:
-
-```scss
-.dropdown {
-  &_color_blue &__trigger {
-    background-color: #3547d4;
-  }
-}
-```
-
-### `size`
-
-You can create style patterns based on the size of the dropdown. To do this, specify the size you want in the `size` attribute.
-
-```pug
-+dropdown(size='md')
-```
-
-Then you can implement your size pattern in SCSS by accessing the `&_size_<your-size>` selector. In our example, this is:
-
-```scss
-.dropdown {
-  &_size_md &__menu {
-    min-width: 75%;
-  }
-}
-```
-
-### `block`
-
-By default, the dropdown is an inline-block element. If you want to make it block, set the `block` attribute to `true`. Default value is `false`.
-
-```pug
-+dropdown(block='true')
+```html
+<div class="dropdown dropdown_mod1 dropdown_mod2 dropdown_mod3">
+  <button class="dropdown__trigger">...</button>
+  <ul class="dropdown__menu">
+    ...
+  </ul>
+</div>
 ```

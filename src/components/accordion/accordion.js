@@ -1,7 +1,7 @@
 import { slideDown, slideUp, slideStop } from 'slide-anim';
 import Plugin from '@core/Plugin.js';
 import init from '@core/init.js';
-import toArray from '@helpers/DOM/toArray.js';
+import nodeListToArray from '@/base/scripts/helpers/DOM/nodeListToArray.js';
 
 class Accordion extends Plugin {
   defaults() {
@@ -16,26 +16,20 @@ class Accordion extends Plugin {
   }
 
   buildCache() {
-    this.items = toArray(
-      this.element.querySelectorAll(this.options.itemSelector),
-    ).filter((item) => {
-      const isDisabled = this.isItemDisabled(item);
-      const isOpen = this.isOpen(item);
+    this.items = nodeListToArray(this.element.querySelectorAll(this.options.itemSelector))
+      .filter((item) => {
+        if (this.isItemDisabled(item)) {
+          this.setItemDisabled(item);
+        }
 
-      if (isDisabled) {
-        this.setItemDisabled(item);
-      }
+        if (!this.isOpen(item)) {
+          this.getPanel(item).style.display = 'none';
+        }
 
-      if (!isOpen) {
-        const panel = this.getPanel(item);
-        panel.style.display = 'none';
-      }
-
-      return !isDisabled;
-    });
+        return !this.isItemDisabled(item);
+      });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   isItemDisabled(item) {
     return (
       item.getAttribute('aria-disabled') === 'true'

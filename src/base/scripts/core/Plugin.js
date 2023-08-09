@@ -1,14 +1,12 @@
 import deepMerge from '../helpers/deepMerge.js';
 import EventsBus from './EventsBus.js';
 
-const events = new EventsBus();
-
 export default class Plugin {
   constructor(element, options, name) {
     this.name = name;
     this.element = element;
     this.options = options;
-    this.events = events;
+    this.events = new EventsBus();
 
     if (!this.isInited()) {
       this._init();
@@ -27,7 +25,6 @@ export default class Plugin {
     this.options = deepMerge(this.defaults(), this.options);
   }
 
-  /* eslint-disable class-methods-use-this */
   defaults() {
     return {};
   }
@@ -37,7 +34,6 @@ export default class Plugin {
   buildCache() { }
 
   bindEvents() { }
-  /* eslint-enable class-methods-use-this */
 
   setInited() {
     this.element.setAttribute(`data-${this.name}-inited`, true);
@@ -51,12 +47,13 @@ export default class Plugin {
     );
   }
 
-  // eslint-disable-next-line consistent-return
   callback(name, ...parameters) {
     const callback = this.options[name];
 
     if (typeof callback === 'function') {
       return callback.call(...parameters);
     }
+
+    return false;
   }
 }

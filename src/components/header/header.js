@@ -4,7 +4,6 @@ import Plugin from '@core/Plugin.js';
 import init from '@core/init.js';
 
 class Header extends Plugin {
-  // eslint-disable-next-line class-methods-use-this
   defaults() {
     return {
       stickyClassName: 'header_sticky',
@@ -12,26 +11,17 @@ class Header extends Plugin {
   }
 
   init() {
+    this.setHeightProperty();
     this.setHeightPropertyOnResize();
-    this.scrollHandler();
+    this.toggleStickyClass();
   }
 
   bindEvents() {
-    window.addEventListener(
-      'scroll',
-      debounce(this.scrollHandler.bind(this), 20),
-    );
+    window.addEventListener('scroll', debounce(this.toggleStickyClass.bind(this), 20));
   }
 
-  scrollHandler() {
-    this.setHeightProperty();
-    let isSticky = false;
-
-    if (window.scrollY > 0) {
-      isSticky = true;
-    }
-
-    this.element.classList.toggle(this.options.stickyClassName, isSticky);
+  toggleStickyClass() {
+    this.element.classList.toggle(this.options.stickyClassName, window.scrollY > 0);
   }
 
   getHeight() {
@@ -39,14 +29,13 @@ class Header extends Plugin {
   }
 
   setHeightProperty() {
-    return document.documentElement.style.setProperty(
-      '--header-height',
-      this.getHeight() || 0,
-    );
+    document.documentElement.style.setProperty('--header-height', this.getHeight() || 0);
   }
 
   setHeightPropertyOnResize() {
-    matchWidthResize(() => this.setHeightProperty());
+    matchWidthResize(() => {
+      this.setHeightProperty();
+    });
   }
 }
 
