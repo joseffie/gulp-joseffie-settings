@@ -1,9 +1,0 @@
-/// Select all even children.
-/// @group no-arguments
-/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
-
-@mixin even() {
-  &:nth-child(even) {
-    @content;
-  }
-}

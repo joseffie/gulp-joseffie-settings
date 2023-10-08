@@ -1,9 +1,0 @@
-/// Select all children between `$first` and `$last`.
-/// @group with-arguments
-/// @content [Write the style you want to apply to the children, and it will be added within the @content directive]
-
-@mixin between($first, $last) {
-  &:nth-child(n + #{$first}):nth-child(-n + #{$last}) {
-    @content;
-  }
-}
