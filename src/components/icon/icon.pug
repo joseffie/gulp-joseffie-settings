@@ -1,11 +1,10 @@
 mixin icon
   -
-    const name = attributes.name
-    const type = attributes.type
-    const spriteName = type === 'mono' ? 'sprite-mono' : 'sprite-multi'
+    const { name, type } = attributes;
+    const spriteFileName = type.toLowerCase() === 'mono' ? 'sprite-mono' : 'sprite-multi';
 
-    delete attributes.name
-    delete attributes.type
+    delete attributes.name;
+    delete attributes.type;
 
   svg.icon(role='img')&attributes(attributes)
-    use(xlink:href=`img/sprites/${spriteName}.svg#${name}`)
+    use(xlink:href=`img/sprites/${spriteFileName}.svg#${name}`)
