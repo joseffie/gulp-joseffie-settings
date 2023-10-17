@@ -1,12 +1,20 @@
 .btn {
+  $backgroundColor: $color-main;
+  $backgroundHoverColor: darken($color-main, 10%);
+  $fontSize: 1em;
+  $textColor: $white;
+  $textHoverColor: $white;
+  $borderRadius: 4px;
+  $transitionDelay: 0.3s;
+
   display: inline-block;
   box-sizing: border-box;
   max-width: 100%;
   margin: 0;
   padding: $field-padding-vertical $field-padding-horizontal;
   overflow: hidden;
-  color: $btn-text-color;
-  font-size: 1em;
+  color: $textColor;
+  font-size: $fontSize;
   font-family: inherit;
   line-height: 150%;
   white-space: nowrap;
@@ -15,26 +23,26 @@
   text-decoration: none;
   text-overflow: ellipsis;
   vertical-align: middle;
-  background-color: $btn-bg-color;
+  background-color: $backgroundColor;
   background-image: none;
   border: 0;
-  border-radius: $btn-border-rad;
+  border-radius: $borderRadius;
   cursor: pointer;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  transition: color $transitionDelay ease, background-color $transitionDelay ease;
   user-select: none;
   touch-action: manipulation;
 
   &:hover,
   &:focus {
-    color: $btn-text-hover-color;
+    color: $textHoverColor;
     text-decoration: none;
-    background-color: $btn-bg-hover-color;
+    background-color: $backgroundHoverColor;
   }
 
   // &_disabled,
   &:disabled {
     color: $base-text-color;
-    background-color: $btn-bg-color;
+    background-color: $backgroundColor;
     cursor: not-allowed;
     opacity: 0.8;
     pointer-events: none;

@@ -1,12 +1,21 @@
-// Main-navigation styles
-$nav-background: $gray-800;
-$nav-text-color: $base-text-color;
-$nav-text-color-active: $color-main;
-$nav-text-color-hover: $color-main;
-$nav-font-size: $base-font-size;
-$nav-opened-text-color: $gray-100;
-$nav-opened-font-size: 16px;
+@import '../core/mixins/units/_units';
 
-// Burger styles
-$burger-color: $nav-text-color;
-$burger-color-active: $gray-100;
+// Nav Item Styles
+$gapBetweenNavItems: 1.25em;
+
+// Nav Text Styles
+$navTextColor: $base-text-color;
+$navTextHoverColor: $color-main;
+$navTextActiveColor: $color-main;
+$navFontSize: $base-font-size;
+
+// Text Styles In Opened Nav
+$openedNavTextColor: $gray-100;
+$openedNavFontSize: 1em;
+
+// Nav Styles On Mobiles
+$mobileNavBackgroundColor: $gray-800;
+
+// Dropdown Menu Styles
+$dropdownMenuWidth: rem(250);
+$dropdownShadow: 0 2px 18px rgb(0 0 0 / 25%);

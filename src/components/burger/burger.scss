@@ -1,13 +1,18 @@
 .burger {
   display: none;
 
+  $burgerWidth: 2em;
+  $burgerHeight: 1.5em;
+  $burgerColor: $navTextColor;
+  $activeBurgerColor: $gray-100;
+
   @media (max-width: $breakpoint768) {
     position: relative;
     z-index: 120;
     display: block;
-    min-width: 30px;
-    max-width: 30px;
-    height: 22px;
+    min-width: $burgerWidth;
+    max-width: $burgerWidth;
+    height: $burgerHeight;
     cursor: pointer;
 
     & > span,
@@ -17,7 +22,7 @@
       left: 0;
       width: 100%;
       height: 10%;
-      background-color: $burger-color;
+      background-color: $burgerColor;
       transition: all 0.4s ease;
     }
 
@@ -42,7 +47,7 @@
     &._active > span,
     &._active::before,
     &._active::after {
-      background-color: $burger-color-active;
+      background-color: $activeBurgerColor;
     }
 
     &._active span {

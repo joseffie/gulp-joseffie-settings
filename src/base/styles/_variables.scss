@@ -4,10 +4,5 @@
 @import '_variables/_nav';
 
 // Other
-$field-padding-vertical: 6px;
-$field-padding-horizontal: 14px;
-$btn-bg-color: $color-main;
-$btn-bg-hover-color: darken($color-main, 10%);
-$btn-text-color: $white;
-$btn-text-hover-color: $white;
-$btn-border-rad: 4px;
+$field-padding-vertical: em(6);
+$field-padding-horizontal: em(14);

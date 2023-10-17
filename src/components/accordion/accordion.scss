@@ -1,5 +1,18 @@
 .accordion {
-  $block-class: &;
+  $this: &;
+  $transitionDelay: 0.2s;
+
+  // 'dp' - 'default pattern'
+  $dpBackgroundColor: #fff;
+  $dpDisabledBackgroundColor: rgba(#000, 0.15);
+  $dpAccordionShadow: 0px 1px 3px 0px rgba(#000, 0.2), 0px 1px 1px 0px rgba(#000, 0.14),
+    0px 2px 1px -1px rgba(#000, 0.12);
+  $dpAccordionBorderRadius: em(2);
+  $dpTriggerMinHeight: em(48);
+  $dpTriggerPadding: em(12) em(48) em(12) em(24);
+  $dpTriggerArrowColor: $gray-200;
+  $dpPanelVerticalOffset: em(16);
+  $dpPanelPadding: 1.5em;
 
   &__item {
     position: relative;
@@ -12,18 +25,15 @@
 
   &__trigger {
     position: relative;
+    z-index: 10;
     display: flex;
     align-items: center;
     box-sizing: border-box;
     width: 100%;
-    text-align: left;
     background: none;
     border: 0;
     outline: none;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
 
     &[disabled] {
       pointer-events: none;
@@ -41,49 +51,36 @@
   }
 
   &_style_default {
-    @at-root #{$block-class}__item {
-      background-color: #fff;
-      box-shadow: 0px 1px 3px 0px rgba(#000, 0.2), 0px 1px 1px 0px rgba(#000, 0.14),
-        0px 2px 1px -1px rgba(#000, 0.12);
-      transition: margin 0.2s ease-in-out;
-
-      &[data-accordion-item-open='true'] {
-        margin-top: em(16);
-        margin-bottom: em(16);
-        border-radius: em(2);
-      }
+    @at-root #{$this}__item {
+      background-color: $dpBackgroundColor;
+      box-shadow: $dpAccordionShadow;
 
       &:first-child {
-        border-top-left-radius: em(2);
-        border-top-right-radius: em(2);
+        border-top-left-radius: $dpAccordionBorderRadius;
+        border-top-right-radius: $dpAccordionBorderRadius;
       }
 
       &:last-child {
-        border-bottom-right-radius: em(2);
-        border-bottom-left-radius: em(2);
+        border-bottom-right-radius: $dpAccordionBorderRadius;
+        border-bottom-left-radius: $dpAccordionBorderRadius;
       }
 
       &[disabled],
       &[aria-disabled='true'] {
-        background-color: rgba(#000, 0.15);
+        background-color: $dpDisabledBackgroundColor;
         box-shadow: none;
 
-        @at-root #{$block-class}__trigger {
+        @at-root #{$this}__trigger {
           opacity: 0.5;
         }
       }
     }
 
-    @at-root #{$block-class}__trigger {
+    @at-root #{$this}__trigger {
       box-sizing: border-box;
-      min-height: 48px;
-      padding: em(12) em(48) em(12) em(24);
+      min-height: $dpTriggerMinHeight;
+      padding: $dpTriggerPadding;
       text-align: left;
-
-      &:focus,
-      &:hover {
-        z-index: 10;
-      }
 
       &[aria-expanded='true'] {
         &::after {
@@ -99,18 +96,18 @@
         width: 6px;
         height: 6px;
         margin-top: -5px;
-        border-color: $gray-200;
+        border-color: $dpTriggerArrowColor;
         border-style: solid;
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
         transform-origin: 65% 65%;
-        transition: all 0.2s ease-in-out;
+        transition: all $transitionDelay ease-in-out;
         content: '';
       }
     }
 
-    @at-root #{$block-class}__panel {
-      padding: 1.5em;
+    @at-root #{$this}__panel {
+      padding: $dpPanelPadding;
     }
   }
 }

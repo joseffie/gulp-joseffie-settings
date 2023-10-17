@@ -1,5 +1,12 @@
 .main-nav-submenu {
-  max-height: 70vh;
+  $dropdownMaxHeight: 70vh;
+  $linkPadding: em(12) 1em;
+  $linkFontSize: em(14);
+  $linkColor: $color-main;
+  $linkHoverColor: #fff;
+  $linkHoverBackgroundColor: $color-main;
+
+  max-height: $dropdownMaxHeight;
   overflow-y: auto;
 
   &__list {
@@ -17,24 +24,24 @@
     &,
     &:visited {
       display: block;
-      padding: em(12) 1em;
-      color: $color-main;
-      font-size: em(14);
+      padding: $linkPadding;
+      color: $linkColor;
+      font-size: $linkFontSize;
       text-decoration: none;
       transition: 125ms ease;
       transition-property: color, background-color;
       will-change: color, background-color;
 
       @media (max-width: $breakpoint768) {
-        color: $nav-opened-text-color;
-        font-size: em(16);
+        color: $openedNavTextColor;
+        font-size: 1em;
       }
     }
 
     &:hover,
     &:focus {
-      color: #fff;
-      background-color: $color-main;
+      color: $linkHoverColor;
+      background-color: $linkHoverBackgroundColor;
     }
 
     &:active {

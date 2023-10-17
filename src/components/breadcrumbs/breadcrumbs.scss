@@ -1,5 +1,9 @@
 .breadcrumbs {
-  margin: rem(15) 0px;
+  $verticalOffset: em(15);
+  $separatorOffset: em(8);
+  $separatorSymbol: '/';
+
+  margin: $verticalOffset 0;
   padding: 0;
   list-style: none;
 
@@ -10,17 +14,16 @@
 
   &__item {
     display: inline-block;
-    margin-right: rem(8);
 
-    &::after {
-      display: inline-block;
-      margin-left: rem(8);
-      color: #5e5c5c;
-      content: '/';
-    }
+    &:not(:last-child) {
+      margin-right: $separatorOffset;
 
-    &:last-child::after {
-      display: none;
+      &::after {
+        display: inline-block;
+        margin-left: $separatorOffset;
+        color: inherit;
+        content: $separatorSymbol;
+      }
     }
   }
 }
