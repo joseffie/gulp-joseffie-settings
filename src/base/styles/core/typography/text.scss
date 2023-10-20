@@ -1,7 +1,6 @@
 p {
   margin-top: $base-spacing;
   margin-bottom: $base-spacing;
-  // http://clagnut.com/blog/2395
   hyphens: auto;
   hyphenate-limit-chars: 6 3 3;
   hyphenate-limit-lines: 2;
@@ -15,16 +14,6 @@ p {
   &:last-child {
     margin-bottom: 0;
   }
-}
-
-i,
-em {
-  font-style: italic;
-}
-
-b,
-strong {
-  font-weight: 700;
 }
 
 q {
