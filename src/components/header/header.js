@@ -4,10 +4,13 @@ import Plugin from '@core/Plugin.js';
 import init from '@core/init.js';
 
 class Header extends Plugin {
-  defaults() {
-    return {
-      stickyClassName: 'header_sticky',
-    };
+  constructor(element, options, name) {
+    super(element, options, name);
+    this.stickyClassName = 'header_sticky';
+
+    if (!this.isInited()) {
+      this._init();
+    }
   }
 
   init() {
@@ -17,11 +20,13 @@ class Header extends Plugin {
   }
 
   bindEvents() {
-    window.addEventListener('scroll', debounce(this.toggleStickyClass.bind(this), 20));
+    window.addEventListener('scroll', () => {
+      debounce(this.toggleStickyClass.bind(this), 20);
+    });
   }
 
   toggleStickyClass() {
-    this.element.classList.toggle(this.options.stickyClassName, window.scrollY > 0);
+    this.element.classList.toggle(this.stickyClassName, window.scrollY > 0);
   }
 
   getHeight() {

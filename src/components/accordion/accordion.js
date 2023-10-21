@@ -4,19 +4,22 @@ import init from '@core/init.js';
 import nodeListToArray from '@/base/scripts/helpers/DOM/nodeListToArray.js';
 
 class Accordion extends Plugin {
-  defaults() {
-    return {
-      itemSelector: '[data-accordion-item]',
-      triggerSelector: '[data-accordion-trigger]',
-      panelSelector: '[data-accordion-panel]',
-      itemActiveAttr: 'data-accordion-item-open',
-      mode: this.element.getAttribute('data-accordion-mode') || 'single', // "multiple"
-      duration: 400,
-    };
+  constructor(element, options, name) {
+    super(element, options, name);
+    this.itemSelector = '[data-accordion-item]';
+    this.triggerSelector = '[data-accordion-trigger]';
+    this.panelSelector = '[data-accordion-panel]';
+    this.itemActiveAttr = 'data-accordion-item-open';
+    this.mode = this.element.getAttribute('data-accordion-mode') || 'single'; // "multiple"
+    this.duration = 400;
+
+    if (!this.isInited()) {
+      this._init();
+    }
   }
 
   buildCache() {
-    this.items = nodeListToArray(this.element.querySelectorAll(this.options.itemSelector))
+    this.items = nodeListToArray(this.element.querySelectorAll(this.itemSelector))
       .filter((item) => {
         if (this.isItemDisabled(item)) {
           this.setItemDisabled(item);
@@ -34,28 +37,25 @@ class Accordion extends Plugin {
     return (
       item.getAttribute('aria-disabled') === 'true'
       || item.hasAttribute('disabled')
-      || false
     );
   }
 
   getTrigger(item) {
-    return item.querySelector(this.options.triggerSelector);
+    return item.querySelector(this.triggerSelector);
   }
 
   getPanel(item) {
-    return item.querySelector(this.options.panelSelector);
+    return item.querySelector(this.panelSelector);
   }
 
   setItemDisabled(item) {
-    const trigger = this.getTrigger(item);
-
-    trigger.setAttribute('disabled', true);
+    this.getTrigger(item).setAttribute('disabled', true);
     this.element.setAttribute('aria-disabled', true);
   }
 
   bindEvents() {
     this.items.forEach((item) => {
-      const trigger = item.querySelector(this.options.triggerSelector);
+      const trigger = item.querySelector(this.triggerSelector);
 
       trigger.addEventListener('click', (event) => {
         this.handleTriggerClick(event, item);
@@ -65,7 +65,7 @@ class Accordion extends Plugin {
 
   get slideOptions() {
     return {
-      duration: this.options.duration,
+      duration: this.duration,
     };
   }
 
@@ -81,14 +81,17 @@ class Accordion extends Plugin {
     const trigger = this.getTrigger(item);
     const panel = this.getPanel(item);
 
-    item.setAttribute(this.options.itemActiveAttr, visibility);
+    item.setAttribute(this.itemActiveAttr, visibility);
     trigger.setAttribute('aria-expanded', visibility);
     panel.setAttribute('aria-hidden', !visibility);
 
     slideStop(panel);
 
-    if (visibility) slideDown(panel, this.slideOptions);
-    else slideUp(panel, this.slideOptions);
+    if (visibility) {
+      slideDown(panel, this.slideOptions);
+    } else {
+      slideUp(panel, this.slideOptions);
+    }
   }
 
   toggle(item) {
@@ -100,13 +103,13 @@ class Accordion extends Plugin {
   }
 
   isOpen(item) {
-    return item.getAttribute(this.options.itemActiveAttr) === 'true';
+    return item.getAttribute(this.itemActiveAttr) === 'true';
   }
 
   handleTriggerClick(event, item) {
     event.preventDefault();
 
-    if (this.options.mode === 'single') {
+    if (this.mode === 'single') {
       this.items.forEach((index) => {
         if (index !== item) {
           this.close(index);

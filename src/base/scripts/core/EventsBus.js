@@ -2,19 +2,16 @@ import { isArray } from '../helpers/is.js';
 
 export default class EventsBus {
   /**
-   * Construct a EventBus instance.
-   *
+   * Constructs an EventsBus instance.
    * @param { Object } events
    */
   constructor(events = {}) {
     this.events = events;
-    this.hop = events.hasOwnProperty;
   }
 
   /**
    * Adds listener to the specifed event.
-   *
-   * @param { String | Array } event
+   * @param { string | Array } event
    * @param { Function } handler
    */
   on(event, handler) {
@@ -23,7 +20,7 @@ export default class EventsBus {
     }
 
     // Create the event's object if not yet created
-    if (!this.hop.call(this.events, event)) {
+    if (!Object.constructor.hasOwnProperty.call(this.events, event)) {
       this.events[event] = [];
     }
 
@@ -40,8 +37,7 @@ export default class EventsBus {
 
   /**
    * Runs registered handlers for specified event.
-   *
-   * @param { String | Array } event
+   * @param { string | Array } event
    * @param { Object } context
    */
   emit(event, context) {
@@ -50,7 +46,7 @@ export default class EventsBus {
     }
 
     // If the event doesn't exist, or there's no handlers in queue, just leave
-    if (!this.hop.call(this.events, event)) {
+    if (!Object.prototype.hasOwnProperty.call(this.events, event)) {
       return;
     }
 

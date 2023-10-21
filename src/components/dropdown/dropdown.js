@@ -5,14 +5,17 @@ import init from '@core/init.js';
 import generateId from '@helpers/generateId.js';
 
 class Dropdown extends Plugin {
-  defaults() {
-    return {
-      outerClickClose: true,
-      menuClickClose: true,
-      triggerSelector: '[data-dropdown-trigger]',
-      menuSelector: '[data-dropdown-menu]',
-      menuOpenAttribute: 'data-dropdown-open',
-    };
+  constructor(element, options, name) {
+    super(element, options, name);
+    this.closeOnOuterClick = true;
+    this.closeOnMenuClick = true;
+    this.triggerSelector = '[data-dropdown-trigger]';
+    this.menuSelector = '[data-dropdown-menu]';
+    this.openedMenuAttribute = 'data-dropdown-open';
+
+    if (!this.isInited()) {
+      this._init();
+    }
   }
 
   init() {
@@ -24,10 +27,8 @@ class Dropdown extends Plugin {
   }
 
   buildCache() {
-    const { triggerSelector, menuSelector } = this.options;
-
-    this.trigger = this.element.querySelector(triggerSelector);
-    this.dropMenu = this.element.querySelector(menuSelector);
+    this.trigger = this.element.querySelector(this.triggerSelector);
+    this.dropMenu = this.element.querySelector(this.menuSelector);
     this.menuPositionState = {
       changed: false,
       sideChanged: null,
@@ -42,18 +43,18 @@ class Dropdown extends Plugin {
     });
 
     this.dropMenu.addEventListener('click', () => {
-      if (this.options.menuClickClose) {
+      if (this.closeOnMenuClick) {
         this.toggle(false);
       }
     });
 
     document.addEventListener('click', (event) => {
-      this.outerClickHandler(event);
+      this.handleOuterClick(event);
     });
   }
 
   isOpen() {
-    return this.element.getAttribute(this.options.menuOpenAttribute) === 'true';
+    return this.element.getAttribute(this.openedMenuAttribute) === 'true';
   }
 
   /**
@@ -62,7 +63,7 @@ class Dropdown extends Plugin {
    * @example toggle(false): means to close a drop-down
    */
   toggle(bool = undefined) {
-    this.element.setAttribute(this.options.menuOpenAttribute, bool ?? !this.isOpen());
+    this.element.setAttribute(this.openedMenuAttribute, bool ?? !this.isOpen());
     this.trigger.setAttribute('aria-expanded', bool ?? !this.isOpen());
   }
 
@@ -70,12 +71,11 @@ class Dropdown extends Plugin {
     return (
       this.element.getAttribute('aria-disabled') === 'true'
       || this.element.hasAttribute('disabled')
-      || false
     );
   }
 
-  outerClickHandler(event) {
-    if (!(this.options.outerClickClose && this.isOpen())) {
+  handleOuterClick(event) {
+    if (!(this.closeOnOuterClick && this.isOpen())) {
       return;
     }
 
@@ -85,7 +85,7 @@ class Dropdown extends Plugin {
   }
 
   setA11yAttrs() {
-    this.element.setAttribute(this.options.menuOpenAttribute, false);
+    this.element.setAttribute(this.openedMenuAttribute, false);
 
     attrs(this.trigger, {
       'aria-haspopup': true,
