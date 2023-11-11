@@ -1,5 +1,3 @@
-import EventsBus from './EventsBus.js';
-
 export default class Plugin {
   /**
    * @param { HTMLElement } element
@@ -10,16 +8,13 @@ export default class Plugin {
     this.name = name;
     this.element = element;
     this.options = options;
-    this.events = new EventsBus();
   }
 
-  /**
-   * Initializes the `Plugin` class.
-   * For the plugin to work, you need to call in the constructor of the plugin class,
-   * first making sure that the plugin is not initialized.
-   * @example if (!this.isInited()) this._init();
-   */
   _init() {
+    if (this.isInited()) {
+      return;
+    }
+
     this.buildCache();
     this.bindEvents();
     this.init();
@@ -60,15 +55,5 @@ export default class Plugin {
       this.element.getAttribute(`data-${this.name}-inited`) === 'true'
       || this.element.hasAttribute(`data-${this.name}-inited`)
     );
-  }
-
-  callback(name, ...parameters) {
-    const callback = this.options[name];
-
-    if (typeof callback === 'function') {
-      return callback.call(...parameters);
-    }
-
-    return false;
   }
 }

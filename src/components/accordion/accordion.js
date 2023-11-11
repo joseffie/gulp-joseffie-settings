@@ -1,25 +1,20 @@
 import { slideDown, slideUp, slideStop } from 'slide-anim';
 import Plugin from '@core/Plugin.js';
 import init from '@core/init.js';
-import nodeListToArray from '@/base/scripts/helpers/DOM/nodeListToArray.js';
 
 class Accordion extends Plugin {
   constructor(element, options, name) {
     super(element, options, name);
-    this.itemSelector = '[data-accordion-item]';
-    this.triggerSelector = '[data-accordion-trigger]';
-    this.panelSelector = '[data-accordion-panel]';
-    this.itemActiveAttr = 'data-accordion-item-open';
-    this.mode = this.element.getAttribute('data-accordion-mode') || 'single'; // "multiple"
+    this.itemSelector = `[data-${name}-item]`;
+    this.triggerSelector = `[data-${name}-trigger]`;
+    this.panelSelector = `[data-${name}-panel]`;
+    this.itemActiveAttr = `data-${name}-item-open`;
+    this.mode = this.element.getAttribute(`data-${name}-mode`) || 'single'; // "multiple"
     this.duration = 400;
-
-    if (!this.isInited()) {
-      this._init();
-    }
   }
 
   buildCache() {
-    this.items = nodeListToArray(this.element.querySelectorAll(this.itemSelector))
+    this.items = Array.from(this.element.querySelectorAll(this.itemSelector))
       .filter((item) => {
         if (this.isItemDisabled(item)) {
           this.setItemDisabled(item);

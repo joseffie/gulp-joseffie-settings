@@ -7,10 +7,6 @@ class Header extends Plugin {
   constructor(element, options, name) {
     super(element, options, name);
     this.stickyClassName = 'header_sticky';
-
-    if (!this.isInited()) {
-      this._init();
-    }
   }
 
   init() {
@@ -29,12 +25,12 @@ class Header extends Plugin {
     this.element.classList.toggle(this.stickyClassName, window.scrollY > 0);
   }
 
-  getHeight() {
-    return `${this.element.offsetHeight}px`;
+  get elementHeight() {
+    return this.element.offsetHeight ? `${this.element.offsetHeight}px` : 0;
   }
 
   setHeightProperty() {
-    document.documentElement.style.setProperty('--header-height', this.getHeight() || 0);
+    document.documentElement.style.setProperty('--header-height', this.elementHeight);
   }
 
   setHeightPropertyOnResize() {

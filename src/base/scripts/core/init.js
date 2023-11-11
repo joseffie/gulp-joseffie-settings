@@ -2,13 +2,10 @@ import {
   isDomNode,
   isString,
   isArray,
-  isUndefined,
-  isNull,
 } from '../helpers/is.js';
-import nodeListToArray from '../helpers/DOM/nodeListToArray.js';
 
 export const getSelector = (selector) => {
-  if (isUndefined(selector) || isNull(selector)) {
+  if (!selector) {
     return [document.body];
   }
 
@@ -25,15 +22,15 @@ export default (Plugin, name = 'plugin') => (_selectors, options = {}) => {
 
   selectors.forEach((selector) => {
     if (selector && isString(selector)) {
-      const elements = nodeListToArray(document.querySelectorAll(selector));
+      const elements = Array.from(document.querySelectorAll(selector));
 
       elements.forEach((element) => {
-        instances.push(new Plugin(element, options, name));
+        instances.push(new Plugin(element, options, name)._init());
       });
     }
 
     if (isDomNode(selector)) {
-      instances.push(new Plugin(selector, options, name));
+      instances.push(new Plugin(selector, options, name)._init());
     }
   });
 

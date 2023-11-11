@@ -9,13 +9,9 @@ class Dropdown extends Plugin {
     super(element, options, name);
     this.closeOnOuterClick = true;
     this.closeOnMenuClick = true;
-    this.triggerSelector = '[data-dropdown-trigger]';
-    this.menuSelector = '[data-dropdown-menu]';
-    this.openedMenuAttribute = 'data-dropdown-open';
-
-    if (!this.isInited()) {
-      this._init();
-    }
+    this.triggerSelector = `[data-${name}-trigger]`;
+    this.menuSelector = `[data-${name}-menu]`;
+    this.openedMenuAttribute = `data-${name}-open`;
   }
 
   init() {
@@ -58,13 +54,15 @@ class Dropdown extends Plugin {
   }
 
   /**
-   * @param { boolean | undefined } bool
-   * @example toggle(true): means to open a drop-down
-   * @example toggle(false): means to close a drop-down
+   * @param { boolean | undefined } openDropdown
+   * @example
+   * Dropdown.toggle(true); // open dropdown
+   * Dropdown.toggle(false); // close dropdown
+   * Dropdown.toggle(); // toggle dropdown to the opposite state
    */
-  toggle(bool = undefined) {
-    this.element.setAttribute(this.openedMenuAttribute, bool ?? !this.isOpen());
-    this.trigger.setAttribute('aria-expanded', bool ?? !this.isOpen());
+  toggle(openDropdown) {
+    this.element.setAttribute(this.openedMenuAttribute, openDropdown ?? !this.isOpen());
+    this.trigger.setAttribute('aria-expanded', openDropdown ?? !this.isOpen());
   }
 
   isDisabled() {
@@ -101,7 +99,7 @@ class Dropdown extends Plugin {
     this.trigger.setAttribute('disabled', true);
   }
 
-  getMenuOffset() {
+  get menuOffset() {
     const menuRect = this.dropMenu.getBoundingClientRect();
 
     return {
@@ -112,12 +110,12 @@ class Dropdown extends Plugin {
     };
   }
 
-  getIntersectedViewportSide() {
+  get intersectedViewportSide() {
     let intersectedSide = null;
 
-    if (this.getMenuOffset().left < 10) {
+    if (this.menuOffset.left < 10) {
       intersectedSide = 'left';
-    } else if (this.getMenuOffset().right > window.innerWidth - 10) {
+    } else if (this.menuOffset.right > window.innerWidth - 10) {
       intersectedSide = 'right';
     }
 
@@ -125,7 +123,7 @@ class Dropdown extends Plugin {
   }
 
   handleMenuIntersectionWithViewport() {
-    if (!this.getIntersectedViewportSide()) {
+    if (!this.intersectedViewportSide) {
       return;
     }
 
@@ -141,9 +139,7 @@ class Dropdown extends Plugin {
       this.menuPositionState.sideChanged = null;
     }
 
-    const intersectedSide = this.getIntersectedViewportSide();
-
-    if (intersectedSide === 'left') {
+    if (this.intersectedViewportSide === 'left') {
       this.dropMenu.style.left = 0;
     } else {
       this.dropMenu.style.left = 'auto';
@@ -152,7 +148,7 @@ class Dropdown extends Plugin {
 
     this.dropMenu.style.transform = 'none';
     this.menuPositionState.changed = true;
-    this.menuPositionState.sideChanged = intersectedSide;
+    this.menuPositionState.sideChanged = this.intersectedViewportSide;
   }
 }
 

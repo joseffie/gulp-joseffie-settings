@@ -1,10 +1,4 @@
-/**
- * Simple is object check
- *
- * @param item
- * @return { boolean }
- */
-export const isObject = (item) => item && typeof item === 'object' && !Array.isArray(item) && item !== null;
+import { isObject } from './is.js';
 
 /**
  * Deep merge of two objects
